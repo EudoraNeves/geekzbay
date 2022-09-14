@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('buddies_in_events', function (Blueprint $table) {
+        Schema::create('users_in_events', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('buddy_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('event_id')->unsigned();
-            $table->foreign('buddy_id')->references('id')->on('buddies');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('event_id')->references('id')->on('events');
             $table->enum('status',['Going','Maybe',"Can&apos;t go"]);
         });
