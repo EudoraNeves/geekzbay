@@ -14,8 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('layouts.home');
+})->name('home');
+Route::get('/buddy', function () {
+    return view('layouts.buddy');
+})->name('buddy');
+Route::get('/meetup', function () {
+    return view('layouts.meetup');
+})->name('meetup');
+Route::get('/community', function () {
+    return view('layouts.community');
+})->name('community');
+Route::get('/locations', function () {
+    return view('layouts.locations');
+})->name('locations');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
