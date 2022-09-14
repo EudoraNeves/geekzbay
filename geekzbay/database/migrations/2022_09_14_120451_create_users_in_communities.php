@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('buddies_in_communities', function (Blueprint $table) {
+        Schema::create('users_in_communities', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('buddy_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('community_id')->unsigned();
-            $table->foreign('buddy_id')->references('id')->on('buddies');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('community_id')->references('id')->on('communities');
             $table->timestamps();
         });
