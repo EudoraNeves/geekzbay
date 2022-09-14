@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('ignore_list', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('buddy_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('badperson_id')->unsigned();
-            $table->foreign('buddy_id')->references('id')->on('buddies');
-            $table->foreign('badperson_id')->references('id')->on('buddies');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('badperson_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
