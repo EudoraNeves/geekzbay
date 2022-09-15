@@ -67,8 +67,8 @@
                         </div>
                     @else
                         <div class="loggedIn">
-                            <div class="logout">Logout</div>
-                            <div class="deleteAccount">Delete Account</div>
+                            <div class="logout"><img src="/log_out.svg" />Logout</div>
+                            <div class="deleteAccount"><img src="/delete.svg" />Delete Account</div>
                         </div>
                     @endif
         </div>
