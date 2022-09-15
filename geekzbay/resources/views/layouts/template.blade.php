@@ -66,7 +66,6 @@
             <img src="/community_icon.svg" height="30px" />
             My Communities
         </a>
-
         @if (!Auth::check())
             <div class="loggedOut">
                 <div class="register">
@@ -120,21 +119,12 @@
         border: 1px solid green;
         width: 20%;
         z-index: 2;
+        transition: transform 700ms ease-out;
         transform: translateX(-350px);
     }
 
     div.accountAccess:hover {
-        animation: 1s ease-out 0s forwards running slidein;
-    }
-
-    @keyframes slidein {
-        from {
-            transform: translateX(-350px);
-        }
-
-        to {
-            transform: translateX(-5px);
-        }
+        transform: translateX(-5px);
     }
 </style>
 
