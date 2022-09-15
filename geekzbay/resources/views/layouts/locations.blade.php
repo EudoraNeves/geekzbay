@@ -1,5 +1,10 @@
 @extends('layouts.template')
 @section('title', 'locations')
+@section('css')
+    <style>
+
+    </style>
+@endsection
 @section('main')
     locations Page
 
@@ -19,8 +24,11 @@
             <div>Town:</div>
             <div>Street:</div>
             <div>Number:</div>
-            <div>Communities</div>
+            <div>Communities:</div>
+            <a href='{{url()}}'>Go to website</a>
         </div>
     </div>
+
+    <div class="location-desc"></div>
 
 @endsection
