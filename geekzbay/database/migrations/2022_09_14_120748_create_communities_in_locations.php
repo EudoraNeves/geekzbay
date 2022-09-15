@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('communities_in_places', function (Blueprint $table) {
+        Schema::create('communities_in_locations', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('community_id')->unsigned();
-            $table->bigInteger('place_id')->unsigned();
+            $table->bigInteger('location_id')->unsigned();
             $table->foreign('community_id')->references('id')->on('communities');
-            $table->foreign('place_id')->references('id')->on('places');
+            $table->foreign('location_id')->references('id')->on('locations');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('communities_in_places');
+        Schema::dropIfExists('communities_in_locations');
     }
 };
