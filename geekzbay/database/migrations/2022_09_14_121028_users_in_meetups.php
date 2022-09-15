@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('buddies_in_events', function (Blueprint $table) {
+        Schema::create('users_in_meetups', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('event_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('meetup_id')->references('id')->on('meetups');
             $table->enum('status',['Going','Maybe',"Can&apos;t go"]);
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buddies_in_events');
+        Schema::dropIfExists('users_in_meetups');
     }
 };
