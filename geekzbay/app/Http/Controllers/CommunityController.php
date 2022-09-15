@@ -14,6 +14,7 @@ class CommunityController extends Controller
     public function index()
     {
         //
+        return view('layouts.my-communities');
     }
 
     /**
@@ -43,9 +44,10 @@ class CommunityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(/*$id*/)
     {
         //
+        return view('layouts.community');
     }
 
     /**
