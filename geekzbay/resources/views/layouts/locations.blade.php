@@ -67,5 +67,4 @@
             The Respawn bar in the center of Luxembourg the first e-sport and gaming bar in Luxembourg. 400 square meters dedicated to gaming in multiple spaces. Enjoy a drink with friends or colleagues while playing. We offer: 13 Board gaming tables, 2 Hexagonal premium gaming tables, 1 LAN area up to 10Pc, 4 Consoles spaces PS5,PS4,XboxSeries,Switch, 2 Battle boxes Guitare Hero and Kinect and 2 Wargaming tables.
         </div>
     </div>
-
 @endsection
