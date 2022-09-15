@@ -18,12 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->timestamp('date');
             $table->text('desc');
-            $table->bigInteger('eventadmin_id')->unsigned();
-            $table->bigInteger('community_id')->unsigned();
-            $table->bigInteger('location_id')->unsigned();
-            $table->foreign('eventadmin_id')->references('id')->on('users');
-            $table->foreign('community_id')->references('id')->on('communities');
-            $table->foreign('location_id')->references('id')->on('locations');
+            $table->foreignId('eventadmin_id')->references('id')->on('users');
+            $table->foreignId('community_id')->references('id')->on('communities');
+            $table->foreignId('location_id')->references('id')->on('locations');
             $table->text('alt_address_city');
             $table->text('alt_address_street');
             $table->text('alt_address_number');

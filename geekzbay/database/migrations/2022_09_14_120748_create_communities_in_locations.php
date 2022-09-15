@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('communities_in_locations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('community_id')->unsigned();
-            $table->bigInteger('location_id')->unsigned();
-            $table->foreign('community_id')->references('id')->on('communities');
-            $table->foreign('location_id')->references('id')->on('locations');
+            $table->foreignId('community_id')->references('id')->on('communities');
+            $table->foreignId('location_id')->references('id')->on('locations');
             $table->timestamps();
         });
     }

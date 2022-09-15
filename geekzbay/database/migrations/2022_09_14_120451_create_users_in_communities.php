@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('users_in_communities', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('community_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('community_id')->references('id')->on('communities');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('community_id')->references('id')->on('communities');
             $table->timestamps();
         });
     }
