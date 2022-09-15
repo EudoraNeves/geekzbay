@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunityController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\MeetupController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -23,14 +23,14 @@ use App\Http\Controllers\UserController;
 Route::get('/buddy', [UserController::class, 'show'])->name('buddy');
 Route::get('/buddy/my-buddies', [UserController::class, 'index'])->name('my-buddies');
 // Meetups
-Route::get('/meetup', [EventController::class, 'show'])->name('meetup');
-Route::get('/meetup/my-meetups', [EventController::class, 'index'])->name('my-meetups');
+Route::get('/meetup', [MeetupController::class, 'show'])->name('meetup');
+Route::get('/meetup/my-meetups', [MeetupController::class, 'index'])->name('my-meetups');
 // Communities
 Route::get('/community', [CommunityController::class, 'show'])->name('community');
 Route::get('/community/my-communities',[CommunityController::class, 'index'])->name('my-communities');
 // Locations
-Route::get('locations', [PlaceController::class, 'show'])->name('locations');
-Route::get('/locations/my-locations', [PlaceController::class, 'index'])->name('my-locations');
+Route::get('locations', [LocationController::class, 'show'])->name('locations');
+Route::get('/locations/my-locations', [LocationController::class, 'index'])->name('my-locations');
 
 
 Route::get('/', function () {
