@@ -14,63 +14,82 @@
 </head>
 
 <body>
+    <!-- Upper navbar -->
     <div class="header">
         <header>
-            <nav>
-                <div class="nav_bare">
-
-
-                    <a href="{{ route('home') }}" class="btn btn-dark"><img src="/Geeks_bay_Logo.svg"
-                            height="100px" /></a>
-                    <a href="{{ route('buddy') }}" class="btn btn-dark"><img src="/Buddy.svg" height="30px" />Buddy</a>
-                    <a href="{{ route('meetup') }}" class="btn btn-dark"><img src="/Evant.svg"
-                            height="30px" />Meetup</a>
-                    <a href="{{ route('community') }}" class="btn btn-dark"><img src="/community_icon.svg"
-                            height="30px" />Community</a>
-                    <a href="{{ route('locations') }}" class="btn btn-dark"><img src="/Local_icon1.svg"
-                            height="30px" />Locations</a>
-
-
+            <nav class='p-0 m-0'>
+                <div class="navbar p-0">
+                    <a href="{{ route('home') }}" class="btn btn-dark">
+                        <img src="/Geeks_bay_Logo.svg" height="100px" />
+                    </a>
+                    <a href="{{ route('buddy') }}" class="btn btn-dark">
+                        <img src="/Buddy.svg" height="30px" />
+                        Buddy
+                    </a>
+                    <a href="{{ route('meetup') }}" class="btn btn-dark">
+                        <img src="/Evant.svg" height="30px" />
+                        Meetup
+                    </a>
+                    <a href="{{ route('community') }}" class="btn btn-dark">
+                        <img src="/community_icon.svg" height="30px" />
+                        Community
+                    </a>
+                    <a href="{{ route('locations') }}" class="btn btn-dark">
+                        <img src="/Local_icon1.svg" height="30px" />
+                        Locations
+                    </a>
             </nav>
         </header>
     </div>
+
+    <!-- Sidebar -->
     <div class="main">
         <div class="accountAccess">
             <img src="profil.svg" alt="profilePhoto" height="100px">
 
-            <a href="{{ route('profile') }}"class="btn btn-dark"><img src="/profil.svg" height="30px" />My
-                Profile</a>
+            <a href="{{ route('profile') }}"class="btn btn-dark"><img src="/profil.svg" height="30px" />
+                My Profile
+            </a>
 
-            <a href="{{ route('my-buddies') }}"class="btn btn-dark"><img src="/Buddy.svg" height="30px" />My
-                Buddies</a></li>
-            <a href="{{ route('home') }}"><a href="{{ route('my-meetups') }}"class="btn btn-dark"><img src="/Evant.svg"
-                        height="30px" />My
-                    Meetups</a></li>
-                <a href="{{ route('home') }}"><a href="{{ route('my-locations') }}"class="btn btn-dark"><img
-                            src="/Local_icon1.svg" height="30px" />My
-                        Locations</a>
+            <a href="{{ route('my-buddies') }}"class="btn btn-dark"><img src="/Buddy.svg" height="30px" />
+                My Buddies
+            </a>
+            <a href="{{ route('home') }}"><a href="{{ route('my-meetups') }}"class="btn btn-dark">
+                <img src="/Evant.svg" height="30px" />
+                My Meetups
+            </a>
+            <a href="{{ route('home') }}"><a href="{{ route('my-locations') }}"class="btn btn-dark">
+                <img src="/Local_icon1.svg" height="30px" />
+                My Locations
+            </a>
 
-                    <a href="{{ route('my-communities') }}" class="btn btn-dark"><img src="/community_icon.svg"
-                            height="30px" />My
-                        Communities</a></li>
+            <a href="{{ route('my-communities') }}" class="btn btn-dark">
+                <img src="/community_icon.svg" height="30px" />
+                My Communities
+            </a>
 
-                    @if (!Auth::check())
-                        <div class="loggedOut">
+            @if (!Auth::check())
+                <div class="loggedOut">
+                    <div class="register">
+                        <a href="{{ route('register') }}"class="btn btn-dark">
+                            <img src="/Local_icon1.svg" height="30px" />
+                            Register
+                        </a>
 
-                            <div class="register"><a href="{{ route('register') }}"class="btn btn-dark"><img
-                                        src="/Local_icon1.svg" height="30px" />Register</a>
-
-                            </div>
-                            <div class="login"><a href="{{ route('login') }}" height="30px"class="btn btn-dark"><img
-                                        src="/login.svg" />Login</a>
-                            </div>
-                        </div>
-                    @else
-                        <div class="loggedIn">
-                            <div class="logout">Logout</div>
-                            <div class="deleteAccount">Delete Account</div>
-                        </div>
-                    @endif
+                    </div>
+                    <div class="login">
+                        <a href="{{ route('login') }}" height="30px"class="btn btn-dark">
+                            <img src="/login.svg" />
+                            Login
+                        </a>
+                    </div>
+                </div>
+            @else
+                <div class="loggedIn">
+                    <div class="logout">Logout</div>
+                    <div class="deleteAccount">Delete Account</div>
+                </div>
+            @endif
         </div>
         <main>
             @yield('main')
@@ -78,7 +97,7 @@
     </div>
     <div class="footer">
         <footer>
-            footer
+            Footer
         </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

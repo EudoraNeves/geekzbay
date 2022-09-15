@@ -5,37 +5,34 @@
 	padding: 2%;
 
 }
-	.nav_bare>a {align-self: start;
-	flex-grow: 1;}
-	
-	.nav_bare{
-		display: flex;
+
+.navbar>a {
+    align-self: start;
+	flex-grow: 1;
+}
+
+.navbar {
+	display: flex;
 	flex-direction: row;
 	text-decoration:none;
 	align-items: flex-start;
 	flex-wrap: wrap;
-	
-	
-	}
-	
-	.accountAccess{
-	
-		background-color: black;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		align-content: center;
-		border-radius : 15px;
-	}
-	
-	
-	nav {
-		padding: 0; margin: 0;
-	}
-	
-	
-	img {
-		
-		margin: 10px;
-	}
-	
+}
+
+.accountAccess{
+	background-color: black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-content: center;
+	border-radius : 15px;
+}
+
+nav {
+	padding: 0;
+    margin: 0;
+}
+
+img {
+	margin: 10px;
+}
