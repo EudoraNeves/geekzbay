@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('users_in_meetups', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('meetup_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('meetup_id')->references('id')->on('meetups');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('meetup_id')->references('id')->on('meetups');
             $table->enum('status',['Going','Maybe',"Can&apos;t go"]);
         });
     }
