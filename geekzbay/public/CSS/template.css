@@ -3,11 +3,8 @@
 	display: inline-block;
 	justify-content: center;
 	padding: 2%;
-	
-	
-	
-	
-	}
+
+}
 	.nav_bare>a {align-self: start;
 	flex-grow: 1;}
 	
