@@ -1,0 +1,16 @@
+.btn.btn-dark {
+	color: #E5B045 ;
+	display: inline-block;
+	justify-content: center;
+	padding: 2%;
+
+}
+
+.navbar>a {
+    align-self: start;
+	flex-grow: 1;
+}
+
+img {
+	margin: 10px;
+}

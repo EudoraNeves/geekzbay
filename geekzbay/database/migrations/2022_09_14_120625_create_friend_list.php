@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('friend_list', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('friend_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('friend_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('friend_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

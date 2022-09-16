@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('meetups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamp('date');
             $table->text('desc');
-            $table->bigInteger('eventadmin_id')->unsigned();
-            $table->bigInteger('community_id')->unsigned();
-            $table->bigInteger('place_id')->unsigned();
-            $table->foreign('eventadmin_id')->references('id')->on('users');
-            $table->foreign('community_id')->references('id')->on('communities');
-            $table->foreign('place_id')->references('id')->on('places');
+            $table->foreignId('eventadmin_id')->references('id')->on('users');
+            $table->foreignId('community_id')->references('id')->on('communities');
+            $table->foreignId('location_id')->references('id')->on('locations');
             $table->text('alt_address_city');
             $table->text('alt_address_street');
             $table->text('alt_address_number');
@@ -38,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('meetups');
     }
 };
