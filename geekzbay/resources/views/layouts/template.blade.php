@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="apple-touch-icon" sizes="180x180" href="/Favcon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Favcon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Favcon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link href="CSS/template.css" rel="stylesheet">
@@ -24,6 +31,10 @@
                 </div>
                 <div id="nav_bare" class="nav_bare">
 
+                    <a href="{{ route('profile') }}"class="btn btn-dark"><img src="/profil.svg" height="30px" />My
+                        Profile</a>
+
+
                     <a href="{{ route('buddy') }}" class="btn btn-dark"><img src="/Buddy.svg" height="30px" />Buddy</a>
                     <a href="{{ route('meetup') }}" class="btn btn-dark"><img src="/Evant.svg"
                             height="30px" />Meetup</a>
@@ -31,6 +42,36 @@
                             height="30px" />Community</a>
                     <a href="{{ route('locations') }}" class="btn btn-dark"><img src="/Local_icon1.svg"
                             height="30px" />Locations</a>
+                    <a href="{{ route('my-buddies') }}"class="btn btn-dark"><img src="/Buddy.svg" height="30px" />My
+                        Buddies</a>
+                    <a href="{{ route('home') }}"><a href="{{ route('my-meetups') }}"class="btn btn-dark"><img
+                                src="/Evant.svg" height="30px" />My
+                            Meetups</a>
+                        <a href="{{ route('home') }}"><a href="{{ route('my-locations') }}"class="btn btn-dark"><img
+                                    src="/Local_icon1.svg" height="30px" />My
+                                Locations</a>
+
+                            <a href="{{ route('my-communities') }}" class="btn btn-dark"><img src="/community_icon.svg"
+                                    height="30px" />My
+                                Communities</a>
+
+                            @if (!Auth::check())
+                                <div class="loggedOut">
+
+                                    <div class="register"><a href="{{ route('register') }}"class="btn btn-dark"><img
+                                                src="/Local_icon1.svg" height="30px" />Register</a>
+
+                                    </div>
+                                    <div class="login"><a href="{{ route('login') }}"
+                                            height="30px"class="btn btn-dark"><img src="/login.svg" />Login</a>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="loggedIn">
+                                    <div class="logout"><img src="/log_out.svg" />Logout</div>
+                                    <div class="deleteAccount"><img src="/delete.svg" />Delete Account</div>
+                                </div>
+                            @endif
 
 
             </nav>
@@ -40,39 +81,9 @@
         <div class="accountAccess">
             <img src="profil.svg" alt="profilePhoto" height="100px">
 
-            <a href="{{ route('profile') }}"class="btn btn-dark"><img src="/profil.svg" height="30px" />My
-                Profile</a>
 
-            <a href="{{ route('my-buddies') }}"class="btn btn-dark"><img src="/Buddy.svg" height="30px" />My
-                Buddies</a></li>
-            <a href="{{ route('home') }}"><a href="{{ route('my-meetups') }}"class="btn btn-dark"><img src="/Evant.svg"
-                        height="30px" />My
-                    Meetups</a></li>
-                <a href="{{ route('home') }}"><a href="{{ route('my-locations') }}"class="btn btn-dark"><img
-                            src="/Local_icon1.svg" height="30px" />My
-                        Locations</a>
 
-                    <a href="{{ route('my-communities') }}" class="btn btn-dark"><img src="/community_icon.svg"
-                            height="30px" />My
-                        Communities</a></li>
 
-                    @if (!Auth::check())
-                        <div class="loggedOut">
-
-                            <div class="register"><a href="{{ route('register') }}"class="btn btn-dark"><img
-                                        src="/Local_icon1.svg" height="30px" />Register</a>
-
-                            </div>
-                            <div class="login"><a href="{{ route('login') }}" height="30px"class="btn btn-dark"><img
-                                        src="/login.svg" />Login</a>
-                            </div>
-                        </div>
-                    @else
-                        <div class="loggedIn">
-                            <div class="logout"><img src="/log_out.svg" />Logout</div>
-                            <div class="deleteAccount"><img src="/delete.svg" />Delete Account</div>
-                        </div>
-                    @endif
         </div>
         <main>
             @yield('main')
@@ -95,15 +106,5 @@
         }
     </script>
 </body>
-<style>
-    body {
-        border: 1px solid black;
-    }
-
-    div.accountAccess {
-        border: 1px solid green;
-        width: 20%;
-    }
-</style>
 
 </html>
