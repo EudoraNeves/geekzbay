@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('communities', function (Blueprint $table) {
-            $table->id();
-            $table->text('img');
-            $table->string('name');
-            $table->string('discordLink');
-            $table->foreignId('category_id')->references('id')->on('categories');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->date('birthDate')->nullable()->change();
+            // $table->longText('desc')->nullable()->change();
         });
+
     }
 
     /**
@@ -30,6 +27,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('communities');
+        Schema::table('users', function (Blueprint $table) {
+            $table->date('birthDate')->nullable(false)->change();
+            $table->text('desc')->nullable(false)->change();
+        });
     }
 };

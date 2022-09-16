@@ -122,7 +122,7 @@
     <!-- Footer -->
     <div class="footer">
         <footer>
-            footer
+            Footer
         </footer>
     </div>
 
@@ -140,8 +140,16 @@
 </body>
 <style>
     div.accountAccess {
+	    background-color: black;
         border: 1px solid green;
         width: 20%;
+        z-index: 2;
+        transition: transform 700ms ease-out;
+        transform: translateX(-350px);
+    }
+
+    div.accountAccess:hover {
+        transform: translateX(-5px);
     }
 </style>
 

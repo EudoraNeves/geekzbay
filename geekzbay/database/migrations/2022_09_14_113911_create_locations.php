@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('profilePicture');
-            $table->enum('type',['Shop','Bar','Club','Library','Movie',null]);
+            $table->enum('type', ['Shop', 'Bar', 'Club', 'Library', 'Cinema', null]);
             $table->text('desc');
             $table->text('homePage');
             $table->string('address_city');

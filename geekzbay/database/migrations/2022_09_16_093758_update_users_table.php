@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('communities', function (Blueprint $table) {
-            $table->id();
-            $table->text('img');
-            $table->string('name');
-            $table->string('discordLink');
-            $table->foreignId('category_id')->references('id')->on('categories');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->longText('profilePicture')->default(base64_encode(file_get_contents(public_path('user-icon.png'))))->change();
         });
     }
 
@@ -30,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('communities');
+        Schema::table('users', function (Blueprint $table) {
+            $table->longText('profilePicture')->default(null)->change();
+        });
+
     }
 };

@@ -1,0 +1,9 @@
+.findBuddy {
+    display: flex;
+    justify-content: space-between;
+}
+.findBuddy_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
