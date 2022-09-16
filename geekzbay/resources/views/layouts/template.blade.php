@@ -27,10 +27,10 @@
                 </div>
 
                 <!-- Dropdown menu -->
-                <div id="nav_bare" class="nav_bare d-flex flex-row justify-content-between position-absolute" width="200px" style="background-color: red;">
+                <div id="nav_bare" class="nav_bare d-flex flex-row justify-content-between position-absolute" width="200px">
 
                     <!-- Account column -->
-                    <div class="d-flex flex-column" width="50%">
+                    <div class="d-flex flex-column">
                         <img src="profil.svg" alt="profilePhoto" height="100px" />
                         <a href="{{ route('profile') }}"class="btn btn-dark">
                             <img src="/profil.svg" height="30px" />
@@ -79,7 +79,7 @@
                     <!-- End of Account column -->
 
                     <!-- General links column -->
-                    <div class="d-flex flex-column" width="50%">
+                    <span class="d-flex flex-column">
                         <a href="{{ route('buddy') }}" class="btn btn-dark">
                             <img src="/Buddy.svg" height="30px" />
                             Buddy

@@ -32,7 +32,7 @@ a.burger {
 .nav_bare {
 	width: 100%;
 	flex: 1;
-	top:-800px;
+	top: -800px;
 	transition: all 1s;
 }
 
