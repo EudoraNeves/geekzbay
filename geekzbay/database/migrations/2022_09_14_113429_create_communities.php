@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('communities', function (Blueprint $table) {
             $table->id();
-            $table->string('img');
+            $table->text('img');
             $table->string('name');
             $table->string('discordLink');
             $table->foreignId('category_id')->references('id')->on('categories');
