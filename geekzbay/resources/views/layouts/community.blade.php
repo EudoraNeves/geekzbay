@@ -9,9 +9,11 @@
 @section('main')
 
 
-    <form class="search-container d-flex flex-row justify-content-end my-3" id="searchdata">
+    <form class="search-container d-flex flex-row justify-content-end my-3" id="searchdata" method="GET">
+        @csrf
         <div class="input-group has-validation">
-            <select class="form-select h-75 lh-1" id="floatingSelect" aria-label="Floating label select example">
+            <select class="form-select h-75 lh-1" id="floatingSelect" name="category"
+                aria-label="Floating label select example">
                 <option class="lh-1" value="1">Anime/Manga</option>
                 <option class="lh-1" value="2">Movie/Series</option>
                 <option class="lh-1" value="3">Comics</option>
@@ -47,8 +49,8 @@
                 }
             })
 
-            function fetchAPI() {
-                fetchAPI()
+            function fetch() {
+                fetch('searchDatabase.php')
                     .then(data => data.json)
                     .then(function(jsonResult) {
                         if (!htmlsave) {
