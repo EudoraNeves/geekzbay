@@ -6,8 +6,13 @@
 @endsection
 
 @section('title', 'community')
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 @section('main')
 
+    {{-- Searchbar --}}
 
     <form class="search-container d-flex flex-row justify-content-end my-3" id="searchdata" method="GET">
         @csrf
@@ -28,6 +33,7 @@
             <input type="submit" class="input-group-text h-75" value="Search">
         </div>
     </form>
+
     {{-- Body --}}
     <div id="search-content">
         <h1> <i>Welcome to our Community Page</i></h1>
@@ -36,6 +42,7 @@
     </div>
 
     <script>
+        // Javascript to get the data from a PHP file with fetch
         window.onload = function() {
             const formdata = document.querySelector("#searchdata");
             const searchcontent = document.querySelector("#search-content");

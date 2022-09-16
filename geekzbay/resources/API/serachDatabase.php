@@ -2,9 +2,10 @@
 // Validating inputs
 $errors = array();
 
-if(!$_GET['category']) {
+if (!$_GET['category']) {
     $errors = 'Error: No Category provided.';
-}+
+}
++
 
 // Fetching data
 $conn = mysqli_connect('localhost', 'root', '', 'geekzbay');
@@ -13,8 +14,8 @@ $query = "SELECT * FROM " . $_GET["category"] . " WHERE name LIKE '%" . $_GET["s
 
 $results = mysqli_query($conn, $query);
 
-$songs = mysqli_fetch_all($results, MYSQLI_ASSOC);
+$returnobject = mysqli_fetch_all($results, MYSQLI_ASSOC);
 
-$songs = json_encode($songs);
+$returnobject = json_encode($returnobject);
 
-echo $songs;
+echo $returnobject;
