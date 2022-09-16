@@ -17,11 +17,13 @@
     <div class="header">
         <header>
             <nav>
-                <div class="nav_bare">
-
-
-                    <a href="{{ route('home') }}" class="btn btn-dark"><img src="/Geeks_bay_Logo.svg"
+                <div class="btn btn-dark sticky-header ">
+                    <a href="{{ route('home') }}" class="btn btn-dark logo"><img src="/Geeks_bay_Logo.svg"
                             height="100px" /></a>
+                    <a class="burger" id="burger"><img src="/Burger_menu.svg" height="40px" /></a>
+                </div>
+                <div id="nav_bare" class="nav_bare">
+
                     <a href="{{ route('buddy') }}" class="btn btn-dark"><img src="/Buddy.svg" height="30px" />Buddy</a>
                     <a href="{{ route('meetup') }}" class="btn btn-dark"><img src="/Evant.svg"
                             height="30px" />Meetup</a>
@@ -87,7 +89,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
-
+    <script>
+        document.getElementById('burger').onclick = function() {
+            document.getElementById('nav_bareS').classList.toggle('active');
+        }
+    </script>
 </body>
 <style>
     body {
