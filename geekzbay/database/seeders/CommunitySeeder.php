@@ -82,5 +82,12 @@ class CommunitySeeder extends Seeder
                 'category_id' => 2,
             ]
         );
+        DB::table('communities')->insert(
+            [
+                'name' => '',
+                'discordLink' => '',
+                'category_id' => 7
+            ]
+        );
     }
 }
