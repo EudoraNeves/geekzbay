@@ -31,7 +31,7 @@
 
                     <!-- Account column -->
                     <div class="d-flex flex-column">
-                        <img src="profil.svg" alt="profilePhoto" height="100px" />
+                        <img src="{{ asset('profil.svg')}}" alt="profilePhoto" height="100px" />
                         <a href="{{ route('profile') }}"class="btn btn-dark">
                             <img src="/profil.svg" height="30px" />
                             My Profile
@@ -85,7 +85,7 @@
                             Buddy
                         </a>
                         <a href="{{ route('meetup') }}" class="btn btn-dark">
-                            <img src="/Evant.svg" height="30px" />
+                            <img src="{{ asset('Evant.svg') }}" height="30px" />
                             Meetup
                         </a>
                         <a href="{{ route('community') }}" class="btn btn-dark">
