@@ -91,7 +91,7 @@
     </script>
     <script>
         document.getElementById('burger').onclick = function() {
-            document.getElementById('nav_bareS').classList.toggle('active');
+            document.getElementById('nav_bare').classList.toggle('active');
         }
     </script>
 </body>

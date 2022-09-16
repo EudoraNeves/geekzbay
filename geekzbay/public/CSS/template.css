@@ -6,12 +6,20 @@ nav {
 
 }
 
+.burger {
+	display: flex!important;
+	flex-direction:column-reverse
+
+
+	 
+}
 nav .sticky-header{
 	display: flex!important;
 	flex-direction: row;
 	width: 100%;
 	flex: 1;
 	justify-content: space-between;
+	z-index: 12;
 }
 nav .sticky-header a{
 	flex: 1;
@@ -20,6 +28,7 @@ nav .sticky-header a{
 nav .sticky-header a.burger{
 	display: flex;
 	width: 40px;
+	
 }
 .logo{
 	z-index: 10;
@@ -27,7 +36,7 @@ nav .sticky-header a.burger{
 
 
 .nav_bare{
-	z-index: 12;
+	
 	display: flex;
 	flex-direction: column;
 	text-decoration:none;
@@ -42,11 +51,13 @@ nav .sticky-header a.burger{
 
 .nav_bare.active{
 	top:140px;
+	
 }
 	
 .nav_bare a {
 align-self: start;
 flex: 1;
+width: 100%;
 }
 
 .btn.btn-dark {
