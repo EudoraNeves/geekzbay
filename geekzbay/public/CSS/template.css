@@ -1,76 +1,64 @@
-nav {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	flex: 1;
+/* Color definitions */
+:root{
+    --header-button-color: #212529;
+    --gold-text-color: #E5B045;
+}
 
+nav {
+	flex: 1;
 }
 
 .burger {
 	display: flex!important;
 	flex-direction:column-reverse
-
-
-	 
 }
-nav .sticky-header{
-	display: flex!important;
-	flex-direction: row;
+
+.sticky-header{
 	width: 100%;
 	flex: 1;
-	justify-content: space-between;
 	z-index: 12;
 }
-nav .sticky-header a{
+
+.sticky-header>a{
 	flex: 1;
 	margin: auto;
 }
-nav .sticky-header a.burger{
+
+a.burger {
 	display: flex;
-	width: 40px;
-	
-}
-.logo{
-	z-index: 10;
 }
 
 
-.nav_bare{
-	
-	display: flex;
-	flex-direction: column;
-	text-decoration:none;
-	align-items: flex-start;
-	flex-wrap: wrap;
+.nav_bare {
 	width: 100%;
 	flex: 1;
-	position:absolute;
-	top:-600px;
+	top: -800px;
 	transition: all 1s;
-	}
+}
 
 .nav_bare.active{
-	top:140px;
-	
+	top: 215px;
 }
-	
+
 .nav_bare a {
-align-self: start;
-flex: 1;
-width: 100%;
+    align-self: start;
+    flex: 1;
+    width: 100%;
 }
 
 .btn.btn-dark {
-	color: #E5B045 ;
+	color: var(--gold-text-color);
 	display: inline-block;
 	justify-content: center;
 	padding: 2%;
-
 }
 
-.navbar>a {
-    align-self: start;
-	flex-grow: 1;
+.accountAccess{
+	background-color: black;
+}
+
+.accountAccess>.btn.btn-dark {
+	width: 100%;
 }
 
 img {
