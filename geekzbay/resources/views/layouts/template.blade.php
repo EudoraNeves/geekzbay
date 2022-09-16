@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="apple-touch-icon" sizes="180x180" href="/Favcon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Favcon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Favcon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link href="CSS/template.css" rel="stylesheet">
@@ -107,12 +114,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
-
+    <script>
+        document.getElementById('burger').onclick = function() {
+            document.getElementById('nav_bare').classList.toggle('active');
+        }
+    </script>
 </body>
-<style>
-    body {
-        border: 1px solid black;
-    }
 
     div.accountAccess {
 	    background-color: black;
