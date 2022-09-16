@@ -9,7 +9,7 @@ class Community extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    
+
 
     protected $fillable = [
         'photo',
@@ -17,11 +17,4 @@ class Community extends Model
         'discordLink',
         'category_id',
     ];
-
-    public function priceWithEuro(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->attributes['price'] .
-        );
-    }
 }
