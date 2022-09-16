@@ -17,45 +17,46 @@ class CategoriesSeeder extends Seeder
     {
         //
         DB::table('categories')->insert(
-            [
-                'name' => 'Animes',
-                'icon' => ''
+            [   //1
+                'name' => 'Animes/Mangas',
+                'icon' => 'anime.svg'
             ]
         );
         DB::table('categories')->insert(
-            [
+            [ //2
                 'name' => 'Boardgames',
-                'icon' => ''
+                'icon' => 'Board_game.svg'
             ]
         );
         DB::table('categories')->insert(
-            [
+            [ //2
+                'name' => 'Boardgames',
+                'icon' => 'Board_game.svg'
+            ]
+        );
+        DB::table('categories')->insert(
+            [ //3
                 'name' => 'Cardgames',
-                'icon' => ''
+                'icon' => 'Card_icon.svg'
             ]
         );
         DB::table('categories')->insert(
-            [
+            [ //4
                 'name' => 'Comics',
-                'icon' => ''
+                'icon' => 'Book_icon.svg'
+            ]
+        );
+
+        DB::table('categories')->insert(
+            [ //5
+                'name' => 'Movies/Series',
+                'icon' => 'Popcorne'
             ]
         );
         DB::table('categories')->insert(
-            [
-                'name' => 'Mangas',
-                'icon' => ''
-            ]
-        );
-        DB::table('categories')->insert(
-            [
-                'name' => 'Movies',
-                'icon' => ''
-            ]
-        );
-        DB::table('categories')->insert(
-            [
+            [ //6
                 'name' => 'Videogames',
-                'icon' => ''
+                'icon' => 'game_icon1.svg'
             ]
         );
     }
