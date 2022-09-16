@@ -29,6 +29,12 @@ class CategoriesSeeder extends Seeder
             ]
         );
         DB::table('categories')->insert(
+            [ //2
+                'name' => 'Boardgames',
+                'icon' => 'Board_game.svg'
+            ]
+        );
+        DB::table('categories')->insert(
             [ //3
                 'name' => 'Cardgames',
                 'icon' => 'Card_icon.svg'
