@@ -6,15 +6,11 @@
 @endsection
 
 @section('title', 'community')
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 @section('main')
 
     {{-- Searchbar --}}
 
-    <form class="search-container d-flex flex-row justify-content-end my-3" id="searchdata" method="GET">
+    <form class="search-container d-flex flex-row justify-content-end my-3" id="searchdata">
         @csrf
         <div class="input-group has-validation">
             <select class="form-select h-75 lh-1" id="floatingSelect" name="category"
@@ -27,8 +23,9 @@
                 <option class="lh-1" value="6">Board Games</option>
             </select>
             <div class="form-floating is-invalid">
-                <input type="text" class="form-control is-invalid h-75" id="floatingInputGroup2" placeholder="Search">
-                <label for="floatingInputGroup2" class="align-top lh-1">Search</label>
+                <input type="text" name="input" class="form-control is-invalid h-75" id="floatingInputGroup2"
+                    placeholder="Search">
+                <label for="input" class="align-top lh-1">Search</label>
             </div>
             <input type="submit" class="input-group-text h-75" value="Search">
         </div>
@@ -52,13 +49,19 @@
                 event.preventDefault();
                 if (forminput.value == '' && htmlsave) {
                     searchcontent.innerHTML == htmlsave;
+                } else {
 
                 }
             })
 
             function fetch() {
-                fetch('searchDatabase.php')
-                    .then(data => data.json)
+                const fetchdata = new FormData(formdata);
+                console.log(fetchdata);
+                fetch('searchDatabase.php', {
+                        method: 'POST',
+                        body: fetchdata,
+                    })
+                    .then(data => data.json())
                     .then(function(jsonResult) {
                         if (!htmlsave) {
                             htmlsave = searchcontent.innerHTML;
