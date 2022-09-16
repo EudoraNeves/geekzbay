@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link href="CSS/template.css" rel="stylesheet">
+    <link href="{{asset('css/template.css')}}" rel="stylesheet">
     @yield('css')
 
     <title>@yield('title')</title>
@@ -138,19 +138,4 @@
         }
     </script>
 </body>
-<style>
-    div.accountAccess {
-	    background-color: black;
-        border: 1px solid green;
-        width: 20%;
-        z-index: 2;
-        transition: transform 700ms ease-out;
-        transform: translateX(-350px);
-    }
-
-    div.accountAccess:hover {
-        transform: translateX(-5px);
-    }
-</style>
-
 </html>
