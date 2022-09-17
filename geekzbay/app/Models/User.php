@@ -43,4 +43,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function buddies()
+    {
+        return $this->hasManyThrough(self::class, UserBuddies::class, 'user_id', 'id', 'id', 'buddy_id');
+    }
+    
 }
