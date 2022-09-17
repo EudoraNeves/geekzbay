@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link href="{{asset('css/template.css')}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="{{ asset('css/template.css') }}" rel="stylesheet">
     @yield('css')
 
     <title>@yield('title')</title>
@@ -27,11 +28,12 @@
                 </div>
 
                 <!-- Dropdown menu -->
-                <div id="nav_bare" class="nav_bare d-flex flex-row justify-content-between position-absolute" width="200px">
+                <div id="nav_bare" class="nav_bare d-flex flex-row justify-content-between position-absolute"
+                    width="200px">
 
                     <!-- Account column -->
                     <div class="d-flex flex-column">
-                        <img src="{{ asset('profil.svg')}}" alt="profilePhoto" height="100px" />
+                        <img src="{{ asset('profil.svg') }}" alt="profilePhoto" height="100px" />
                         <a href="{{ route('profile') }}"class="btn btn-dark">
                             <img src="/profil.svg" height="30px" />
                             My Profile
@@ -96,11 +98,11 @@
                             <img src="/Local_icon1.svg" height="30px" />
                             Locations
                         </a>
-                    </div>
-                    <!-- End of General links column -->
                 </div>
-            </nav>
-        </header>
+                <!-- End of General links column -->
+    </div>
+    </nav>
+    </header>
     </div>
 
     <!-- Account Sidebar
@@ -115,9 +117,11 @@
     </div>
      -->
     <!-- Main data -->
-    <main>
-        @yield('main')
-    </main>
+    <div class="content">
+        <main>
+            @yield('main')
+        </main>
+    </div>
 
     <!-- Footer -->
     <div class="footer">
@@ -138,4 +142,5 @@
         }
     </script>
 </body>
+
 </html>

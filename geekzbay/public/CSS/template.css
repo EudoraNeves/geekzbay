@@ -1,4 +1,13 @@
 /* Color definitions */
+body {
+	background-color: rgb(35, 34, 34);
+	
+
+}
+
+
+
+
 :root{
     --header-button-color: #212529;
     --gold-text-color: #E5B045;
@@ -64,3 +73,6 @@ a.burger {
 img {
 	margin: 10px;
 }
+body {
+	overflow: hidden; /* Hide scrollbars */
+  }
