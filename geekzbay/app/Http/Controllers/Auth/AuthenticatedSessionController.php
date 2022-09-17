@@ -15,9 +15,10 @@ class AuthenticatedSessionController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('auth.login');
+        $isNewRegister = $request->get('registered') == '1';
+        return view('auth.login', ['isNewRegister' => $isNewRegister]);
     }
 
     /**
@@ -32,7 +33,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->route('home');
     }
 
     /**
