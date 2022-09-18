@@ -51,28 +51,40 @@
     </div>
 
     <script>
-        window.onload = function() {
-            const formdata = document.querySelector("#searchdata");
-            const searchcontent = document.querySelector("#search-content");
+        window.onload = () => {
+            const form = document.querySelector("#searchdata");
+            const searchContent = document.querySelector("#search-content");
             const forminput = document.querySelector("#floatingInputGroup2");
-            let htmlsave = null;
-            formdata.addEventListener("submit", function($event) {
+            let htmlSafe = null;
+            form.addEventListener("submit", event => {
                 event.preventDefault();
-                if (forminput.value == '' && htmlsave) {
-                    searchcontent.innerHTML == htmlsave;
-
+                console.log({
+                    'htmlSafe' : htmlSafe,
+                    'searchContent' : searchContent
+                });
+                if (forminput.value == '') {
+                    if(htmlSafe) {
+                        searchContent.innerHTML = htmlSafe;
+                    }
+                    return;
                 }
-            })
 
-            function fetch() {
-                fetch('searchDatabase.php')
-                    .then(data => data.json)
-                    .then(function(jsonResult) {
-                        if (!htmlsave) {
-                            htmlsave = searchcontent.innerHTML;
-                        }
-                        searchcontent.innerHTML = '';
-                    })
+                fetchAPI();
+            });
+
+            const fetchAPI = () => {
+                fetch('http://localhost:8000/api/v1/communities', {
+                    method: 'GET',
+                    params: new FormData(form)
+                })
+                .then(data => data.json())
+                .then(jsonResult => {
+                    if (!htmlSafe) {
+                        htmlSafe = searchContent.innerHTML;
+                    }
+                    searchContent.innerHTML = null;
+                    console.log(jsonResult);
+                });
             }
         }
     </script>
