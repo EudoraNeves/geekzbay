@@ -12,7 +12,14 @@
     <div class="card-body">
         <a href="#" class="card-link">Go to Profile</a>
         @if (!$self)
-            <button type="button" class="btn btn-warning">Add Buddy</button>
+            <button type="button" class="btn btn-warning"><a href="{{ route('addBuddy', ['buddy_id' => $addBuddyId]) }}">Add Buddy</a></button>
         @endif
     </div>
 </div>
+{{-- <script>
+    function addBuddy(e){
+
+    }
+    let addBuddy_Btn = document.querySelector('.addBuddy_btn')
+    addBuddy_Btn.addEventListener('click', addBuddy)
+</script> --}}
