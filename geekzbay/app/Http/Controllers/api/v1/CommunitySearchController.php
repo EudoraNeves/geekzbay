@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Community;
 use Illuminate\Http\Request;
 
+// Community imports
+use App\Models\Community;
+use App\Http\Resources\v1\CommunityCollection;
 use App\Http\Resources\v1\CommunityResource;
 
 
 
-class SearchController extends Controller
+class CommunitySearchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +22,7 @@ class SearchController extends Controller
     public function index(Community $community)
     {
         //
-        return new CommunityResource($community);
+        return new CommunityCollection(Community::paginate());
         //return Community::all();
     }
 
@@ -51,9 +53,10 @@ class SearchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(/*$id*/)
+    public function show(Community $community)
     {
         //
+        return new CommunityResource($community);
     }
 
     /**

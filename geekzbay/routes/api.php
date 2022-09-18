@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // api/v1
 // used for all things related to searches
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\api\v1'], function() {
-    Route::apiResource('communities', SearchController::class);
-    Route::apiResource('locations', SearchController::class);
-    Route::apiResource('meetups', SearchController::class);
+    Route::apiResource('communities', CommunitySearchController::class);
+    Route::apiResource('locations', LocationSearchController::class);
+    Route::apiResource('meetups', MeetupSearchController::class);
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v1;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LocationResource extends JsonResource
@@ -14,6 +15,11 @@ class LocationResource extends JsonResource
      */
     public function toArray($request)
     {
+        $communities = DB::table('communities_in_locations')
+            ->join('communities','communities.id', '=', 'communities_in_locations.community_id')
+            ->where('location_id', '=', $this->id)
+            ->get();
+
         return [
             'name' => $this->name,
             'profilePicture' => $this->profilePicture,
@@ -23,6 +29,7 @@ class LocationResource extends JsonResource
             'city' => $this->address_city,
             'road' => $this->address_road,
             'number' => $this->address_number,
+            'communities' => $communities ?? []
         ];
     }
 }
