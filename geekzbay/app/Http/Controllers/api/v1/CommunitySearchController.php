@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Community;
 use App\Http\Resources\v1\CommunityCollection;
 use App\Http\Resources\v1\CommunityResource;
+use App\Services\v1\CommunityQuery;
 
 
 

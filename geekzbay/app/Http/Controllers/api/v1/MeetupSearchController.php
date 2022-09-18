@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Meetup;
 use App\Http\Resources\v1\MeetupCollection;
 use App\Http\Resources\v1\MeetupResource;
-
+use App\Services\v1\MeetupQuery;
 
 
 class MeetupSearchController extends Controller

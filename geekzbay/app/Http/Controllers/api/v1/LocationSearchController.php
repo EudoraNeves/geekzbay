@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Location;
 use App\Http\Resources\v1\LocationCollection;
 use App\Http\Resources\v1\LocationResource;
-
+use App\Services\v1\LocationQuery;
 
 
 class LocationSearchController extends Controller
