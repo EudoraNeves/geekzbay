@@ -37,6 +37,7 @@
             // Getting HTML elements
             const form = document.querySelector("#searchdata");
             const searchContent = document.querySelector("#search-content");
+            const selectionMenu = document.querySelector('#floatingSelect');
             const forminput = document.querySelector("#floatingInputGroup2");
             let htmlSafe = null;
 
@@ -56,7 +57,7 @@
 
             // API fetching function
             const fetchAPI = () => {
-                fetch('http://localhost:8000/api/v1/communities', {
+                fetch(`http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${forminput.value}`, {
                     method: 'GET',
                     params: new FormData(form)
                 })

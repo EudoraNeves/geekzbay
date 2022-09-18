@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 class CommunityQuery {
     // The parameters one can search through, as well as the query applied by it.
     protected $allowedParams = [
-        'name' => ['like', '%', '%'],
-        'category' => ['=', '', '']
+        'name' => ['name', 'like', '%', '%'],
+        'category' => ['category_id', '=', '', '']
     ];
 
     public function transform(Request $request) {
@@ -24,7 +24,7 @@ class CommunityQuery {
             }
 
             // These will be entered in ->where(column, operator, value)
-            $eloQuery[] = [$param,$operator[0], $operator[1] . $query . $operator[2]];
+            $eloQuery[] = [$operator[0], $operator[1], $operator[2] . $query . $operator[3]];
         }
         return $eloQuery;
     }
