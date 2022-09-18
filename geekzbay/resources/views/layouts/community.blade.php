@@ -41,10 +41,32 @@
             const formInput = document.querySelector("#floatingInputGroup2");
             let htmlSafe = {};
 
-            // Appending form submit even listener: on void, restore html from html safe, else: fetch api
+
+            // Appending form submit event listener: on void, restore html from html safe, else: fetch api
             form.addEventListener("submit", event => {
                 event.preventDefault();
+                doSearch();
+            });
 
+
+            // Appending an automatic search that works 3 seconds behind the input
+            formInput.addEventListener("input", event => {
+                // If it's already inside, no need to wait to load up
+                const query = selectionMenu.value + '>' + formInput.value;
+                if(loadHTMLSafe(query)) {
+                    return;
+                }
+
+                // If it's not inside, go through the doSearch
+                setTimeout(() => {
+                    if(query == selectionMenu.value + '>' + formInput.value) {
+                        doSearch();
+                    }
+                }, 3000);
+            });
+
+
+            const doSearch = () => {
                 // Check if the search query is empty. If so and you got the html landing page: restore
                 if(formInput.value == '') {
                     if('landingPage' in htmlSafe) {
@@ -54,14 +76,12 @@
                 }
 
                 // If the search was already submitted, just take it out of the safe, no fetching required
-                const safeKey = selectionMenu.value + '>' + formInput.value;
-                if(safeKey in htmlSafe) {
-                    searchContent.innerHTML = htmlSafe[safeKey];
+                if(loadHTMLSafe(selectionMenu.value + '>' + formInput.value)) {
                     return;
                 }
 
                 fetchAPI();
-            });
+            };
 
 
             // API fetching function
@@ -76,6 +96,15 @@
                     htmlSafe[selectionMenu.value + '>' + formInput.value] = searchContent.innerHTML;
                     console.log(jsonResult);
                 });
+            }
+
+
+            // loads up data from the safe to the page
+            const loadHTMLSafe = safeKey => {
+                if(safeKey in htmlSafe) {
+                    searchContent.innerHTML = htmlSafe[safeKey];
+                    return true;
+                }
             }
         }
     </script>
