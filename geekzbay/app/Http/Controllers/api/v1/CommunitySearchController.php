@@ -22,9 +22,16 @@ class CommunitySearchController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        return new CommunityCollection(Community::paginate());
-        //return Community::all();
+        // Create the query object that filters the requested data
+        $filter = new CommunityQuery();
+        $filterResults = $filter->transform($request);
+        // Show the paginated results if you have any results, else, just show the pagination of the typical site
+        return new CommunityCollection(
+            (count($filterResults) ?
+                Community::where($filterResults)->paginate()
+            :
+                Community::paginate())
+        );
     }
 
     /**
