@@ -55,12 +55,16 @@
             const form = document.querySelector("#searchdata");
             const searchContent = document.querySelector("#search-content");
             const forminput = document.querySelector("#floatingInputGroup2");
-            let htmlsave = null;
+            let htmlSafe = null;
             form.addEventListener("submit", event => {
                 event.preventDefault();
+                console.log({
+                    'htmlSafe' : htmlSafe,
+                    'searchContent' : searchContent
+                });
                 if (forminput.value == '') {
-                    if(htmlsave) {
-                        searchContent.innerHTML == htmlsave;
+                    if(htmlSafe) {
+                        searchContent.innerHTML = htmlSafe;
                     }
                     return;
                 }
@@ -69,16 +73,17 @@
             });
 
             const fetchAPI = () => {
-                fetch('{{route('api/v1/communities')}}',{
-                    method: 'POST',
-                    body: new FormData(form)
+                fetch('http://localhost:8000/api/v1/communities', {
+                    method: 'GET',
+                    params: new FormData(form)
                 })
-                .then(data => data.json)
+                .then(data => data.json())
                 .then(jsonResult => {
-                    if (!htmlsave) {
-                        htmlsave = searchContent.innerHTML;
+                    if (!htmlSafe) {
+                        htmlSafe = searchContent.innerHTML;
                     }
                     searchContent.innerHTML = null;
+                    console.log(jsonResult);
                 });
             }
         }
