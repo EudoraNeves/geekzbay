@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\UserBuddies;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -13,8 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-        return view('layouts.my-buddies');
+        $myBuddies = Auth::user()->buddies;
+        return view('layouts.my-buddies', ['myBuddies' => $myBuddies]);
     }
 
     /**
@@ -46,8 +50,24 @@ class UserController extends Controller
      */
     public function show(/*$id*/)
     {
-        //
-        return view('layouts.buddy');
+        
+
+        // $user = auth()->user();
+        // dd($user->buddies);
+
+       // $randomUser = User::all()->random(1)[0];
+        $randomUser = User::where('id', '<>', auth()->user()->id)->inRandomOrder()->first();
+        // dd($randomUser);
+        return view('layouts.buddy', ['randomBuddy' => $randomUser]);
+        // return view('layouts.buddy');
+    }
+
+    public function addBuddy(){
+        UserBuddies::create([
+            'user_id' => Auth::user()->id,
+            'buddy_id' => request()->buddy_id
+        ]);
+        return $this->index();
     }
 
     /**
