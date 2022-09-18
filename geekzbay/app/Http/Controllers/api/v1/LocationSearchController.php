@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Location;
 use App\Http\Resources\v1\LocationCollection;
 use App\Http\Resources\v1\LocationResource;
-
+use App\Services\v1\LocationQuery;
 
 
 class LocationSearchController extends Controller
@@ -19,7 +19,7 @@ class LocationSearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Location $location)
+    public function index(Request $request)
     {
         //
         return new LocationCollection(Location::paginate());
