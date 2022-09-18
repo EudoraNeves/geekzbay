@@ -19,7 +19,7 @@ class LocationSearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Location $location)
+    public function index(Request $request)
     {
         //
         return new LocationCollection(Location::paginate());

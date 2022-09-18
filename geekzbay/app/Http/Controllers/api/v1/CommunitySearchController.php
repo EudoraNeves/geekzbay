@@ -19,7 +19,7 @@ class CommunitySearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Community $community)
+    public function index(Request $request)
     {
         //
         return new CommunityCollection(Community::paginate());
