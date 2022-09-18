@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// api/v1
+// used for all things related to searches
+Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\api\v1'], function() {
+    Route::apiResource('communities', SearchController::class);
+    Route::apiResource('locations', SearchController::class);
+    Route::apiResource('meetups', SearchController::class);
+});

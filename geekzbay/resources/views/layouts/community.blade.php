@@ -51,28 +51,35 @@
     </div>
 
     <script>
-        window.onload = function() {
-            const formdata = document.querySelector("#searchdata");
-            const searchcontent = document.querySelector("#search-content");
+        window.onload = () => {
+            const form = document.querySelector("#searchdata");
+            const searchContent = document.querySelector("#search-content");
             const forminput = document.querySelector("#floatingInputGroup2");
             let htmlsave = null;
-            formdata.addEventListener("submit", function($event) {
+            form.addEventListener("submit", event => {
                 event.preventDefault();
-                if (forminput.value == '' && htmlsave) {
-                    searchcontent.innerHTML == htmlsave;
-
+                if (forminput.value == '') {
+                    if(htmlsave) {
+                        searchContent.innerHTML == htmlsave;
+                    }
+                    return;
                 }
-            })
 
-            function fetch() {
-                fetch('searchDatabase.php')
-                    .then(data => data.json)
-                    .then(function(jsonResult) {
-                        if (!htmlsave) {
-                            htmlsave = searchcontent.innerHTML;
-                        }
-                        searchcontent.innerHTML = '';
-                    })
+                fetchAPI();
+            });
+
+            const fetchAPI = () => {
+                fetch('{{route('api/v1/communities')}}',{
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(data => data.json)
+                .then(jsonResult => {
+                    if (!htmlsave) {
+                        htmlsave = searchContent.innerHTML;
+                    }
+                    searchContent.innerHTML = null;
+                });
             }
         }
     </script>
