@@ -42,7 +42,7 @@
             <section class='findBuddy'>
                 <div class="myProfile">
                     <x-buddy-card self="true" username="{{ Auth::user()->name }}" quote="{{ Auth::user()->name }}'s quote"
-                        imgSrc="{{ Auth::user()->profilePicture }}" imgAlt="{{ Auth::user()->name }}'s profile photo" />
+                        imgSrc="{{ Auth::user()->profilePicture }}" imgAlt="{{ Auth::user()->name }}'s profile photo" addBuddyId="{{ $randomBuddy->id }}" />
                 </div>
                 <div class="findBuddy_btn">
                     <button type="button" class="btn btn-warning">Find Buddy</button>
@@ -50,7 +50,8 @@
                 <div class="buddyProfile hidden">
                     <x-buddy-card self="false" username="{{ $randomBuddy->name }}"
                         quote="{{ $randomBuddy->name }}'s quote" imgSrc="{{ $randomBuddy->profilePicture }}"
-                        imgAlt="{{ $randomBuddy->name }}'s profile photo" />
+                        imgAlt="{{ $randomBuddy->name }}'s profile photo" addBuddyId="{{ $randomBuddy->id }}" />
+                        {{-- addBuddy_href="{{route('addBuddy'), ['id' => $randomBuddy->id]}}" --}}
                 </div>
                 <div class="card question-mark" style="width: 18rem;">
                     ?

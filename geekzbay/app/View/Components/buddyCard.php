@@ -16,13 +16,15 @@ class buddyCard extends Component
     public $username;
     public $quote;
     public $self;
-    public function __construct($self, $imgSrc, $imgAlt, $username, $quote)
+    public $addBuddyId;
+    public function __construct($self, $imgSrc, $imgAlt, $username, $quote, $addBuddyId)
     {
         $this->self = $self === 'true';
         $this->imgSrc = $imgSrc;
         $this->imgAlt = $imgAlt;
         $this->username = $username;
         $this->quote = $quote;
+        $this->addBuddyId = $addBuddyId;
     }
 
     /**

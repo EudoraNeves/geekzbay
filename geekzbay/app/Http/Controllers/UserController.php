@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserBuddies;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -61,12 +62,13 @@ class UserController extends Controller
         // return view('layouts.buddy');
     }
 
-    // public function showRandomBuddy($id)
-    // {
-    //     $randomUser = User::all()->random(1)[0];
-    //     return view('buddy', ['randomBuddy' => $randomUser]);
-    // }
-
+    public function addBuddy(){
+        UserBuddies::create([
+            'user_id' => Auth::user()->id,
+            'buddy_id' => request()->buddy_id
+        ]);
+        return $this->index();
+    }
 
     /**
      * Show the form for editing the specified resource.
