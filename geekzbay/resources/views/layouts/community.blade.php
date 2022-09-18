@@ -38,37 +38,73 @@
             const form = document.querySelector("#searchdata");
             const searchContent = document.querySelector("#search-content");
             const selectionMenu = document.querySelector('#floatingSelect');
-            const forminput = document.querySelector("#floatingInputGroup2");
-            let htmlSafe = null;
+            const formInput = document.querySelector("#floatingInputGroup2");
+            let htmlSafe = {};
 
-            // Appending form submit even listener: on void, restore html from html safe, else: fetch api
+
+            // Appending form submit event listener: on void, restore html from html safe, else: fetch api
             form.addEventListener("submit", event => {
                 event.preventDefault();
-                if (forminput.value == '') {
-                    if(htmlSafe) {
-                        searchContent.innerHTML = htmlSafe;
+                doSearch();
+            });
+
+
+            // Appending an automatic search that works 3 seconds behind the input
+            formInput.addEventListener("input", event => {
+                // If it's already inside, no need to wait to load up
+                const query = selectionMenu.value + '>' + formInput.value;
+                if(loadHTMLSafe(query)) {
+                    return;
+                }
+
+                // If it's not inside, go through the doSearch
+                setTimeout(() => {
+                    if(query == selectionMenu.value + '>' + formInput.value) {
+                        doSearch();
+                    }
+                }, 3000);
+            });
+
+
+            const doSearch = () => {
+                // Check if the search query is empty. If so and you got the html landing page: restore
+                if(formInput.value == '') {
+                    if('landingPage' in htmlSafe) {
+                        searchContent.innerHTML = htmlSafe.landingPage;
                     }
                     return;
                 }
 
+                // If the search was already submitted, just take it out of the safe, no fetching required
+                if(loadHTMLSafe(selectionMenu.value + '>' + formInput.value)) {
+                    return;
+                }
+
                 fetchAPI();
-            });
+            };
 
 
             // API fetching function
             const fetchAPI = () => {
-                fetch(`http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${forminput.value}`, {
-                    method: 'GET',
-                    params: new FormData(form)
-                })
+                fetch(`http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${formInput.value}`)
                 .then(data => data.json())
                 .then(jsonResult => {
-                    if (!htmlSafe) {
-                        htmlSafe = searchContent.innerHTML;
+                    if(!('landingPage' in htmlSafe)) {
+                        htmlSafe.landingPage = searchContent.innerHTML;
                     }
-                    searchContent.innerHTML = null;
+                    searchContent.innerHTML = jsonResult;
+                    htmlSafe[selectionMenu.value + '>' + formInput.value] = searchContent.innerHTML;
                     console.log(jsonResult);
                 });
+            }
+
+
+            // loads up data from the safe to the page
+            const loadHTMLSafe = safeKey => {
+                if(safeKey in htmlSafe) {
+                    searchContent.innerHTML = htmlSafe[safeKey];
+                    return true;
+                }
             }
         }
     </script>
