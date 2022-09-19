@@ -48,7 +48,7 @@
                 @else
                     <button>
                         <a href="{{ route('logout') }}">
-                            <img src="/log_out.svg" />Logout
+                            <img src="/Log_out.svg" />Logout
                         </a>
                     </button>
                 @endif
