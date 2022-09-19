@@ -112,10 +112,10 @@
                         <div> 
                           ${ /* Left hand side of the card */'' }
                             <div>
-                                <img src="${jsonResult.data[result].image}">
+                                <img src="${jsonResult.data[result].image}" width="350px">
                             </div>
                            ${ /* Right hand side of the card */'' }
-                        
+
                             <div class = "proj_card_desc" >
                                 <div>
                                     <div>Name:</div>
