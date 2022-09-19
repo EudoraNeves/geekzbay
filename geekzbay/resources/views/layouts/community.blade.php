@@ -9,21 +9,20 @@
 
 @section('main')
 
-    <form class="proj-search-container d-flex flex-row justify-content-end my-3" id="searchdata" method="GET">
+    <form class="proj-search-container d-flex flex-row justify-content-end my-3" id="proj-search-data" method="GET">
         @csrf
         <div class="input-group">
-            <select class="form-select" id="floatingSelect" name="category"
-                aria-label="Floating label select example">
+            <select class="form-select" id="proj-category-select" name="category" aria-label="Floating label select example">
                 @foreach ($categories as $category)
                     <option class="lh-1" value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-            <input type="text" class="form-control" id="floatingInputGroup2" placeholder="Search" aria-label="Search">
-            <button type="submit" class="input-group-text btn btn-outline-light proj-button-gold">Submit</button>
+            <input type="text" class="form-control" id="proj-text-input" placeholder="Search" aria-label="Search">
+            <button type="submit" class="input-group-text btn btn-outline-light proj-button-gold" id="proj-submit">Submit</button>
         </div>
     </form>
     {{-- Body --}}
-    <div id="search-content">
+    <div id="proj-search-content">
         <h1> <i>Welcome to our Community Page</i></h1>
         <h2>Here you can find the community you are interested</h2>
 
@@ -32,10 +31,10 @@
     <script>
         window.onload = () => {
             // Getting HTML elements
-            const form = document.querySelector("#searchdata");
-            const searchContent = document.querySelector("#search-content");
-            const selectionMenu = document.querySelector('#floatingSelect');
-            const formInput = document.querySelector("#floatingInputGroup2");
+            const form = document.querySelector("#proj-search-data");
+            const searchContent = document.querySelector("#proj-search-content");
+            const selectionMenu = document.querySelector('#proj-category-select');
+            const formInput = document.querySelector("#proj-text-input");
             let htmlSafe = {};
 
 
