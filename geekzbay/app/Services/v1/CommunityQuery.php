@@ -10,7 +10,7 @@ class CommunityQuery extends Query {
     ];
 
     protected function nameFilter($query) {
-        return [Str::of('name')->lower(), 'LIKE', `%$query%`];
+        return ['name', 'LIKE', '%' . strtolower($query) . '%'];
     }
 
     protected function categoryFilter($query) {
