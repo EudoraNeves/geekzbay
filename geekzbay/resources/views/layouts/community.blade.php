@@ -45,7 +45,7 @@
             // Appending form submit event listener: on void, restore html from html safe, else: fetch api
             form.addEventListener("submit", event => {
                 event.preventDefault();
-                if(loadHTMLSafe(selectionMenu.value + '>' + formInput.value)) {
+                if (loadHTMLSafe(selectionMenu.value + '>' + formInput.value)) {
                     return;
                 }
                 fetchAPI();
@@ -56,13 +56,13 @@
             formInput.addEventListener("input", event => {
                 // If it's already inside, no need to wait to load up
                 const query = selectionMenu.value + '>' + formInput.value;
-                if(loadHTMLSafe(query)) {
+                if (loadHTMLSafe(query)) {
                     return;
                 }
 
                 // If it's not inside, go through the doSearch
                 setTimeout(() => {
-                    if(query == selectionMenu.value + '>' + formInput.value) {
+                    if (query == selectionMenu.value + '>' + formInput.value) {
                         fetchAPI();
                     }
                 }, 3000);
@@ -71,34 +71,68 @@
 
             // API fetching function
             const fetchAPI = () => {
-                fetch(`http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${formInput.value}`)
-                .then(data => data.json())
-                .then(jsonResult => {
-                    if(!('landingPage' in htmlSafe)) {
-                        htmlSafe.landingPage = searchContent.innerHTML;
-                    }
-                    searchContent.innerHTML = jsonResult;
-                    htmlSafe[selectionMenu.value + '>' + formInput.value] = searchContent.innerHTML;
-                    console.log(jsonResult);
-                });
+                fetch(
+                        `http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${formInput.value}`
+                    )
+                    .then(data => data.json())
+                    .then(jsonResult => {
+                        if (!('landingPage' in htmlSafe)) {
+                            htmlSafe.landingPage = searchContent.innerHTML;
+                        }
+                        searchContent.innerHTML = createSearchResults(jsonResult);
+                        htmlSafe[selectionMenu.value + '>' + formInput.value] = searchContent.innerHTML;
+                        console.log(jsonResult);
+                    });
             }
 
 
             // loads up data from the safe to the page
             const loadHTMLSafe = safeKey => {
                 // Check if the search query is empty. If so and you got the html landing page: restore
-                if(formInput.value == '') {
-                    if('landingPage' in htmlSafe) {
+                if (formInput.value == '') {
+                    if ('landingPage' in htmlSafe) {
                         searchContent.innerHTML = htmlSafe.landingPage;
                         return true;
                     }
                     return;
                 }
                 // Restore the page if it already is in the htmlSafe
-                if(safeKey in htmlSafe) {
+                if (safeKey in htmlSafe) {
                     searchContent.innerHTML = htmlSafe[safeKey];
                     return true;
                 }
+            }
+
+
+            const createSearchResults = function(jsonResult) {
+                let returnHTML = '';
+                for (const result in jsonResult.data) {
+
+                    returnHTML += `
+                        <div> 
+                          ${ /* Left hand side of the card */'' }
+                            <div>
+                                <img src="${jsonResult.data[result].image}" width="350px">
+                            </div>
+                           ${ /* Right hand side of the card */'' }
+
+                            <div class = "proj_card_desc" >
+                                <div>
+                                    <div>Name:</div>
+                                    <div>${jsonResult.data[result].name}</div>
+                                </div>
+                                <div>
+                                    <div>Category:</div>
+                                    <div>${jsonResult.data[result].category.name}</div>
+                                </div>
+                                <div>
+                                    <div>Discord:</div>
+                                    <div>${jsonResult.data[result].discordLink}</div>
+                                </div>
+                            </div>
+                        </div>`;
+                }
+                return returnHTML;
             }
         }
     </script>

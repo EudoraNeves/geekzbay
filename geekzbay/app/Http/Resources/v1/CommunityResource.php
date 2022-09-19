@@ -15,10 +15,11 @@ class CommunityResource extends JsonResource
      */
     public function toArray($request)
     {
-        $category_name = DB::table('categories')->select('name','id')->find($this->category_id);
+        $category_name = DB::table('categories')->select('name', 'id')->find($this->category_id);
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'image' => $this->img,
             'discordLink' => $this->discordLink,
             'category' => $category_name
         ];
