@@ -2,13 +2,22 @@
 
 namespace App\Services\v1;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CommunityQuery {
     // The parameters one can search through, as well as the query applied by it.
     protected $allowedParams = [
-        'name' => ['name', 'like', '%', '%'],
-        'category' => ['category_id', '=', '', '']
+        'name' => 'nameParse',
+        'category' => 'categoryParse'
     ];
+
+    protected function nameParse($query) {
+        return [Str::of('name')->lower(), 'LIKE', `%$query%`];
+    }
+
+    protected function categoryParse($query) {
+        return['category_id','=', $query];
+    }
 
     public function transform(Request $request) {
         $eloQuery = [];
@@ -24,7 +33,7 @@ class CommunityQuery {
             }
 
             // These will be entered in ->where(column, operator, value)
-            $eloQuery[] = [$operator[0], $operator[1], $operator[2] . $query . $operator[3]];
+            $eloQuery[] = $this->$query($query);
         }
         return $eloQuery;
     }
