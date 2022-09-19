@@ -32,13 +32,20 @@
                     <img src="/Burger_menu.svg" />
                 </a>
 
-                <a class="Login_logout">
-                    @if (!Auth::check())
-                        <button><img src="/log_out.svg" />Logout</button>
-                    @else
-                        <img src="/login.svg" />login
-                    @endif
-                </a>
+                @if (!Auth::check())
+                    <button>
+                        <a href="{{ route('logout') }}">
+                            <img src="/log_out.svg" />Logout
+                        </a>
+                    </button>
+                @else
+                    <button>
+                        <a href="{{ route('login') }}">
+                            <img src="/login.svg" />login
+                        </a>
+                    </button>
+                @endif
+
             </div>
         </header>
         <div class="extended_menu" id="extended_menu">
@@ -194,6 +201,12 @@
 
                     </li>
                     <li>
+                        <a href="{{ route('register') }}"class="btn btn-dark">
+                            <img src="/save_register.svg" height="30px" />
+                            Register
+                        </a>
+                    </li>
+                    <li>
 
                         <a href="" class="btn btn-dark">
 
@@ -211,10 +224,7 @@
 
 
         <!--<div class="register">
-                <a href="{{ route('register') }}">
-                    <img src="/Local_icon1.svg" height="30px" />
-                    Register
-                </a>
+               
  -->
         <!-- End of Authentication checks -->
 

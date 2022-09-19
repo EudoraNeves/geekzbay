@@ -93,27 +93,43 @@ header {
 
 .rigth{
 
-display: flex;
-justify-content: center;
+	display: flex;
+	justify-content: center;
 
 
 }
- button{
+
+
+
+a{
+	color: #E5B045 ;
+	text-decoration: none;
+	
+}
+
+a:hover {
+	color: #E5B045 ;
+}
+
+
+button {
+	color: i;
+	display: flex;
+	justify-content: center;
+
 	background-color: rgb(33, 37 ,41);
-	color: #E5B045;
-	border-radius: 10%;
 	border: none;
 	
 
 	
- }
 
-.Login_logout{
-	text-decoration: none;
-	display: flex;
-	justify-content: center;
-	inherit
-	}
+	
+}
+
+
+
+	
+
 /* 
 nav {
 	flex: 1;

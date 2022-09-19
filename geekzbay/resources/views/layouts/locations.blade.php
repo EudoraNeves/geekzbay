@@ -1,11 +1,13 @@
 @extends('layouts.template')
 @section('title', 'locations')
 @section('css')
+
     <style>
         .d-flex>.d-flex>img {
-            width:150px;
+            width: 150px;
         }
     </style>
+    <link rel="stylesheet" href={{ asset('css/location.css') }}>
 @endsection
 @section('main')
 
@@ -19,7 +21,9 @@
 
                 <!-- Image and stars/likes: column -->
                 <div class="d-flex flex-column me-4">
-                    <img src="https://respawn.lu/wp-content/uploads/2019/11/cropped-logo-1.png" alt="Shop picture" />
+                    <div class="local_img">
+                        <img src="https://respawn.lu/wp-content/uploads/2019/11/cropped-logo-1.png" alt="Shop picture" />
+                    </div>
                     <!-- Stars and likes: rows -->
                     <div class="d-flex flex-row justify-content-around">
                         <a class="btn btn-dark">👎</a>
@@ -64,7 +68,10 @@
 
         <div class="location-desc my-5 mx-md-5 mx-sm-1 text-center">
             <!-- This is where the bar is described -->
-            The Respawn bar in the center of Luxembourg the first e-sport and gaming bar in Luxembourg. 400 square meters dedicated to gaming in multiple spaces. Enjoy a drink with friends or colleagues while playing. We offer: 13 Board gaming tables, 2 Hexagonal premium gaming tables, 1 LAN area up to 10Pc, 4 Consoles spaces PS5,PS4,XboxSeries,Switch, 2 Battle boxes Guitare Hero and Kinect and 2 Wargaming tables.
+            The Respawn bar in the center of Luxembourg the first e-sport and gaming bar in Luxembourg. 400 square meters
+            dedicated to gaming in multiple spaces. Enjoy a drink with friends or colleagues while playing. We offer: 13
+            Board gaming tables, 2 Hexagonal premium gaming tables, 1 LAN area up to 10Pc, 4 Consoles spaces
+            PS5,PS4,XboxSeries,Switch, 2 Battle boxes Guitare Hero and Kinect and 2 Wargaming tables.
         </div>
     </div>
 @endsection
