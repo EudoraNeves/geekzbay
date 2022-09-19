@@ -1,10 +1,22 @@
 <?php
 
 namespace App\Services\v1;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class MeetupQuery {
+class MeetupQuery extends Query {
+    // The parameters one can search through, as well as the query applied by it.
+    protected $allowedParams = [
+        'name' => 'nameParse',
+        'category' => 'categoryParse'
+    ];
 
+    protected function nameParse($query) {
+        return [Str::of('name')->lower(), 'LIKE', `%$query%`];
+    }
+
+    protected function categoryParse($query) {
+        return['category_id','=', $query];
+    }
 }
 
 ?>
