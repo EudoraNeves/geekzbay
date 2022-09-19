@@ -4,7 +4,6 @@ namespace App\Services\v1;
 use Illuminate\Support\Str;
 
 class MeetupQuery extends Query {
-    // The parameters one can search through, as well as the query applied by it.
     protected $allowedParams = [
         'name' => 'nameFilter',
         'category' => 'categoryFilter',
