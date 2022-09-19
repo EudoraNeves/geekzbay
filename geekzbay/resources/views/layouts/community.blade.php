@@ -109,10 +109,27 @@
                 for (const result in jsonResult.data) {
 
                     returnHTML += `
-                        <div class = "proj_card_desc" >
-                            ${jsonResult.data[result].name}
-                            ${jsonResult.data[result].category.name}
-                            ${jsonResult.data[result].discordLink} 
+                        <div> 
+                          ${ /* Left hand side of the card */'' }
+                            <div>
+                                <img src="${jsonResult.data[result].image}">
+                            </div>
+                           ${ /* Right hand side of the card */'' }
+                        
+                            <div class = "proj_card_desc" >
+                                <div>
+                                    <div>Name:</div>
+                                    <div>${jsonResult.data[result].name}</div>
+                                </div>
+                                <div>
+                                    <div>Category:</div>
+                                    <div>${jsonResult.data[result].category.name}</div>
+                                </div>
+                                <div>
+                                    <div>Discord:</div>
+                                    <div>${jsonResult.data[result].discordLink}</div>
+                                </div>
+                            </div>
                         </div>`;
                 }
                 return returnHTML;
