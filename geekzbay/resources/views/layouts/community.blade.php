@@ -45,7 +45,10 @@
             // Appending form submit event listener: on void, restore html from html safe, else: fetch api
             form.addEventListener("submit", event => {
                 event.preventDefault();
-                doSearch();
+                if(loadHTMLSafe(selectionMenu.value + '>' + formInput.value)) {
+                    return;
+                }
+                fetchAPI();
             });
 
 
@@ -60,28 +63,10 @@
                 // If it's not inside, go through the doSearch
                 setTimeout(() => {
                     if(query == selectionMenu.value + '>' + formInput.value) {
-                        doSearch();
+                        fetchAPI();
                     }
                 }, 3000);
             });
-
-
-            const doSearch = () => {
-                // Check if the search query is empty. If so and you got the html landing page: restore
-                if(formInput.value == '') {
-                    if('landingPage' in htmlSafe) {
-                        searchContent.innerHTML = htmlSafe.landingPage;
-                    }
-                    return;
-                }
-
-                // If the search was already submitted, just take it out of the safe, no fetching required
-                if(loadHTMLSafe(selectionMenu.value + '>' + formInput.value)) {
-                    return;
-                }
-
-                fetchAPI();
-            };
 
 
             // API fetching function
@@ -101,6 +86,15 @@
 
             // loads up data from the safe to the page
             const loadHTMLSafe = safeKey => {
+                // Check if the search query is empty. If so and you got the html landing page: restore
+                if(formInput.value == '') {
+                    if('landingPage' in htmlSafe) {
+                        searchContent.innerHTML = htmlSafe.landingPage;
+                        return true;
+                    }
+                    return;
+                }
+                // Restore the page if it already is in the htmlSafe
                 if(safeKey in htmlSafe) {
                     searchContent.innerHTML = htmlSafe[safeKey];
                     return true;
