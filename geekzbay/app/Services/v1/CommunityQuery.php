@@ -10,7 +10,6 @@ class CommunityQuery extends Query {
     ];
 
     protected function nameFilter($query) {
-        $query = '%' . strtolower($query) . '%';
         return ['name', 'LIKE', '%' . strtolower($query) . '%'];
     }
 

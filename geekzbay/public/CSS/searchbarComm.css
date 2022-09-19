@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    border-radius: 10px;
 }
 
 .proj-search-container {
@@ -16,6 +17,7 @@
 
 .proj-name {
     color: yellow;
+    background-color: #FFFFFF2A;
 }
 
 .proj-categ {

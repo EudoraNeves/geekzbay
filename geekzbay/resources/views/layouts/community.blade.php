@@ -116,20 +116,24 @@
                            ${ /* Right hand side of the card */'' }
 
                             <div class="d-flex flex-column" id="proj_card_desc">
-                                <div class="proj-name d-flex flex-row justify-content-between">
-                                    <div>Name:</div>
-                                    <div>${jsonResult.data[result].name}</div>
+                                <div class="proj-name">
+                                    ${jsonResult.data[result].name}
                                 </div>
                                 <div class="proj-categ d-flex flex-row justify-content-between">
                                     <div>Category:</div>
                                     <div>${jsonResult.data[result].category.name}</div>
                                 </div>
-                                <div class="proj-desc">
-                                    ${jsonResult.data[result].desc?.slice(0,200) ?? ''}
+                                <div class="proj-desc d-flex flex-column">
+                                    <div>Description</div>
+                                    <div>${(jsonResult.data[result].desc?.slice(0,200) ?? '') + '...'}</div>
                                 </div>
                                 <div class="proj-discord d-flex flex-row justify-content-between">
                                     <div>Discord:</div>
-                                    <div>${jsonResult.data[result].discordLink}</div>
+                                    <div>
+                                        <a href='${jsonResult.data[result].discordLink}'>
+                                            Discord
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>`;
