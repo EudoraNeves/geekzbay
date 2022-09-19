@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Services\v1;
-use Illuminate\Support\Str;
 
 class MeetupQuery extends Query {
     protected $allowedParams = [
@@ -13,7 +12,8 @@ class MeetupQuery extends Query {
     ];
 
     protected function nameFilter($query) {
-        return [Str::of('name')->lower(), 'LIKE', `%$query%`];
+        $query = strtolower($query);
+        return ['name', 'LIKE', `%$query%`];
     }
 
     protected function categoryFilter($query) {

@@ -102,16 +102,16 @@
 
 
             const createSearchResults = function(jsonResult) {
-                let returnHTML = '<div class="d-flex" id="proj-results-container">';
+                let returnHTML = '<div class="d-flex flex-row flex-wrap" id="proj-results-container">';
 
                 for (const result in jsonResult.data) {
 
                     returnHTML += `
-                        <div class="d-flex" id="proj-comcard">
+                        <div class="d-flex proj-flex-adapt" id="proj-comcard">
                           ${ /* Left hand side of the card */'' }
 
-                            <div class="proj-img" width="20px">
-                                <img src="${jsonResult.data[result].image}">
+                            <div class="proj-img" width="150">
+                                <img src="${jsonResult.data[result].image}" width="150">
                             </div>
 
                            ${ /* Right hand side of the card */'' }

@@ -20,6 +20,7 @@ class CommunityResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => $this->img,
+            'desc' => $this->desc,
             'discordLink' => $this->discordLink,
             'category' => $category_name
         ];

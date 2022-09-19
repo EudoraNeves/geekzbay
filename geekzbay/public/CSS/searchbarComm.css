@@ -19,6 +19,17 @@
 .proj-categ {
     color: green;
 }
+
 .proj-discord {
     color: purple;
+}
+
+.proj-flex-adapt {
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .proj-flex-adapt {
+        flex-direction: row;
+    }
 }
