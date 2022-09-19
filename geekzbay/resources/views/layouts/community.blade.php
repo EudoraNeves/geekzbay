@@ -7,34 +7,16 @@
 
 @section('title', 'community')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @section('main')
-
 
     <form class="search-container d-flex flex-row justify-content-end my-3" id="searchdata" method="GET">
         @csrf
         <div class="input-group has-validation">
             <select class="form-select h-75 lh-1" id="floatingSelect" name="category"
                 aria-label="Floating label select example">
-                <option class="lh-1" value="1">Anime/Manga</option>
-                <option class="lh-1" value="2">Movie/Series</option>
-                <option class="lh-1" value="3">Comics</option>
-                <option class="lh-1" value="4">Games</option>
-                <option class="lh-1" value="5">Card Games</option>
-                <option class="lh-1" value="6">Board Games</option>
+                @foreach ($categories as $category)
+                    <option class="lh-1" value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
             </select>
             <div class="form-floating is-invalid">
                 <input type="text" class="form-control is-invalid h-75" id="floatingInputGroup2" placeholder="Search">
@@ -51,28 +33,78 @@
     </div>
 
     <script>
-        window.onload = function() {
-            const formdata = document.querySelector("#searchdata");
-            const searchcontent = document.querySelector("#search-content");
-            const forminput = document.querySelector("#floatingInputGroup2");
-            let htmlsave = null;
-            formdata.addEventListener("submit", function($event) {
+        window.onload = () => {
+            // Getting HTML elements
+            const form = document.querySelector("#searchdata");
+            const searchContent = document.querySelector("#search-content");
+            const selectionMenu = document.querySelector('#floatingSelect');
+            const formInput = document.querySelector("#floatingInputGroup2");
+            let htmlSafe = {};
+
+
+            // Appending form submit event listener: on void, restore html from html safe, else: fetch api
+            form.addEventListener("submit", event => {
                 event.preventDefault();
-                if (forminput.value == '' && htmlsave) {
-                    searchcontent.innerHTML == htmlsave;
+                doSearch();
+            });
 
+
+            // Appending an automatic search that works 3 seconds behind the input
+            formInput.addEventListener("input", event => {
+                // If it's already inside, no need to wait to load up
+                const query = selectionMenu.value + '>' + formInput.value;
+                if(loadHTMLSafe(query)) {
+                    return;
                 }
-            })
 
-            function fetch() {
-                fetch('searchDatabase.php')
-                    .then(data => data.json)
-                    .then(function(jsonResult) {
-                        if (!htmlsave) {
-                            htmlsave = searchcontent.innerHTML;
-                        }
-                        searchcontent.innerHTML = '';
-                    })
+                // If it's not inside, go through the doSearch
+                setTimeout(() => {
+                    if(query == selectionMenu.value + '>' + formInput.value) {
+                        doSearch();
+                    }
+                }, 3000);
+            });
+
+
+            const doSearch = () => {
+                // Check if the search query is empty. If so and you got the html landing page: restore
+                if(formInput.value == '') {
+                    if('landingPage' in htmlSafe) {
+                        searchContent.innerHTML = htmlSafe.landingPage;
+                    }
+                    return;
+                }
+
+                // If the search was already submitted, just take it out of the safe, no fetching required
+                if(loadHTMLSafe(selectionMenu.value + '>' + formInput.value)) {
+                    return;
+                }
+
+                fetchAPI();
+            };
+
+
+            // API fetching function
+            const fetchAPI = () => {
+                fetch(`http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${formInput.value}`)
+                .then(data => data.json())
+                .then(jsonResult => {
+                    if(!('landingPage' in htmlSafe)) {
+                        htmlSafe.landingPage = searchContent.innerHTML;
+                    }
+                    searchContent.innerHTML = jsonResult;
+                    htmlSafe[selectionMenu.value + '>' + formInput.value] = searchContent.innerHTML;
+                    console.log(jsonResult);
+                });
+            }
+
+
+            // loads up data from the safe to the page
+            const loadHTMLSafe = safeKey => {
+                if(safeKey in htmlSafe) {
+                    searchContent.innerHTML = htmlSafe[safeKey];
+                    return true;
+                }
             }
         }
     </script>

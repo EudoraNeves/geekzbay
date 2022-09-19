@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CommunityController extends Controller
 {
@@ -47,7 +48,8 @@ class CommunityController extends Controller
     public function show(/*$id*/)
     {
         //
-        return view('layouts.community');
+        $categories = DB::table('categories')->select('name', 'id')->get();
+        return view('layouts.community', ['categories' => $categories]);
     }
 
     /**

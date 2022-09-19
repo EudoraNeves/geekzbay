@@ -1,14 +1,14 @@
 @extends('layouts.template')
 @section('title', 'Register')
 @section('css')
-    <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/css/auth/register.css">
 @endsection
 @section('main')
     <x-guest-layout>
         <x-auth-card>
             <x-slot name="logo">
                 <a href="/">
-                    <img class="userIcon" src="user-icon.png" alt="logo.png"> </a>
+                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </x-slot>
 
             <!-- Validation Errors -->

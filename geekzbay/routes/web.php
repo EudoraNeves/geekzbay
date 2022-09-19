@@ -21,6 +21,7 @@ use App\Http\Controllers\UserController;
 
 // Buddies
 Route::get('/buddy', [UserController::class, 'show'])->name('buddy');
+Route::get('/buddy/add', [UserController::class, 'addBuddy'])->name('addBuddy');
 Route::get('/buddy/my-buddies', [UserController::class, 'index'])->name('my-buddies');
 // Meetups
 Route::get('/meetup', [MeetupController::class, 'show'])->name('meetup');
