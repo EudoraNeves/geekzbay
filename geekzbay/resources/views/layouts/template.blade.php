@@ -17,7 +17,7 @@
 
     <!-- Upper navbar -->
     <div class="header-container">
-        <header>
+        <header id="header">
             <div class="logo">
                 <a href="{{ route('home') }}" class="btn btn-dark z-10">
                     <img src="/Geeks_bay_Logo.svg" height="100px" />
@@ -59,8 +59,8 @@
             <div class="left">
 
             </div>
-            <div class="rigth">
-                <ul>
+            <div class="right">
+                <ul id="links">
                     <li>
                         <a href="{{ route('buddy') }}" class="btn btn-dark">
                             <img src="/Buddy.svg" height="30px" />
@@ -176,10 +176,7 @@
         </div> --}}
         </div>
         <div class="extended_menu" id="extended_menu_profil">
-            <div class="left">
-
-            </div>
-            <div class="rigth">
+            <div class="right">
                 <ul>
                     <li>
                         <a href="{{ route('profile') }}"class="btn btn-dark">
@@ -211,18 +208,8 @@
                             <img src="/Local_icon1.svg" height="30px" />
                             My Locations
                         </a>
-
                     </li>
                     <li>
-                        @if (!Auth::check())
-                            <a href="{{ route('register') }}"class="btn btn-dark">
-                                <img src="/save_register.svg" height="30px" />
-                                Register
-                            </a>
-                        @endif
-                    </li>
-                    <li>
-
                         <a href="" class="btn btn-dark">
 
                             <img src="/delete.svg" height="30px" />
@@ -230,11 +217,8 @@
                         </a>
                     </li>
             </div>
-            </a>
-
-            </li>
-            </ul>
         </div>
+
 
 
 
@@ -255,6 +239,7 @@
         </div>
     </div>
      -->
+
         <!-- Main data -->
         <div class="content">
             <main>

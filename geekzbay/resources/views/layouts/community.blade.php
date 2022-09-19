@@ -18,8 +18,8 @@
                     <option class="lh-1" value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-            <div class="form-floating is-invalid">
-                <input type="text" class="form-control is-invalid h-75" id="floatingInputGroup2" placeholder="Search">
+            <div class="form-floating ">
+                <input type="text" class="form-control h-75" id="floatingInputGroup2" placeholder="Search">
                 <label for="floatingInputGroup2" class="align-top lh-1">Search</label>
             </div>
             <input type="submit" class="input-group-text h-75" value="Search">
@@ -109,23 +109,25 @@
                 for (const result in jsonResult.data) {
 
                     returnHTML += `
-                        <div> 
+                        <div id="comcard"> 
                           ${ /* Left hand side of the card */'' }
-                            <div>
-                                <img src="${jsonResult.data[result].image}" width="350px">
+
+                            <div class="img">
+                                <img src="${jsonResult.data[result].image}">
                             </div>
+
                            ${ /* Right hand side of the card */'' }
 
-                            <div class = "proj_card_desc" >
-                                <div>
+                            <div id="proj_card_desc">
+                                <div class="name">
                                     <div>Name:</div>
                                     <div>${jsonResult.data[result].name}</div>
                                 </div>
-                                <div>
+                                <div class="cate">
                                     <div>Category:</div>
                                     <div>${jsonResult.data[result].category.name}</div>
                                 </div>
-                                <div>
+                                <div class="discord">
                                     <div>Discord:</div>
                                     <div>${jsonResult.data[result].discordLink}</div>
                                 </div>

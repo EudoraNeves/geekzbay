@@ -1,4 +1,27 @@
+#proj_card_desc {
+    display: flex;
+}
+
+#comcard {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .search-container {
     padding-left: 50%;
+}
 
+.name {
+    color: yellow;
+}
+
+.cate {
+    color: green;
+}
+.discord {
+    color: purple;
+}
+.img {
+    width: 20px;
 }

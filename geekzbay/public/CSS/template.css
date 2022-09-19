@@ -1,24 +1,17 @@
 /* Color definitions */
 body {
-	background-color: rgb(35, 34, 34);
-	color: white;
-	scroll-behavior: auto;
+    background-color: rgb(35, 34, 34);
+    color: white;
 }
 
-li{
+li {
+    color: #e5b045;
 
-	
-	color: #E5B045;
-	
-	list-style: none ;
-	
+    list-style: none;
 }
 
-.Login_logout{
-
-	color: #E5B045;
-	
-
+.Login_logout {
+    color: #e5b045;
 }
 
 /*root{
@@ -26,125 +19,77 @@ li{
     --gold-text-color: #E5B045;
 }*/
 
-.header-container{
-	border-bottom:1px solid #E5B045;
-	background-color: rgb(33, 37 ,41);
-	position: fixed;
-	top: 0;
-	z-index: 100;
-	width: 100%;
-	
+.header-container {
+    border-bottom: 1px solid #e5b045;
+    background-color: rgb(33, 37, 41);
+    top: 0;
+    z-index: 100;
+    width: 100%;
 }
 
-.header-container header{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	position: relative;
-	top: 0;
-	z-index: 100;
-	height: 120px;
+.header-container header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 120px;
 }
-.header-container header .quick_menu{
-	display: flex;
-	flex-direction: row;
-}
-
-
-
-.header-container header .quick_menu a{
-	display: block;
-	margin: 45px 10px 0 10px;
-	height: 30px;
-}
-.header-container header .quick_menu a img{
-	height: 30px;
+.header-container header .quick_menu {
+    display: flex;
+    flex-direction: row;
 }
 
-.extended_menu{
-	z-index: 50;
-	position: absolute;
-	top: -600%;
-	background-color: rgb(33, 37 ,41);
-	border-bottom:1px solid #E5B045;
-	width: 100%;
-	transition: 1s all;
-
+.header-container header .quick_menu a {
+    display: block;
+    margin: 45px 10px 0 10px;
+    height: 30px;
+}
+.header-container header .quick_menu a img {
+    height: 30px;
 }
 
-.extended_menu.active{
-	top: 120px;
-
+.extended_menu {
+    z-index: 50;
+    position: absolute;
+    top: -600%;
+    background-color: rgb(33, 37, 41);
+    border-bottom: 1px solid #e5b045;
+    width: 100%;
+    transition: 1s all;
 }
 
+.extended_menu.active {
+    top: 120px;
+}
 
 header {
-
-	border: bottom 1px solid ;
-	border-bottom:1px solid #E5B045;
-	background-color: rgb(33, 37 ,41);
-
+    border: bottom 1px solid;
+    border-bottom: 1px solid #e5b045;
+    background-color: rgb(33, 37, 41);
 }
 
 .btn.btn-dark {
-	color: #E5B045;
-	
+    color: #e5b045;
 }
 
-.rigth{
-
-	display: flex;
-	justify-content: center;
-
-
+.right {
+    display: flex;
+    justify-content: center;
 }
-
-
-
-a{
-	
-	color: #E5B045 ;
-	text-decoration: none;
-	
-}
-button{
-
-
-	color: #E5B045 ;
-
-}
-a:hover {
-	color: #E5B045 ;
-	
-}
-
-button:hover {
-	color: #E5B045 ;
-	cursor: pointer;
-	border-radius: 5px;
-	background-color:#ffffff22 ;
-  	
-}
-
-
 button {
-	color: i;
-	display: flex;
-	justify-content: center;
-
-	background-color: rgb(33, 37 ,41);
-	border: none;
-	
-
-	
-
-	
+    background-color: rgb(33, 37, 41);
+    color: #e5b045;
+    border-radius: 10%;
+    border: none;
 }
 
-
-
-	
-
+.Login_logout {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+}
 /* 
 nav {
 	flex: 1;
@@ -202,4 +147,4 @@ img {
 	margin: 10px;
 }
 body {
-	overflow: hidden; /* Hide scrollbars */
+/* Hide scrollbars */
