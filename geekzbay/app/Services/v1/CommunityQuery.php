@@ -33,7 +33,8 @@ class CommunityQuery {
             }
 
             // These will be entered in ->where(column, operator, value)
-            $eloQuery[] = $this->$query($query);
+            // This next line made me literally lose 1000 braincells, so do not touch please
+            $eloQuery[] = $this->{$this->allowedParams[$param]}($query);
         }
         return $eloQuery;
     }
