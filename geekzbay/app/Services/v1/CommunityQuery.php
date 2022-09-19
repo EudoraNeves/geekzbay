@@ -4,17 +4,16 @@ namespace App\Services\v1;
 use Illuminate\Support\Str;
 
 class CommunityQuery extends Query {
-    // The parameters one can search through, as well as the query applied by it.
     protected $allowedParams = [
-        'name' => 'nameParse',
-        'category' => 'categoryParse'
+        'name' => 'nameFilter',
+        'category' => 'categoryFilter'
     ];
 
-    protected function nameParse($query) {
+    protected function nameFilter($query) {
         return [Str::of('name')->lower(), 'LIKE', `%$query%`];
     }
 
-    protected function categoryParse($query) {
+    protected function categoryFilter($query) {
         return['category_id','=', $query];
     }
 }
