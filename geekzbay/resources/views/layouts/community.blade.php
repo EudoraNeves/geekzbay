@@ -9,20 +9,17 @@
 
 @section('main')
 
-    <form class="search-container d-flex flex-row justify-content-end my-3" id="searchdata" method="GET">
+    <form class="proj-search-container d-flex flex-row justify-content-end my-3" id="searchdata" method="GET">
         @csrf
-        <div class="input-group has-validation">
-            <select class="form-select h-75 lh-1" id="floatingSelect" name="category"
+        <div class="input-group">
+            <select class="form-select" id="floatingSelect" name="category"
                 aria-label="Floating label select example">
                 @foreach ($categories as $category)
                     <option class="lh-1" value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-            <div class="form-floating ">
-                <input type="text" class="form-control h-75" id="floatingInputGroup2" placeholder="Search">
-                <label for="floatingInputGroup2" class="align-top lh-1">Search</label>
-            </div>
-            <input type="submit" class="input-group-text h-75" value="Search">
+            <input type="text" class="form-control" id="floatingInputGroup2" placeholder="Search" aria-label="Search">
+            <button type="submit" class="input-group-text btn btn-outline-light proj-button-gold">Submit</button>
         </div>
     </form>
     {{-- Body --}}
@@ -105,35 +102,38 @@
 
 
             const createSearchResults = function(jsonResult) {
-                let returnHTML = '';
+                let returnHTML = '<div class="d-flex" id="proj-results-container">';
+
                 for (const result in jsonResult.data) {
 
                     returnHTML += `
-                        <div id="comcard"> 
+                        <div class="d-flex" id="proj-comcard">
                           ${ /* Left hand side of the card */'' }
 
-                            <div class="img">
+                            <div class="proj-img" width="20px">
                                 <img src="${jsonResult.data[result].image}">
                             </div>
 
                            ${ /* Right hand side of the card */'' }
 
-                            <div id="proj_card_desc">
-                                <div class="name">
+                            <div class="d-flex flex-column" id="proj_card_desc">
+                                <div class="proj-name d-flex flex-row justify-content-between">
                                     <div>Name:</div>
                                     <div>${jsonResult.data[result].name}</div>
                                 </div>
-                                <div class="cate">
+                                <div class="proj-categ d-flex flex-row justify-content-between">
                                     <div>Category:</div>
                                     <div>${jsonResult.data[result].category.name}</div>
                                 </div>
-                                <div class="discord">
+                                <div class="proj-discord d-flex flex-row justify-content-between">
                                     <div>Discord:</div>
                                     <div>${jsonResult.data[result].discordLink}</div>
                                 </div>
                             </div>
                         </div>`;
                 }
+
+                returnHTML += '</div>';
                 return returnHTML;
             }
         }

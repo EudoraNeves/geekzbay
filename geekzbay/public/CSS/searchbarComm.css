@@ -2,26 +2,23 @@
     display: flex;
 }
 
-#comcard {
+#proj-comcard {
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
 
-.search-container {
+.proj-search-container {
     padding-left: 50%;
 }
 
-.name {
+.proj-name {
     color: yellow;
 }
 
-.cate {
+.proj-categ {
     color: green;
 }
-.discord {
+.proj-discord {
     color: purple;
-}
-.img {
-    width: 20px;
 }
