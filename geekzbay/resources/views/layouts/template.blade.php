@@ -24,24 +24,31 @@
                 </a>
             </div>
             <div class="quick_menu">
-                <a class="profil" id="profil">
-                    <img src="/profil.svg" height="30px" />
-                    {{-- LOGO USER --}}
-                </a>
-                <a class="burger" id="burger">
-                    <img src="/Burger_menu.svg" />
-                </a>
+                <button>
+                    <a class="profil" id="profil">
+                        <img src="/profil.svg" height="30px" />
+                        {{-- LOGO USER --}}
+                    </a>
+                </button>
+
+                <button>
+                    <a class="burger" id="burger">
+
+                        <img src="/Burger_menu.svg" />
+
+                    </a>
+                </button>
 
                 @if (!Auth::check())
                     <button>
-                        <a href="{{ route('logout') }}">
-                            <img src="/log_out.svg" />Logout
+                        <a href="{{ route('login') }}">
+                            <img src="/login.svg" />login
                         </a>
                     </button>
                 @else
                     <button>
-                        <a href="{{ route('login') }}">
-                            <img src="/login.svg" />login
+                        <a href="{{ route('logout') }}">
+                            <img src="/log_out.svg" />Logout
                         </a>
                     </button>
                 @endif
@@ -175,6 +182,12 @@
             <div class="rigth">
                 <ul>
                     <li>
+                        <a href="{{ route('profile') }}"class="btn btn-dark">
+                            <img src="/profil.svg" height="30px" />
+                            My Profile
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('my-buddies') }}"class="btn btn-dark">
                             <img src="/Buddy.svg" height="30px" />
                             My Buddies
@@ -201,10 +214,12 @@
 
                     </li>
                     <li>
-                        <a href="{{ route('register') }}"class="btn btn-dark">
-                            <img src="/save_register.svg" height="30px" />
-                            Register
-                        </a>
+                        @if (!Auth::check())
+                            <a href="{{ route('register') }}"class="btn btn-dark">
+                                <img src="/save_register.svg" height="30px" />
+                                Register
+                            </a>
+                        @endif
                     </li>
                     <li>
 

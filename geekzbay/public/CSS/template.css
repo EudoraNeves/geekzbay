@@ -102,13 +102,28 @@ header {
 
 
 a{
+	
 	color: #E5B045 ;
 	text-decoration: none;
 	
 }
+button{
 
+
+	color: #E5B045 ;
+
+}
 a:hover {
 	color: #E5B045 ;
+	
+}
+
+button:hover {
+	color: #E5B045 ;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color:#ffffff22 ;
+  	
 }
 
 
