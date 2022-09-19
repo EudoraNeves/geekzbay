@@ -29,6 +29,7 @@ class CategoriesSeeder extends Seeder
             ]
         );
         DB::table('categories')->insert(
+<<<<<<< Updated upstream
             [
                 'name' => 'Cardgames',
                 'icon' => ''
@@ -38,6 +39,11 @@ class CategoriesSeeder extends Seeder
             [
                 'name' => 'Comics',
                 'icon' => ''
+=======
+            [ //3
+                'name' => 'Cardgames',
+                'icon' => 'Card_icon.svg'
+>>>>>>> Stashed changes
             ]
         );
         DB::table('categories')->insert(
