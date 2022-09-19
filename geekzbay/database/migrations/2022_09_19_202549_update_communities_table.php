@@ -28,5 +28,9 @@ return new class extends Migration
     public function down()
     {
         //
+        Schema::table('communities', function (Blueprint $table) {
+            $table->text('desc')->nullable();
+            $table->text('img')->nullable();
+        });
     }
 };

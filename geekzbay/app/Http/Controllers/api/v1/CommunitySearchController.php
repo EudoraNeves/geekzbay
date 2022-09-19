@@ -25,6 +25,7 @@ class CommunitySearchController extends Controller
         // Create the query object that filters the requested data
         $filter = new CommunityQuery();
         $filterResults = $filter->transform($request);
+        dd([$request,$filterResults]);
         // Show the paginated results if you have any results, else, just show the pagination of the typical site
         return new CommunityCollection(
             (count($filterResults) ?

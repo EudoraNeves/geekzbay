@@ -124,6 +124,9 @@
                                     <div>Category:</div>
                                     <div>${jsonResult.data[result].category.name}</div>
                                 </div>
+                                <div class="proj-desc">
+                                    ${jsonResult.data[result].desc?.slice(0,200) ?? ''}
+                                </div>
                                 <div class="proj-discord d-flex flex-row justify-content-between">
                                     <div>Discord:</div>
                                     <div>${jsonResult.data[result].discordLink}</div>

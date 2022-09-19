@@ -9,8 +9,7 @@ class LocationQuery extends Query {
     ];
 
     protected function nameFilter($query) {
-        $query = strtolower($query);
-        return ['name', 'LIKE', `%$query%`];
+        return ['name', 'LIKE', '%' . strtolower($query) . '%'];
     }
 
     protected function categoryFilter($query) {
