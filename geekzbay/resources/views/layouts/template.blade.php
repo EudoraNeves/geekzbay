@@ -76,90 +76,6 @@
                 </ul>
             </div>
 
-
-            {{-- <div>
-            <nav class="d-flex flex-column align-items-start z-10 p-0 m-0">
-                <div class="btn btn-dark sticky-header d-flex flex-row justify-content-between align-items-start">
-
-
-                </div>
-
-                <!-- Dropdown menu -->
-                <div id="nav_bare" class="nav_bare d-flex flex-row justify-content-between position-absolute"
-                    width="200px">
-
-                    <!-- Account column -->
-                    <div class="d-flex flex-column">
-                        <img src="{{ asset('profil.svg') }}" alt="profilePhoto" height="100px" />
-                        <a href="{{ route('profile') }}"class="btn btn-dark">
-                            <img src="/profil.svg" height="30px" />
-                            My Profile
-                        </a>
-                        <a href="{{ route('my-buddies') }}"class="btn btn-dark">
-                            <img src="/Buddy.svg" height="30px" />
-                            My Buddies
-                        </a>
-                        <a href="{{ route('my-meetups') }}"class="btn btn-dark">
-                            <img src="/Evant.svg" height="30px" />
-                            My Meetups
-                        </a>
-                        <a href="{{ route('my-locations') }}"class="btn btn-dark">
-                            <img src="/Local_icon1.svg" height="30px" />
-                            My Locations
-                        </a>
-                        <a href="{{ route('my-communities') }}" class="btn btn-dark">
-                            <img src="/community_icon.svg" height="30px" />
-                            My Communities
-                        </a>
-                        <!-- Authentication checks -->
-                        @if (!Auth::check())
-                            <div class="loggedOut">
-                                <div class="register">
-                                    <a href="{{ route('register') }}"class="btn btn-dark">
-                                        <img src="/Local_icon1.svg" height="30px" />
-                                        Register
-                                    </a>
-                                </div>
-                                <div class="login">
-                                    <a href="{{ route('login') }}" height="30px"class="btn btn-dark">
-                                        <img src="/login.svg" />
-                                        Login
-                                    </a>
-                                </div>
-                            </div>
-                        @else
-                            <div class="loggedIn">
-                                <div class="logout"><img src="/log_out.svg" />Logout</div>
-                                <div class="deleteAccount"><img src="/delete.svg" />Delete Account</div>
-                            </div>
-                        @endif
-                        <!-- End of Authentication checks -->
-                    </div>
-                    <!-- End of Account column -->
-
-                    <!-- General links column -->
-                    <span class="d-flex flex-column">
-                        <a href="{{ route('buddy') }}" class="btn btn-dark">
-                            <img src="/Buddy.svg" height="30px" />
-                            Buddy
-                        </a>
-                        <a href="{{ route('meetup') }}" class="btn btn-dark">
-                            <img src="{{ asset('Evant.svg') }}" height="30px" />
-                            Meetup
-                        </a>
-                        <a href="{{ route('community') }}" class="btn btn-dark">
-                            <img src="/community_icon.svg" height="30px" />
-                            Community
-                        </a>
-                        <a href="{{ route('locations') }}" class="btn btn-dark">
-                            <img src="/Local_icon1.svg" height="30px" />
-                            Locations
-                        </a>
-                </div>
-                <!-- End of General links column -->
-
-            </nav>
-        </div> --}}
         </div>
         <div class="extended_menu" id="extended_menu_profil">
             <div class="right">
@@ -198,30 +114,6 @@
                     </li>
             </div>
         </div>
-
-
-
-
-        <!--<div class="register">
-                <a href="{{ route('register') }}">
-                    <img src="/Local_icon1.svg" height="30px" />
-                    Register
-                </a>
- -->
-        <!-- End of Authentication checks -->
-
-
-        <!-- Account Sidebar
-    <div class="main">
-        <div class="accountAccess d-flex flex-column align-items-center align-content-center rounded-4 position-fixed">
-            <img src="profil.svg" alt="profilePhoto" height="100px" />
-            <a href="{{ route('profile') }}"class="btn btn-dark">
-                <img src="/profil.svg" height="30px" />
-                My Profile
-            </a>
-        </div>
-    </div>
-     -->
 
         <!-- Main data -->
         <div class="content">
