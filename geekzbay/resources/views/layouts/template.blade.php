@@ -14,17 +14,74 @@
 </head>
 
 <body>
+
     <!-- Upper navbar -->
-    <div class="header">
+    <div class="header-container">
         <header>
+            <div class="logo">
+                <a href="{{ route('home') }}" class="btn btn-dark z-10">
+                    <img src="/Geeks_bay_Logo.svg" height="100px" />
+                </a>
+            </div>
+            <div class="quick_menu">
+                <a class="profil" id="profil">
+                    <img src="/profil.svg" height="30px" />
+                    {{-- LOGO USER --}}
+                </a>
+                <a class="burger" id="burger">
+                    <img src="/Burger_menu.svg" />
+                </a>
+
+                <a class="Login_logout">
+                    @if (!Auth::check())
+                        <button><img src="/log_out.svg" />Logout</button>
+                    @else
+                        <img src="/login.svg" />login
+                    @endif
+                </a>
+            </div>
+        </header>
+        <div class="extended_menu" id="extended_menu">
+            <div class="left">
+
+            </div>
+            <div class="rigth">
+                <ul>
+                    <li>
+                        <a href="{{ route('buddy') }}" class="btn btn-dark">
+                            <img src="/Buddy.svg" height="30px" />
+                            Buddy
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('meetup') }}" class="btn btn-dark">
+                            <img src="{{ asset('Evant.svg') }}" height="30px" />
+                            Meetup
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('community') }}" class="btn btn-dark">
+                            <img src="/community_icon.svg" height="30px" />
+                            Community
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('locations') }}" class="btn btn-dark">
+                            <img src="/Local_icon1.svg" height="30px" />
+                            Locations
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+
+
+            {{-- <div>
             <nav class="d-flex flex-column align-items-start z-10 p-0 m-0">
                 <div class="btn btn-dark sticky-header d-flex flex-row justify-content-between align-items-start">
-                    <a href="{{ route('home') }}" class="btn btn-dark z-10">
-                        <img src="/Geeks_bay_Logo.svg" height="100px" />
-                    </a>
-                    <a class="burger m-auto" id="burger">
-                        <img src="/Burger_menu.svg" height="40px" width="40" />
-                    </a>
+
+
                 </div>
 
                 <!-- Dropdown menu -->
@@ -100,12 +157,69 @@
                         </a>
                 </div>
                 <!-- End of General links column -->
-    </div>
-    </nav>
-    </header>
-    </div>
 
-    <!-- Account Sidebar
+            </nav>
+        </div> --}}
+        </div>
+        <div class="extended_menu" id="extended_menu_profil">
+            <div class="left">
+
+            </div>
+            <div class="rigth">
+                <ul>
+                    <li>
+                        <a href="{{ route('my-buddies') }}"class="btn btn-dark">
+                            <img src="/Buddy.svg" height="30px" />
+                            My Buddies
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('my-meetups') }}"class="btn btn-dark">
+                            <img src="/Evant.svg" height="30px" />
+                            My Meetups
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('my-communities') }}" class="btn btn-dark">
+                            <img src="/community_icon.svg" height="30px" />
+                            My Communities
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('my-locations') }}"class="btn btn-dark">
+                            <img src="/Local_icon1.svg" height="30px" />
+                            My Locations
+                        </a>
+
+                    </li>
+                    <li>
+
+                        <a href="" class="btn btn-dark">
+
+                            <img src="/delete.svg" height="30px" />
+                            Delete Account
+                        </a>
+                    </li>
+            </div>
+            </a>
+
+            </li>
+            </ul>
+        </div>
+
+
+
+        <!--<div class="register">
+                <a href="{{ route('register') }}">
+                    <img src="/Local_icon1.svg" height="30px" />
+                    Register
+                </a>
+ -->
+        <!-- End of Authentication checks -->
+
+
+        <!-- Account Sidebar
     <div class="main">
         <div class="accountAccess d-flex flex-column align-items-center align-content-center rounded-4 position-fixed">
             <img src="profil.svg" alt="profilePhoto" height="100px" />
@@ -116,31 +230,36 @@
         </div>
     </div>
      -->
-    <!-- Main data -->
-    <div class="content">
-        <main>
-            @yield('main')
-        </main>
-    </div>
+        <!-- Main data -->
+        <div class="content">
+            <main>
+                @yield('main')
+            </main>
+        </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <footer>
-            Footer
-        </footer>
-    </div>
+        <!-- Footer -->
+        <div class="footer">
+            <footer>
+                Footer
+            </footer>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
-    <script>
-        document.getElementById('burger').onclick = function() {
-            document.getElementById('nav_bare').classList.toggle('active');
-        }
-    </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+        <script>
+            document.getElementById('profil').onclick = function() {
+                document.getElementById('extended_menu_profil').classList.toggle('active');
+                document.getElementById('extended_menu').classList.remove('active');
+            }
+            document.getElementById('burger').onclick = function() {
+                document.getElementById('extended_menu').classList.toggle('active');
+                document.getElementById('extended_menu_profil').classList.remove('active');
+            }
+        </script>
 </body>
 
 </html>
