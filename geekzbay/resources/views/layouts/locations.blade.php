@@ -3,6 +3,14 @@
 @section('css')
 
     <style>
+        @media (min-width: 414px) {
+            #info {
+                flex-direction: column;
+
+
+            }
+        }
+
         .d-flex>.d-flex>img {
             width: 150px;
         }
@@ -13,14 +21,14 @@
 
     <div class="d-flex flex-column align-items-center">
         <!-- Location card wrapper with location title: row -->
-        <div class="d-flex flex-column my-5">
+        <div class="d-flex flex-column my-5"id='info'>
             <h2 class="text-center mb-3">Respawn Bar Luxembourg</h2>
 
             <!-- Location card detail columns: row->column -->
             <div class="d-flex flex-row">
 
                 <!-- Image and stars/likes: column -->
-                <div class="d-flex flex-column me-4 align-items-center">
+                <div class="d-flex flex-column flex-wrap me-4 align-items-center">
 
                     <img src="https://respawn.lu/wp-content/uploads/2019/11/cropped-logo-1.png" alt="Shop picture" />
 
@@ -37,7 +45,7 @@
                 <!-- Second big column: make sure the links are at the bottom of the column while the data is at the top -->
                 <div class="text_box d-flex flex-column justify-content-between ms-4">
                     <!-- Address details: column>row to separate field name with field data -->
-                    <div class="d-flex flex-column">
+                    <div class="  d-flex flex-column ">
                         <div class="d-flex flex-row justify-content-between">
                             <span>Town:</span><span>Luxembourg</span>
                         </div>
