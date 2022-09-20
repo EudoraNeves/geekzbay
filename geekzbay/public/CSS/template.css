@@ -78,6 +78,15 @@ header {
     display: flex;
     justify-content: center;
 }
+button:hover {
+	color: #E5B045 ;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color:#ffffff22 ;
+}
+a:hover {
+	color: #E5B045 ;
+}
 button {
     background-color: rgb(33, 37, 41);
     color: #e5b045;
