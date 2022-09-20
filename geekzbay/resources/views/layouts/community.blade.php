@@ -9,24 +9,20 @@
 
 @section('main')
 
-    <form class="search-container d-flex flex-row justify-content-end my-3" id="searchdata" method="GET">
+    <form class="proj-search-container d-flex flex-row justify-content-end my-3" id="proj-search-data" method="GET">
         @csrf
-        <div class="input-group has-validation">
-            <select class="form-select h-75 lh-1" id="floatingSelect" name="category"
-                aria-label="Floating label select example">
+        <div class="input-group">
+            <select class="form-select" id="proj-category-select" name="category" aria-label="Floating label select example">
                 @foreach ($categories as $category)
                     <option class="lh-1" value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-            <div class="form-floating ">
-                <input type="text" class="form-control h-75" id="floatingInputGroup2" placeholder="Search">
-                <label for="floatingInputGroup2" class="align-top lh-1">Search</label>
-            </div>
-            <input type="submit" class="input-group-text h-75" value="Search">
+            <input type="text" class="form-control" id="proj-text-input" placeholder="Search" aria-label="Search">
+            <button type="submit" class="input-group-text btn btn-outline-light proj-button-gold" id="proj-submit">Submit</button>
         </div>
     </form>
     {{-- Body --}}
-    <div id="search-content">
+    <div id="proj-search-content">
         <h1> <i>Welcome to our Community Page</i></h1>
         <h2>Here you can find the community you are interested</h2>
 
@@ -35,10 +31,10 @@
     <script>
         window.onload = () => {
             // Getting HTML elements
-            const form = document.querySelector("#searchdata");
-            const searchContent = document.querySelector("#search-content");
-            const selectionMenu = document.querySelector('#floatingSelect');
-            const formInput = document.querySelector("#floatingInputGroup2");
+            const form = document.querySelector("#proj-search-data");
+            const searchContent = document.querySelector("#proj-search-content");
+            const selectionMenu = document.querySelector('#proj-category-select');
+            const formInput = document.querySelector("#proj-text-input");
             let htmlSafe = {};
 
 
@@ -105,35 +101,45 @@
 
 
             const createSearchResults = function(jsonResult) {
-                let returnHTML = '';
+                let returnHTML = '<div class="d-flex flex-row flex-wrap" id="proj-results-container">';
+
                 for (const result in jsonResult.data) {
 
                     returnHTML += `
-                        <div id="comcard"> 
+                        <div class="d-flex proj-flex-adapt" id="proj-comcard">
                           ${ /* Left hand side of the card */'' }
 
-                            <div class="img">
-                                <img src="${jsonResult.data[result].image}">
+                            <div class="proj-img" width="150">
+                                <img src="${jsonResult.data[result].image}" width="150">
                             </div>
 
                            ${ /* Right hand side of the card */'' }
 
-                            <div id="proj_card_desc">
-                                <div class="name">
-                                    <div>Name:</div>
-                                    <div>${jsonResult.data[result].name}</div>
+                            <div class="d-flex flex-column" id="proj_card_desc">
+                                <div class="proj-name">
+                                    ${jsonResult.data[result].name}
                                 </div>
-                                <div class="cate">
+                                <div class="proj-categ d-flex flex-row justify-content-between">
                                     <div>Category:</div>
                                     <div>${jsonResult.data[result].category.name}</div>
                                 </div>
-                                <div class="discord">
+                                <div class="proj-desc d-flex flex-column">
+                                    <div>Description</div>
+                                    <div>${(jsonResult.data[result].desc?.slice(0,200) ?? '') + '...'}</div>
+                                </div>
+                                <div class="proj-discord d-flex flex-row justify-content-between">
                                     <div>Discord:</div>
-                                    <div>${jsonResult.data[result].discordLink}</div>
+                                    <div>
+                                        <a href='${jsonResult.data[result].discordLink}'>
+                                            Discord
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>`;
                 }
+
+                returnHTML += '</div>';
                 return returnHTML;
             }
         }

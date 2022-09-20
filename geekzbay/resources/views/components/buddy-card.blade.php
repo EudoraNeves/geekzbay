@@ -6,6 +6,7 @@
     </div>
     <ul class="list-group list-group-flush bg-black">
         <li class="list-group-item"><a href="{{ route('my-meetups') }}">My Meetups</a></li>
+        <li class="list-group-item"><a href="{{ route('my-buddies') }}">My Buddies</a></li>
         <li class="list-group-item"><a href="{{ route('my-communities') }}">My Communities</a></li>
         <li class="list-group-item"><a href="{{ route('my-locations') }}">My Locations</a></li>
     </ul>

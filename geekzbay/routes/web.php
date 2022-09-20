@@ -32,6 +32,10 @@ Route::get('/community/my-communities',[CommunityController::class, 'index'])->n
 // Locations
 Route::get('locations', [LocationController::class, 'show'])->name('locations');
 Route::get('/locations/my-locations', [LocationController::class, 'index'])->name('my-locations');
+// Profile
+Route::get('my-profile', [UserController::class, 'showMyProfile'])->name('my-profile');
+Route::get('/my-profile/edit', [UserController::class, 'editMyProfile'])->name('my-profile.edit');
+Route::post('/my-profile', [UserController::class, 'updateMyProfile'])->name('my-profile.update');
 
 
 Route::get('/', function () {

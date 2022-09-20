@@ -1,27 +1,39 @@
+/* Project cards */
+
 #proj_card_desc {
     display: flex;
 }
 
-#comcard {
+#proj-comcard {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    border-radius: 10px;
 }
 
-.search-container {
+.proj-search-container {
     padding-left: 50%;
 }
 
-.name {
+.proj-name {
     color: yellow;
+    background-color: #FFFFFF2A;
 }
 
-.cate {
+.proj-categ {
     color: green;
 }
-.discord {
+
+.proj-discord {
     color: purple;
 }
-.img {
-    width: 20px;
+
+.proj-flex-adapt {
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .proj-flex-adapt {
+        flex-direction: row;
+    }
 }

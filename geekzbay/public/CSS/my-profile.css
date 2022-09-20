@@ -1,0 +1,24 @@
+.my-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 50%;
+    box-shadow: 5px 10px 20px gold inset;
+    padding: 2rem 2rem 7rem;
+    margin: 2rem auto 7rem auto;
+}
+
+.image {
+    width: 50px;
+}
+
+.edit {
+    text-align: right;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+
+.profile>div>img {
+    width: 10rem;
+}
