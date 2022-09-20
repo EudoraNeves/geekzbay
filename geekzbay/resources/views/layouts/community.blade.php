@@ -9,7 +9,7 @@
 
 @section('main')
 
-    <form class="proj-search-container d-flex flex-row justify-content-end my-3" id="proj-search-data" method="GET">
+    <form class="proj-search-container d-flex flex-row justify-content-end my-3 mb-5" id="proj-search-data" method="GET">
         @csrf
         <div class="input-group">
             <select class="form-select" id="proj-category-select" name="category" aria-label="Floating label select example">
@@ -18,7 +18,8 @@
                 @endforeach
             </select>
             <input type="text" class="form-control" id="proj-text-input" placeholder="Search" aria-label="Search">
-            <button type="submit" class="input-group-text btn btn-outline-light proj-button-gold" id="proj-submit">Submit</button>
+            <button type="submit" class="input-group-text btn btn-outline-light proj-button-gold"
+                id="proj-submit">Submit</button>
         </div>
     </form>
     {{-- Body --}}
@@ -64,12 +65,20 @@
                 }, 3000);
             });
 
+            // Search as soon as categories switch
+            selectionMenu.addEventListener("input", event => {
+                if (loadHTMLSafe(selectionMenu.value + '>' + formInput.value)) {
+                    return;
+                }
+                fetchAPI();
+            })
 
             // API fetching function
             const fetchAPI = () => {
                 fetch(
-                        `http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${formInput.value}`
-                    )
+                        `http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${formInput.value}`, {
+                            mode: "cors"
+                        })
                     .then(data => data.json())
                     .then(jsonResult => {
                         if (!('landingPage' in htmlSafe)) {
@@ -88,9 +97,8 @@
                 if (formInput.value == '') {
                     if ('landingPage' in htmlSafe) {
                         searchContent.innerHTML = htmlSafe.landingPage;
-                        return true;
                     }
-                    return;
+                    return true;
                 }
                 // Restore the page if it already is in the htmlSafe
                 if (safeKey in htmlSafe) {
@@ -101,6 +109,9 @@
 
 
             const createSearchResults = function(jsonResult) {
+                if (!jsonResult.data.length) {
+                    return '<div class="d-flex flex-row justify-content-center"> Sorry we could not find anything related to your research. Please try again!</div>';
+                }
                 let returnHTML = '<div class="d-flex flex-row flex-wrap" id="proj-results-container">';
 
                 for (const result in jsonResult.data) {
