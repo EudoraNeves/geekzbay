@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {
@@ -15,7 +16,10 @@ class LocationController extends Controller
     public function index()
     {
         //
-        return view('layouts.locations');
+        $addresses = DB::raw('SELECT address_city, COUNT(*) as locationSum FROM locations GROUP BY address_city')->get();
+        //$addresses = DB::table('locations')->select('address_city',DB::raw('count(*) as locationSum'))->groupBy('address_city');
+        dd($addresses);
+        return view('layouts.locations', ['addressArray' => $addresses]);
     }
 
     /**

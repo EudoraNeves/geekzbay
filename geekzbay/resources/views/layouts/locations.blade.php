@@ -11,6 +11,34 @@
 @endsection
 @section('main')
 
+    <form class="proj-search-container d-flex flex-row justify-content-end my-3 mb-5" id="proj-search-data" method="GET">
+        @csrf
+        <div class="input-group">
+            <select class="form-select" id="proj-city-select" name="city">
+                @foreach ($addressArray as $address)
+                    <option class="lh-1" value="town">{{ $address->address_city }} ({{$address->locationSum}})</option>
+                @endforeach
+            </select>
+            <input type="number" class="form-control" id="proj-distance-input" placeholder="Search" aria-label="Search">
+
+            <button type="submit" class="input-group-text btn btn-outline-light proj-button-gold"
+                id="proj-submit">Submit</button>
+        </div>
+    </form>
+
+    <div class="search-results"></div>
+    <script>
+        window.onload = () => {
+            const searchForm = document.querySelector('#proj-search-data');
+            const townSearch = document.querySelector('#proj-city-select');
+            const distanceSearch = document.querySelector('#proj-distance-input');
+
+            searchForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+            });
+        }
+    </script>
+{{--
     <div class="d-flex flex-column align-items-center">
         <!-- Location card wrapper with location title: row -->
         <div class="d-flex flex-column my-5">
@@ -78,4 +106,5 @@
             PS5,PS4,XboxSeries,Switch, 2 Battle boxes Guitare Hero and Kinect and 2 Wargaming tables.
         </div>
     </div>
+--}}
 @endsection
