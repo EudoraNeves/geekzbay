@@ -14,24 +14,23 @@
 </head>
 
 <body>
-
     <!-- Upper navbar -->
     <div class="header-container">
         <header id="header">
             <div class="logo">
                 <a href="{{ route('home') }}" class="btn btn-dark z-10">
-                    <img src="/Geeks_bay_Logo.svg" height="100px" />
+                    <img class="h-100px" src="/Geeks_bay_Logo.svg" height="100px" />
                 </a>
             </div>
             <div class="quick_menu">
-                <button>
+                <button class="btnm">
                     <a class="profil" id="profil">
                         <img src="/profil.svg" height="30px" />
                         {{-- LOGO USER --}}
                     </a>
                 </button>
 
-                <button>
+                <button class="btnm">
                     <a class="burger" id="burger">
 
                         <img src="/Burger_menu.svg" />
@@ -40,13 +39,13 @@
                 </button>
 
                 @if (!Auth::check())
-                    <button>
+                    <button class="btnm">
                         <a class="lilo" href="{{ route('login') }}">
-                            <img src="/login.svg" />login
+                            <img src="/login.svg" /><span>login</span>
                         </a>
                     </button>
                 @else
-                    <button>
+                    <button class="btnm">
                         <a class="lilo"href="{{ route('logout') }}">
                             <img src="/Log_out.svg" />Logout
                         </a>
@@ -125,14 +124,14 @@
                             My Locations
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         @if (!Auth::check())
-                            <a href="{{ route('register') }}"class="btn btn-dark">
+<a href="{{ route('register') }}"class="btn btn-dark">
                                 <img src="/save_register.svg" height="30px" />
                                 Register
                             </a>
-                        @endif
-                    </li>
+@endif
+                    </li>-->
                     <li>
 
                         <a href="" class="btn btn-dark">
@@ -177,10 +176,11 @@
 
         <footer>
             <div class="footer">
-                <img src="made_in_luxembourg.svg" height="100px"> &copy;
+                <img class="h-100px" src="made_in_luxembourg.svg" height="100px"> &copy;
             </div>
 
         </footer>
+
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
