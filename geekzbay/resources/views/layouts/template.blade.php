@@ -24,21 +24,35 @@
                 </a>
             </div>
             <div class="quick_menu">
-                <a class="profil" id="profil">
-                    <img src="/profil.svg" height="30px" />
-                    {{-- LOGO USER --}}
-                </a>
-                <a class="burger" id="burger">
-                    <img src="/Burger_menu.svg" />
-                </a>
+                <button>
+                    <a class="profil" id="profil">
+                        <img src="/profil.svg" height="30px" />
+                        {{-- LOGO USER --}}
+                    </a>
+                </button>
 
-                <a class="Login_logout">
-                    @if (!Auth::check())
-                        <button><img src="/log_out.svg" />Logout</button>
-                    @else
-                        <img src="/login.svg" />login
-                    @endif
-                </a>
+                <button>
+                    <a class="burger" id="burger">
+
+                        <img src="/Burger_menu.svg" />
+
+                    </a>
+                </button>
+
+                @if (!Auth::check())
+                    <button>
+                        <a href="{{ route('login') }}">
+                            <img src="/login.svg" />login
+                        </a>
+                    </button>
+                @else
+                    <button>
+                        <a href="{{ route('logout') }}">
+                            <img src="/Log_out.svg" />Logout
+                        </a>
+                    </button>
+                @endif
+
             </div>
         </header>
         <div class="extended_menu" id="extended_menu">
@@ -81,6 +95,12 @@
             <div class="right">
                 <ul>
                     <li>
+                        <a href="{{ route('profile') }}"class="btn btn-dark">
+                            <img src="/profil.svg" height="30px" />
+                            My Profile
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('my-buddies') }}"class="btn btn-dark">
                             <img src="/Buddy.svg" height="30px" />
                             My Buddies
@@ -106,6 +126,15 @@
                         </a>
                     </li>
                     <li>
+                        @if (!Auth::check())
+                            <a href="{{ route('register') }}"class="btn btn-dark">
+                                <img src="/save_register.svg" height="30px" />
+                                Register
+                            </a>
+                        @endif
+                    </li>
+                    <li>
+
                         <a href="" class="btn btn-dark">
 
                             <img src="/delete.svg" height="30px" />
@@ -115,6 +144,28 @@
             </div>
         </div>
 
+
+
+        <!--<div class="register">
+                <a href="{{ route('register') }}">
+                    <img src="/Local_icon1.svg" height="30px" />
+                    Register
+                </a>
+ -->
+        <!-- End of Authentication checks -->
+
+
+        <!-- Account Sidebar
+    <div class="main">
+        <div class="accountAccess d-flex flex-column align-items-center align-content-center rounded-4 position-fixed">
+            <img src="profil.svg" alt="profilePhoto" height="100px" />
+            <a href="{{ route('profile') }}"class="btn btn-dark">
+                <img src="/profil.svg" height="30px" />
+                My Profile
+            </a>
+        </div>
+    </div>
+     -->
         <!-- Main data -->
         <div class="content">
             <main>
