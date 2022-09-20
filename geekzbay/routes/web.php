@@ -31,6 +31,7 @@ Route::get('/community', [CommunityController::class, 'show'])->name('community'
 Route::get('/community/my-communities',[CommunityController::class, 'index'])->name('my-communities');
 // Locations
 Route::get('locations', [LocationController::class, 'show'])->name('locations');
+Route::get('location/{id}', [LocationController::class, 'show'])->name('location');
 Route::get('/locations/my-locations', [LocationController::class, 'index'])->name('my-locations');
 
 

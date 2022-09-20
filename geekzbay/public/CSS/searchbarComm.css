@@ -1,5 +1,10 @@
 /* Project cards */
 
+#proj-results-container {
+    flex-grow: 1;    /* Make every divcard the same dimension */
+    gap: 1em;
+}
+
 #proj_card_desc {
     display: flex;
 }
