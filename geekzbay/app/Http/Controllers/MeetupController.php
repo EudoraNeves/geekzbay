@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Meetup;
+use App\Http\Middleware\EnsureUserIsLoggedIn;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 class MeetupController extends Controller
 {
@@ -33,7 +36,18 @@ class MeetupController extends Controller
     {
         return view('insert_meetup');
     }
-
+    public function addMeetup()
+    {
+        if (Auth::check()) {
+            Meetup::create([
+                'user_id' => Auth::user()->id,
+                'buddy_id' => request()->buddy_id
+            ]);
+            return $this->index();
+        } else {
+            return view('auth.requireLogin');
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -124,7 +138,6 @@ class MeetupController extends Controller
 
         if ($meetup) {
             return back()->with('success', 'Event was deleted');
-            
         } else
 
             return back()->with('error', 'Deleting didnt worked.');
