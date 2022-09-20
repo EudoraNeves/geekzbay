@@ -20,14 +20,14 @@
 @section('main')
     <div class="d-flex flex-column align-items-center">
         <!-- Location card wrapper with location title: row -->
-        <div class="d-flex flex-column my-5 g-3">
+        <div class="d-flex flex-column my-5">
             <h2 class="text-center mb-4">{{$locationDetails->name}}</h2>
 
             <!-- Location card detail columns: row->column -->
-            <div class="d-flex flex-adapt">
+            <div class="d-flex flex-adapt gap-3">
 
                 <!-- Image and stars/likes: column -->
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column justify-content-center alig-items-center">
                     <img src="{{$locationDetails->profilePicture}}" alt="Shop picture" />
                     <!-- Stars and likes: rows -->
                     <div class="d-flex flex-row justify-content-around align-items-center">
