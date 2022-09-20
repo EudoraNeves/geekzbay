@@ -73,7 +73,7 @@
 
         <div class="location-desc my-5 mx-md-5 mx-sm-1 text-center">
             <!-- This is where the bar is described -->
-            {{$locationDetails->desc ?? ''}}
+            {{$locationDetails?->desc ?? 'No description yet.'}}
         </div>
     </div>
 @endsection
