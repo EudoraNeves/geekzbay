@@ -2,31 +2,6 @@
 @section('title', 'buddy')
 @section('css')
     <link rel="stylesheet" href="css/buddy.css">
-    <style>
-        .hidden {
-            display: none;
-        }
-
-        .effect {
-            animation: blink 1s infinite;
-        }
-
-        .question-mark {
-            font-size: 300px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        @keyframes blink {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 100%;
-            }
-        }
-    </style>
 @endsection
 @section('main')
     <div class="container">
