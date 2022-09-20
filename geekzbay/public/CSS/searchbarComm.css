@@ -1,4 +1,40 @@
-.search-container {
-    padding-left: 50%;
+/* Project cards */
 
+#proj_card_desc {
+    display: flex;
+}
+
+#proj-comcard {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.proj-search-container {
+    padding-left: 50%;
+}
+
+.proj-name {
+    color: yellow;
+    background-color: #ffffff2a;
+}
+
+.proj-categ {
+    color: green;
+}
+
+.proj-discord {
+    color: purple;
+}
+
+.proj-flex-adapt {
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .proj-flex-adapt {
+        flex-direction: row;
+    }
 }

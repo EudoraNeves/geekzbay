@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('communities', function (Blueprint $table) {
+        Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('discordLink');
-            $table->bigInteger('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->string('profilePicture');
+            $table->enum('type',['Shop','Bar','Club','Library','Movie',null]);
+            $table->text('desc');
+            $table->text('homePage');
+            $table->string('address_city');
+            $table->string('address_road');
+            $table->string('address_number');
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('communities');
+        Schema::dropIfExists('places');
     }
 };

@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ignore_list', function (Blueprint $table) {
+        Schema::create('buddies_in_events', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('buddy_id')->unsigned();
-            $table->bigInteger('badperson_id')->unsigned();
+            $table->bigInteger('event_id')->unsigned();
             $table->foreign('buddy_id')->references('id')->on('buddies');
-            $table->foreign('badperson_id')->references('id')->on('buddies');
-            $table->timestamps();
+            $table->foreign('event_id')->references('id')->on('events');
+            $table->enum('status',['Going','Maybe',"Can&apos;t go"]);
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ignore_list');
+        Schema::dropIfExists('buddies_in_events');
     }
 };
