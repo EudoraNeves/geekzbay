@@ -19,8 +19,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $myBuddies = Auth::user()->buddies;
-        return view('layouts.my-buddies', ['myBuddies' => $myBuddies]);
+        if (Auth::check()) {
+            $myBuddies = Auth::user()->buddies;
+            return view('layouts.my-buddies', ['myBuddies' => $myBuddies]);
+        } else {
+            return view('auth.requireLogin');
+        }
     }
 
     /**
@@ -58,7 +62,8 @@ class UserController extends Controller
         // dd($user->buddies);
 
         // $randomUser = User::all()->random(1)[0];
-        $randomUser = User::where('id', '<>', auth()->user()->id)->inRandomOrder()->first();
+        $id = optional(auth()->user())->id;
+        $randomUser = User::where('id', '<>', $id)->inRandomOrder()->first();
         // dd($randomUser);
         return view('layouts.buddy', ['randomBuddy' => $randomUser]);
         // return view('layouts.buddy');
@@ -66,11 +71,15 @@ class UserController extends Controller
 
     public function addBuddy()
     {
-        UserBuddies::create([
-            'user_id' => Auth::user()->id,
-            'buddy_id' => request()->buddy_id
-        ]);
-        return $this->index();
+        if (Auth::check()) {
+            UserBuddies::create([
+                'user_id' => Auth::user()->id,
+                'buddy_id' => request()->buddy_id
+            ]);
+            return $this->index();
+        } else {
+            return view('auth.requireLogin');
+        }
     }
 
     /**
@@ -81,9 +90,13 @@ class UserController extends Controller
      */
     public function showMyProfile()
     {
-        $user = Auth::user();
-        //dd($user);
-        return view('layouts.my-profile', ['user' => $user]);
+        if (Auth::check()) {
+            $user = Auth::user();
+            //dd($user);
+            return view('layouts.my-profile', ['user' => $user]);
+        } else {
+            return view('auth.requireLogin');
+        }
     }
     public function editMyProfile()
     {
@@ -102,16 +115,19 @@ class UserController extends Controller
         $user->birthDate = $request->birthDate;
         $user->desc = $request->desc;
         $user->save();
-        return redirect()->route('my-profile');
+        return redirect()->route('profile');
     }
 
 
     public function edit()
     {
-        $user = Auth::user();
-        return view('layouts.my-profile_edit', ['user' => $user]);
-
-        // return redirect()->route('my-profile.edit', ['user' => $user]);
+        if (Auth::check()) {
+            $user = Auth::user();
+            return view('layouts.my-profile_edit', ['user' => $user]);
+            // return redirect()->route('my-profile.edit', ['user' => $user]);
+        } else {
+            return redirect()->route('profile');
+        }
     }
 
     /**
