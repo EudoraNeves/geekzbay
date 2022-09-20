@@ -25,10 +25,11 @@ Route::get('/buddy/add', [UserController::class, 'addBuddy'])->name('addBuddy');
 Route::get('/buddy/my-buddies', [UserController::class, 'index'])->name('my-buddies');
 // Meetups
 Route::get('/meetup', [MeetupController::class, 'show'])->name('meetup');
+Route::post('/meetup', [MeetupController::class, 'store'])->middleware('isLoggedIn');
 Route::get('/meetup/my-meetups', [MeetupController::class, 'index'])->name('my-meetups');
 // Communities
 Route::get('/community', [CommunityController::class, 'show'])->name('community');
-Route::get('/community/my-communities',[CommunityController::class, 'index'])->name('my-communities');
+Route::get('/community/my-communities', [CommunityController::class, 'index'])->name('my-communities');
 // Locations
 Route::get('locations', [LocationController::class, 'show'])->name('locations');
 Route::get('location/{id}', [LocationController::class, 'show'])->name('location');
@@ -55,4 +56,4 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

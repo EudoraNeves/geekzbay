@@ -81,7 +81,7 @@ class MeetupController extends Controller
 
         $meetup = Meetup::find($id);
 
-        return view('update-event', ['event' => $Meetup]);
+        return view('update-event', ['event' => $meetup]);
     }
 
 
@@ -100,12 +100,12 @@ class MeetupController extends Controller
             'location' => 'required'
         ]);
 
-        $flower = Flower::find($id);
+        $meetup = Meetup::find($id);
 
-        $flower->name = $request->name;
-        $flower->price = $request->price;;
+        $meetup->name = $request->name;
+        $meetup->price = $request->price;;
 
-        if ($flower->save())
+        if ($meetup->save())
             return 'Updated successfully';
         else
             return 'Problem updating';
@@ -124,8 +124,9 @@ class MeetupController extends Controller
 
         if ($meetup) {
             return back()->with('success', 'Event was deleted');
-            // return redirect('flowers');
+            
         } else
+
             return back()->with('error', 'Deleting didnt worked.');
     }
 }
