@@ -5,22 +5,32 @@
         .d-flex>.d-flex>img {
             width:150px;
         }
+
+        .flex-adapt {
+            flex-direction: column;
+        }
+
+        @media (min-width: 572px) {
+            .flex-adapt {
+                flex-direction: row
+            }
+        }
     </style>
 @endsection
 @section('main')
     <div class="d-flex flex-column align-items-center">
         <!-- Location card wrapper with location title: row -->
-        <div class="d-flex flex-column my-5">
-            <h2 class="text-center">{{$locationDetails->name}}</h2>
+        <div class="d-flex flex-column my-5 g-3">
+            <h2 class="text-center mb-4">{{$locationDetails->name}}</h2>
 
             <!-- Location card detail columns: row->column -->
-            <div class="d-flex flex-row">
+            <div class="d-flex flex-adapt">
 
                 <!-- Image and stars/likes: column -->
-                <div class="d-flex flex-column me-4">
+                <div class="d-flex flex-column">
                     <img src="{{$locationDetails->profilePicture}}" alt="Shop picture" />
                     <!-- Stars and likes: rows -->
-                    <div class="d-flex flex-row justify-content-around">
+                    <div class="d-flex flex-row justify-content-around align-items-center">
                         <a class="btn btn-dark">👎</a>
                         <meter min="0" max="100" low="35" high="75" optimum="80" value="85">
                             to be exchanged with ratings variable
@@ -30,7 +40,7 @@
                 </div>
 
                 <!-- Second big column: make sure the links are at the bottom of the column while the data is at the top -->
-                <div class="d-flex flex-column justify-content-between ms-4">
+                <div class="d-flex flex-column justify-content-between">
                     <!-- Address details: column>row to separate field name with field data -->
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-row justify-content-between">
