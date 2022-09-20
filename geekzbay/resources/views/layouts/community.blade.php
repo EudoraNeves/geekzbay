@@ -136,12 +136,17 @@
                                 </div>
                                 <div class="proj-desc d-flex flex-column">
                                     <div>Description</div>
-                                    <div>${(jsonResult.data[result].desc?.slice(0,200) ?? '') + '...'}</div>
+                                    <div>${(jsonResult.data[result].desc?.slice(0,200) ?? "") + "..."}</div>
                                 </div>
                                 <div class="proj-discord d-flex flex-row justify-content-between">
-                                    <div>Discord:</div>
                                     <div>
-                                        <a href='${jsonResult.data[result].discordLink}'>
+                                        <a href="${jsonResult.data[result].discordLink}"" class="btn btn-dark">
+                                            <img src="{{ asset('info_icon.svg') }}" height="30px">
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="${jsonResult.data[result].discordLink}"" class="btn btn-dark">
+                                            <img src="{{ asset('Discord_icon.svg') }}" height="30px">
                                             Discord
                                         </a>
                                     </div>

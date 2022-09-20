@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -14,7 +15,7 @@ class LocationController extends Controller
     public function index()
     {
         //
-        return view('layouts.my-locations');
+        return view('layouts.locations');
     }
 
     /**
@@ -44,10 +45,11 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(/*$id*/)
+    public function show($id)
     {
         //
-        return view('layouts.locations');
+        $locationDetails = Location::find($id);
+        return view('layouts.location-details', ['locationDetails' => $locationDetails]);
     }
 
     /**
