@@ -41,13 +41,13 @@
 
                 @if (!Auth::check())
                     <button>
-                        <a href="{{ route('login') }}">
+                        <a class="lilo" href="{{ route('login') }}">
                             <img src="/login.svg" />login
                         </a>
                     </button>
                 @else
                     <button>
-                        <a href="{{ route('logout') }}">
+                        <a class="lilo"href="{{ route('logout') }}">
                             <img src="/Log_out.svg" />Logout
                         </a>
                     </button>
@@ -174,11 +174,13 @@
         </div>
 
         <!-- Footer -->
-        <div class="footer">
-            <footer>
-                Footer
-            </footer>
-        </div>
+
+        <footer>
+            <div class="footer">
+                <img src="made_in_luxembourg.svg" height="100px"> &copy;
+            </div>
+
+        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">

@@ -10,6 +10,12 @@ li {
     list-style: none;
 }
 
+.lilo{
+    color: #e5b045;
+    text-decoration: none;
+}
+
+
 .Login_logout {
     color: #e5b045;
 }
@@ -99,6 +105,14 @@ button {
     display: flex;
     justify-content: center;
 }
+
+ .footer {
+    border-top: 1px solid #e5b045;
+    text-align: center; 
+    padding: 25px;
+    color:#e5b045 ;
+    
+ }
 /* 
 nav {
 	flex: 1;
