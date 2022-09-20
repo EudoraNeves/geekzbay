@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Meetup;
 
 class MeetupController extends Controller
 {
@@ -14,7 +15,13 @@ class MeetupController extends Controller
     public function index()
     {
         //
-        return view('layouts.my-meetups');
+        return view('');
+        $meetup = Meetup::all();
+        return view('layouts.my-meetups', ['meetup' => $meetup]); {
+
+            $event = Meetup::all();
+            return view('meetup', ['meetup' => $event]);
+        }
     }
 
     /**
@@ -24,7 +31,7 @@ class MeetupController extends Controller
      */
     public function create()
     {
-        //
+        return view('insert_meetup');
     }
 
     /**
@@ -35,7 +42,20 @@ class MeetupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            'date' => 'required|date',
+            'location' => 'required',
+        ]);
+
+        $meetup = new Meetup;
+        $meetup->name = $meetup->name;
+        $meetup->date = $request->date;
+
+        if ($meetup->save())
+            return redirect('meetup')->with('success', 'Event registered successfully');
+        else
+            return 'Problem registering';
     }
 
     /**
@@ -58,8 +78,12 @@ class MeetupController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $meetup = Meetup::find($id);
+
+        return view('update-event', ['event' => $Meetup]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -70,7 +94,21 @@ class MeetupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            'date' => 'required|date',
+            'location' => 'required'
+        ]);
+
+        $flower = Flower::find($id);
+
+        $flower->name = $request->name;
+        $flower->price = $request->price;;
+
+        if ($flower->save())
+            return 'Updated successfully';
+        else
+            return 'Problem updating';
     }
 
     /**
@@ -81,6 +119,13 @@ class MeetupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $meetup = Meetup::destroy($id);
+
+
+        if ($meetup) {
+            return back()->with('success', 'Event was deleted');
+            // return redirect('flowers');
+        } else
+            return back()->with('error', 'Deleting didnt worked.');
     }
 }
