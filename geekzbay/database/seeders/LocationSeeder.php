@@ -32,9 +32,9 @@ class LocationSeeder extends Seeder
         DB::table('locations')->insert(
             [
                 'name' => 'Le reservoir',
-                'profilePicture' => 'Independent store located in the center of Luxembourg since 2006, specializing in the sale of video games, films, music, comics, manga and figurines.',
+                'profilePicture' => 'https://www.lereservoir.lu/edit/headerLogo.png.webp',
                 'type' => 'Shop',
-                'desc' => 'The Respawn bar is situated in the center of Luxembourg and prides itself on being the first e-sport and gaming bar in Luxembourg. 400 square meters dedicated to gaming in multiple spaces. Come enjoy a drink with friends or colleagues while playing.',
+                'desc' => 'Independent store located in the center of Luxembourg since 2006, specializing in the sale of video games, films, music, comics, manga and figurines.',
                 'homePage' => 'https://www.lereservoir.lu',
                 'address_city' => 'Luxembourg',
                 'address_road' => 'Grand-Rue',

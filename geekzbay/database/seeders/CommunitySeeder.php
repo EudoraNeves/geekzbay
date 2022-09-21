@@ -22,7 +22,8 @@ class CommunitySeeder extends Seeder
                 'name' => 'Magic: The Gathering',
                 'discordLink' => 'https://discord.gg/TkGhxGmsgff',
                 'category_id' => 3,
-            ]'desc' => '',
+                'desc' => '',
+            ]
         );
         DB::table('communities')->insert(
             [
