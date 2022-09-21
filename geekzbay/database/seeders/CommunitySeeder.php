@@ -21,15 +21,16 @@ class CommunitySeeder extends Seeder
                 'img' => 'magic.png',
                 'name' => 'Magic: The Gathering',
                 'discordLink' => 'https://discord.gg/TkGhxGmsgff',
-                'category_id' => 3
-            ]
+                'category_id' => 3,
+            ]'desc' => '',
         );
         DB::table('communities')->insert(
             [
                 'img' => 'anime_focal.png',
                 'name' => 'Anime Focal',
                 'discordLink' => 'https://discord.gg/TkGhxGmB',
-                'category_id' => 1
+                'category_id' => 1,
+                'desc' => '',
             ]
         );
         DB::table('communities')->insert(
@@ -38,6 +39,7 @@ class CommunitySeeder extends Seeder
                 'name' => 'Komga',
                 'discordLink' => 'https://discord.gg/komga-678794935368941569',
                 'category_id' => 1,
+                'desc' => '',
             ]
         );
 
@@ -57,6 +59,7 @@ class CommunitySeeder extends Seeder
                 'name' => 'Letz Smash',
                 'discordLink' => 'https://discord.gg/dMU4TVm3',
                 'category_id' => 6,
+                'desc' => '',
             ]
         );
         DB::table('communities')->insert(
@@ -65,6 +68,7 @@ class CommunitySeeder extends Seeder
                 'name' => 'Fighting Corner',
                 'discordLink' => 'discord.gg/2YeuPBR22X',
                 'category_id' => 6,
+                'desc' => '',
             ]
         );
         DB::table('communities')->insert(
@@ -73,6 +77,7 @@ class CommunitySeeder extends Seeder
                 'name' => 'lux wargame',
                 'discordLink' => 'discord.gg/2YeuPfdgsdBR22X',
                 'category_id' => 2,
+                'desc' => '',
             ]
         );
     }
