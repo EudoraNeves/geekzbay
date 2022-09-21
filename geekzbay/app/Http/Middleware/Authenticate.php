@@ -2,20 +2,20 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\Auth;
+use Closure;
 
-class Authenticate extends Middleware
+class Authenticate
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
-     */
-    protected function redirectTo($request)
+
+    public function handle($request, Closure $next)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        if (!Auth::check()) {
+            // return route('login');
+            $loginRequiredMsg = 'Please log in first!';
+            return response()->view('auth.login', ['loginRequiredMsg'=>$loginRequiredMsg, 'isNewRegister' => false]);
         }
+        return $next($request);
     }
+    
 }

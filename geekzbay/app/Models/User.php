@@ -23,7 +23,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'profilePicture',
         'birthDate',
-        'desc'
+        'desc',
+        'discord_id'
     ];
 
     /**
