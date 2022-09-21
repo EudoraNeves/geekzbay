@@ -13,10 +13,16 @@
 
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            <!-- Message for non-registered user trying to login with discord for the first time --->
+            <div class="registration-required-for-discord-login">
+                {{-- {{dd(Session::get('firstTimeDiscordMsg'))}} --}}
+                @if (Session::get('firstTimeDiscordMsg') != null)
+                    {{ Session::get('firstTimeDiscordMsg') }}
+                @endif
+            </div>
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-
                 <!-- Name -->
                 <div>
                     <x-input-label for="name" :value="__('Username')" />
