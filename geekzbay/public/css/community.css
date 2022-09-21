@@ -110,7 +110,9 @@ justify-content: space-evenly;
 @media (min-width: 768px) {
     .proj-flex-adapt {
         flex-direction: row;
+        align-self: start;
     }
+    
 }
 
 .discord .btn.btn-dark{

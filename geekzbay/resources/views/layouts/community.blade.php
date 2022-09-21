@@ -135,6 +135,8 @@
                                     <div>Category: <span>${jsonResult.data[result].category.name}</span></div>
                                     
                                 </div>
+                                 
+                                
                                 <div class="proj-desc d-flex flex-column">
                             
                                 <div><span>Description: </span>${(jsonResult.data[result].desc?.slice(0,200) ?? "")}</div>

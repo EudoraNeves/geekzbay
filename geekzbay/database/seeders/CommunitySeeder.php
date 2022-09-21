@@ -22,8 +22,11 @@ class CommunitySeeder extends Seeder
                 'name' => 'Magic: The Gathering',
                 'discordLink' => 'https://discord.gg/TkGhxGmsgff',
                 'category_id' => 3,
-                'desc' => '',
+                'desc' => 'Main Community of magic cart players.
+                 You can play, Trade and exchange with a lot players around luxambourg ',
+
             ]
+
         );
         DB::table('communities')->insert(
             [
@@ -31,7 +34,7 @@ class CommunitySeeder extends Seeder
                 'name' => 'Anime Focal',
                 'discordLink' => 'https://discord.gg/TkGhxGmB',
                 'category_id' => 1,
-                'desc' => '',
+                'desc' => 'Anime focal is one of the biggest Anime/Manga Communities in the country  ',
             ]
         );
         DB::table('communities')->insert(
@@ -50,6 +53,8 @@ class CommunitySeeder extends Seeder
                 'name' => 'SweetSpot Asbl',
                 'discordLink' => 'https://discord.gg/6Kphx7876',
                 'category_id' => 6,
+                'desc' => ' Do you like Tekken, Street Fighter, King Fighters or others figting game? 
+                Then SweetSpot is for you! thay organaise a lot of events and competions around the country.',
             ]
         );
 
@@ -60,7 +65,8 @@ class CommunitySeeder extends Seeder
                 'name' => 'Letz Smash',
                 'discordLink' => 'https://discord.gg/dMU4TVm3',
                 'category_id' => 6,
-                'desc' => '',
+                'desc' => 'We are the Letz Smash community We are willing to regroup Super Smash Bros, Multiversus and Splatoon players located in the Grand-Duchy of Luxemburg and into one common place
+                That way, to been abble to discuss, connect, play, train, help but also organize local events.',
             ]
         );
         DB::table('communities')->insert(
