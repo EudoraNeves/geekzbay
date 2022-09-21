@@ -121,13 +121,8 @@
                         <div class="d-flex proj-flex-adapt" id="proj-comcard">
                           ${ /* Left hand side of the card */'' }
 
-<<<<<<< HEAD
                             <div class="proj-img" width="150px">
                                 <img src="{{ asset('Assets/Images/${jsonResult.data[result].image}') }}" width="150px">
-=======
-                            <div class="proj-img" d-block" width="150px">
-                                <img class="icon_img" src="{{ asset('Assets/Images/${jsonResult.data[result].image}') }}" width="150px">
->>>>>>> main
                             </div>
 
                            ${ /* Right hand side of the card */'' }
