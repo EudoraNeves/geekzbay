@@ -10,7 +10,13 @@
     <div>
         <div>
             <div>
-                <button type="button" class="btn btn-secondary btn-lg">Create Event</button>
+                <h3>Here you can create your Event</h3>
+                <form method="POST">
+                    <input type="text" name="name" placeholder="Name your Event">
+                    <input type="date" name="date">
+                    <input type="text" name="location" placeholder="Location of your Event">
+                    <input type="submit" value="Submit your event">
+                </form>
             </div>
             <form method="get">
                 @csrf
@@ -28,7 +34,5 @@
             </div>
         </div>
     </div>
-    <script>
-
-    </script>
+    <script></script>
 @endsection

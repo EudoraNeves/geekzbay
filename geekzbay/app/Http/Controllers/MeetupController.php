@@ -38,15 +38,7 @@ class MeetupController extends Controller
     }
     public function addMeetup()
     {
-        if (Auth::check()) {
-            Meetup::create([
-                'user_id' => Auth::user()->id,
-                'buddy_id' => request()->buddy_id
-            ]);
-            return $this->index();
-        } else {
-            return view('auth.requireLogin');
-        }
+        //
     }
     /**
      * Store a newly created resource in storage.
@@ -65,6 +57,7 @@ class MeetupController extends Controller
         $meetup = new Meetup;
         $meetup->name = $meetup->name;
         $meetup->date = $request->date;
+        $meetup->location = $request->location;
 
         if ($meetup->save())
             return redirect('meetup')->with('success', 'Event registered successfully');
@@ -108,21 +101,7 @@ class MeetupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|min:3|max:50',
-            'date' => 'required|date',
-            'location' => 'required'
-        ]);
-
-        $meetup = Meetup::find($id);
-
-        $meetup->name = $request->name;
-        $meetup->price = $request->price;;
-
-        if ($meetup->save())
-            return 'Updated successfully';
-        else
-            return 'Problem updating';
+        //
     }
 
     /**
