@@ -23,7 +23,7 @@ class LocationSeeder extends Seeder
                 'type' => 'Bar',
                 'desc' => 'The Respawn bar is situated in the center of Luxembourg and prides itself on being the first e-sport and gaming bar in Luxembourg. 400 square meters dedicated to gaming in multiple spaces. Come enjoy a drink with friends or colleagues while playing.',
                 'homePage' => 'https://respawn.lu/',
-                'address_city' => 'Luxembourg',
+                'address_city' => 'Luxembourg City',
                 'address_road' => 'Rue du Fort Neippeg',
                 'address_number' => '65'
             ]
@@ -36,7 +36,7 @@ class LocationSeeder extends Seeder
                 'type' => 'Shop',
                 'desc' => 'Independent store located in the center of Luxembourg since 2006, specializing in the sale of video games, films, music, comics, manga and figurines.',
                 'homePage' => 'https://www.lereservoir.lu',
-                'address_city' => 'Luxembourg',
+                'address_city' => 'Luxembourg City',
                 'address_road' => 'Grand-Rue',
                 'address_number' => '30'
             ]
@@ -110,7 +110,7 @@ class LocationSeeder extends Seeder
                 'type' => 'Shop',
                 'desc' => 'Small shop of retro new games, console and music disque.',
                 'homePage' => 'Nun',
-                'address_city' => 'Luxembourg',
+                'address_city' => 'Luxembourg City',
                 'address_road' => 'Bd d\'Avranches',
                 'address_number' => ' 6-10',
             ]
