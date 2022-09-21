@@ -15,7 +15,7 @@
         <section class='findBuddy'>
             @if (Auth::check())
                 <div class="myProfile">
-                    <x-buddy-card self="true" username="{{ Auth::user()->name }}" quote="{{ Auth::user()->name }}'s quote"
+                    <x-buddy-card self="true" username="{{ Auth::user()->name }}" quote="{{ Auth::user()->desc }}"
                         imgSrc="{{ Auth::user()->profilePicture }}" imgAlt="{{ Auth::user()->name }}'s profile photo"
                         addBuddyId="{{ $randomBuddy->id }}" discordID="{{ Auth::user()->discord_id }}" />
                 </div>
@@ -24,7 +24,7 @@
                 <button type="button" class="btn btn-warning">Find Buddy</button>
             </div>
             <div class="buddyProfile hidden">
-                <x-buddy-card self="false" username="{{ $randomBuddy->name }}" quote="{{ $randomBuddy->name }}'s quote"
+                <x-buddy-card self="false" username="{{ $randomBuddy->name }}" quote="{{ $randomBuddy->desc }}"
                     imgSrc="{{ $randomBuddy->profilePicture }}" imgAlt="{{ $randomBuddy->name }}'s profile photo"
                     addBuddyId="{{ $randomBuddy->id }}" discordID="{{ $randomBuddy->discord_id }}" />
                 {{-- addBuddy_href="{{route('addBuddy'), ['id' => $randomBuddy->id]}}" --}}

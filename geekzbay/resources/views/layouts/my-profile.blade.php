@@ -21,6 +21,12 @@
             </div>
             <b>Password: </b><a href="{{ route('password.email', ['token' => $user->remember_token]) }}">change password</a>
         </div>
+        <div class="links">
+            <div class="title">
+                <h2>Links</h2>
+                <a href="{{"https://discord.com/users/$user->discord_id"}}"><img class="discord-icon" src="discord-icon.svg" alt="discord"></a>
+            </div>
+        </div>
 
     </div>
 @endsection

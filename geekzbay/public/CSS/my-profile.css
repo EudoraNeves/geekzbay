@@ -12,6 +12,10 @@
     width: 50px;
 }
 
+.discord-icon {
+    width: 2rem;
+}
+
 .edit {
     text-align: right;
     cursor: pointer;

@@ -6,8 +6,9 @@
         .my-profile {
             box-shadow: 5px 10px 20px gold inset;
         }
+
         form {
-            width: 30%;
+            width: 40%;
             margin: 0 auto;
             padding: 3rem;
         }
