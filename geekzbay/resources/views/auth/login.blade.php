@@ -17,10 +17,23 @@
 
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
+            @if (isset($loginRequiredMsg) && $loginRequiredMsg)
+                <div>{{ $loginRequiredMsg }}</div>
+            @endif
             @if ($isNewRegister)
                 <div>Verification request sent, please check email and verify!</div>
             @else
+                {{-- @if (Session::get('loginRequiredMsg') != null)
+                    <div class="loginRequiredMsg">
+                        {{ Session::get('loginRequiredMsg') }}
+                    </div>
+                @endif --}}
+                {{-- @if ($loginRequiredMsg)
+                    <div class="loginRequiredMsg">
+                        {{ $loginRequiredMsg }}
+                    </div>
+                @endif --}}
+
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
@@ -63,7 +76,9 @@
                         </x-primary-button>
                     </div>
                     <div class="discord-login">
-                        Log in with: <a href="{{ route('discord') }}"><img class="discord-icon" src="https://w7.pngwing.com/pngs/842/992/png-transparent-discord-computer-servers-teamspeak-discord-icon-video-game-smiley-online-chat.png" alt="" srcset=""></a>
+                        Log in with: <a href="{{ route('discord') }}"><img class="discord-icon"
+                                src="https://www.svgrepo.com/show/353655/discord-icon.svg"
+                                alt="" srcset=""></a>
                     </div>
                 </form>
             @endif

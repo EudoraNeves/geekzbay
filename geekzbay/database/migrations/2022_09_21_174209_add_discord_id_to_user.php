@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::table('communities', function (Blueprint $table) {
-            $table->text('desc')->nullable();
-            $table->text('img')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->text('discord_id')->after('name');
         });
     }
 
@@ -27,10 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
-        Schema::table('communities', function (Blueprint $table) {
-            $table->dropColumn('desc')->nullable();
-            $table->dropColumn('img')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('discord_id');
         });
     }
 };
