@@ -1,6 +1,17 @@
 @extends('layouts.template')
 @section('title', 'locations')
 @section('css')
+    <style>
+        .flex-adapt {
+            flex-direction: column;
+        }
+
+        @query(min-width: 768px) {
+            .flex-adapt {
+                flex-direction: row;
+            }
+        }
+    </style>
 @endsection
 @section('main')
 
@@ -32,7 +43,7 @@
         </div>
     </form>
 
-    <div class="search-results"></div>
+    <div id="search-results"></div>
 
     <script>
         window.onload = async () => {
@@ -42,6 +53,7 @@
             const typeSearch = document.querySelector('#proj-type-select');
             const distanceSearch = document.querySelector('#proj-distance-input');
             const townSearch = document.querySelector('#proj-city-select');
+            const searchResults = document.querySelector('#search-results');
 
             // JS-PHP interface to get PHP array as JS array
             const cities = [
@@ -77,7 +89,7 @@
                     .then(data => data.json())
                     .then(jsonObj => {
                             const closeLocations = getCloseLocations(jsonObj);
-                            createHTML(closeLocations);
+                            searchResults.innerHTML = createHTML(closeLocations);
                     });
                 });
 
@@ -109,18 +121,37 @@
 
             const createHTML = (jsonResults) => {
                 console.log(jsonResults);
-                returnHTML = "";
+                returnHTML = "<div class='d-flex flex-column align-items-center'>";
 
                 jsonResults.forEach(location => {
-                    returnHTML += ``;
+                    // Divcard
+                    returnHTML += `
+                        <div class="d-flex flex-column">
+                            <h1>${location.name}</h1>
+                            <div class="d-flex flex-adapt">
+                                <div class="d-flex flex-column">
+                                    <img src="${location.profilePicture}">
+                                    <meter min="0" max="100" low="35" high="75" optimum="80" value="85"></meter>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <div class="d-flex flex-column">
+                                        <div>${location.city}</div>
+                                        <div>${location.number}, ${location.road}</div>
+                                        <div>${location.type}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
                 });
 
-                returnHTML += "";
+                returnHTML += "</div>";
                 return returnHTML;
             }
 
         }
     </script>
+
 {{--
     <div class="d-flex flex-column align-items-center">
         <!-- Location card wrapper with location title: row -->
