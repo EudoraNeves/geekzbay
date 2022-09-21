@@ -18,7 +18,6 @@ class MeetupController extends Controller
     public function index()
     {
         //
-        return view('');
         $meetup = Meetup::all();
         return view('layouts.my-meetups', ['meetup' => $meetup]); {
 

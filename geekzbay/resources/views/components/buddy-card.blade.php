@@ -23,7 +23,9 @@
         </ul>
     @endif
     <div class="card-body">
-        <a href="#" class="card-link">Go to Profile</a>
+        @if ($self)
+            <a href="{{ route('profile') }}" class="card-link">Go to Profile</a>
+        @endif
         @if (!$self)
             <button type="button" class="btn btn-warning"><a
                     href="{{ route('addBuddy', ['buddy_id' => $addBuddyId]) }}">Add Buddy</a></button>
