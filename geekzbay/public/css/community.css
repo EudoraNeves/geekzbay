@@ -8,6 +8,9 @@
 
 #proj_card_desc {
     display: flex;
+    align-items: center;
+    text-align: start;
+    margin: 5px;
 }
 
 .discord{
@@ -35,25 +38,57 @@
 .proj-name {
     color:  #00000a;
     background-color: #e5b045;
+    padding: 15px;
+    display: flex;
     text-align: center;
+    justify-content: center;
+    align-items: center;
     font-weight: bold;
     border-radius: 50px;
+    font-weight: bold;
 }
 
+span{
+    margin: 0%;
+    color: #e5b045;
+    
+}
 
 .proj-results-container{
 
     display: flex;
     flex: auto;
-    justify-content: center;
-    align-items: center;
+    justify-content:flex-start;
+    align-items: start;
+    text-align: start;
   
 }
 
+.proj-desc{
+
+    display: flex;
+    flex: auto;
+    justify-content:flex-start;
+    align-items: start;
+    text-align: start;
+    margin: 10px;
+  
+}
+.proj-categ{
+
+    display: flex;
+    flex: auto;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+    margin: 5px;
+  
+}
 .proj-img{
 display: flex;
 margin: 15px;
 justify-content: space-evenly;
+
 }
 
 #proj-search-content{
@@ -75,11 +110,16 @@ justify-content: space-evenly;
 @media (min-width: 768px) {
     .proj-flex-adapt {
         flex-direction: row;
+        align-self: start;
     }
+    
 }
 
-.btn.btn-dark{
-
+.discord .btn.btn-dark{
+color: #5865F2;
 padding: 0;
 
+
 }
+
+

@@ -30,9 +30,9 @@ Route::put('/meetup/add_event', [MeetupController::class, 'store'])->middleware(
 Route::get('/community', [CommunityController::class, 'show'])->name('community');
 // Route::get('/community/my-communities', [CommunityController::class, 'index'])->name('my-communities');
 // Locations
-Route::get('/locations', [LocationController::class, 'show'])->name('locations');
-Route::get('/location/{id}', [LocationController::class, 'show'])->name('location');
-// Route::get('/locations/my-locations', [LocationController::class, 'index'])->name('my-locations');
+Route::get('locations', [LocationController::class, 'index'])->name('locations');
+Route::get('location/{id}', [LocationController::class, 'show'])->name('location');
+Route::get('/locations/my-locations', [LocationController::class, 'index'])->name('my-locations');
 // Profile
 // Route::get('/profile', [UserController::class, 'showMyProfile'])->name('profile');
 // Route::get('/my-profile/edit', [UserController::class, 'editMyProfile'])->name('my-profile.edit');

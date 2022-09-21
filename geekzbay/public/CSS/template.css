@@ -145,12 +145,11 @@ button {
 }
 
 footer {
-    flex-grow: 0;
+    flex-
 }
 
 .content {
     flex-grow: 1;
-    min-height: 600px;
 }
  
 /* 

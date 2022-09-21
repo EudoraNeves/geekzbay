@@ -121,8 +121,8 @@
                         <div class="d-flex proj-flex-adapt" id="proj-comcard">
                           ${ /* Left hand side of the card */'' }
 
-                            <div class="proj-img" d-block" width="150px">
-                                <img class="icon_img" src="{{ asset('Assets/Images/${jsonResult.data[result].image}') }}" width="150px">
+                            <div class="proj-img" width="150px">
+                                <img src="{{ asset('Assets/Images/${jsonResult.data[result].image}') }}" width="150px">
                             </div>
 
                            ${ /* Right hand side of the card */'' }
@@ -132,16 +132,18 @@
                                     ${jsonResult.data[result].name}
                                 </div>
                                 <div class="proj-categ d-flex flex-row justify-content-between">
-                                    <div>Category: ${jsonResult.data[result].category.name}</div>
+                                    <div>Category: <span>${jsonResult.data[result].category.name}</span></div>
                                     
                                 </div>
+                                 
+                                
                                 <div class="proj-desc d-flex flex-column">
                             
-                                <div>Description: ${(jsonResult.data[result].desc?.slice(0,200) ?? "")}</div>
+                                <div><span>Description: </span>${(jsonResult.data[result].desc?.slice(0,200) ?? "")}</div>
                                 </div>
                                 <div class="proj-discord d-flex flex-row justify-content-between">
                                    
-                                    <div >
+                                    <div class="discord" >
                                         <a href="${jsonResult.data[result].discordLink}"" class="btn btn-dark ">
                                             <img src="{{ asset('Discord_icon.svg') }}" height="30px">
                                             Discord
