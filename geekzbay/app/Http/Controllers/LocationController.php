@@ -17,7 +17,7 @@ class LocationController extends Controller
     {
         //
         $addresses = DB::select(DB::raw('SELECT address_city, COUNT(*) as locationSum FROM locations GROUP BY address_city'));
-        return view('layouts.locations', ['addressArray' => $addresses]);
+        return view('layouts.locations', ['addresses' => $addresses]);
     }
 
     /**
