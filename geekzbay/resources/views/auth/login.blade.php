@@ -62,6 +62,9 @@
                             {{ __('Log in') }}
                         </x-primary-button>
                     </div>
+                    <div class="discord-login">
+                        Log in with: <a href="{{ route('discord') }}"><img class="discord-icon" src="https://w7.pngwing.com/pngs/842/992/png-transparent-discord-computer-servers-teamspeak-discord-icon-video-game-smiley-online-chat.png" alt="" srcset=""></a>
+                    </div>
                 </form>
             @endif
         </x-auth-card>
