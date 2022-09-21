@@ -1,0 +1,85 @@
+#proj-results-container {
+    flex-grow: 1;    /* Make every divcard the same dimension */
+    gap: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#proj_card_desc {
+    display: flex;
+}
+
+.discord{
+
+    padding: 0%;
+}
+
+#proj-comcard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px;
+    margin-bottom: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.proj-search-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.proj-name {
+    color:  #00000a;
+    background-color: #e5b045;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 50px;
+}
+
+
+.proj-results-container{
+
+    display: flex;
+    flex: auto;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.proj-img{
+display: flex;
+margin: 15px;
+justify-content: space-evenly;
+}
+
+#proj-search-content{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.proj-flex-adapt {
+
+    flex-direction: column;
+
+}
+
+@media (min-width: 768px) {
+    .proj-flex-adapt {
+        flex-direction: row;
+    }
+}
+
+.btn.btn-dark{
+
+padding: 0;
+
+}

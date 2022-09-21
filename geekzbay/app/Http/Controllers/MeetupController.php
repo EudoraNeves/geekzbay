@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Meetup;
+use App\Http\Middleware\EnsureUserIsLoggedIn;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 class MeetupController extends Controller
 {
@@ -14,7 +18,13 @@ class MeetupController extends Controller
     public function index()
     {
         //
-        return view('layouts.my-meetups');
+        return view('');
+        $meetup = Meetup::all();
+        return view('layouts.my-meetups', ['meetup' => $meetup]); {
+
+            $event = Meetup::all();
+            return view('meetup', ['meetup' => $event]);
+        }
     }
 
     /**
@@ -24,9 +34,12 @@ class MeetupController extends Controller
      */
     public function create()
     {
+        return view('insert_meetup');
+    }
+    public function addMeetup()
+    {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +48,21 @@ class MeetupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            'date' => 'required|date',
+            'location' => 'required',
+        ]);
+
+        $meetup = new Meetup;
+        $meetup->name = $meetup->name;
+        $meetup->date = $request->date;
+        $meetup->location = $request->location;
+
+        if ($meetup->save())
+            return redirect('meetup')->with('success', 'Event registered successfully');
+        else
+            return 'Problem registering';
     }
 
     /**
@@ -58,8 +85,12 @@ class MeetupController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $meetup = Meetup::find($id);
+
+        return view('update-event', ['event' => $meetup]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -81,6 +112,13 @@ class MeetupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $meetup = Meetup::destroy($id);
+
+
+        if ($meetup) {
+            return back()->with('success', 'Event was deleted');
+        } else
+
+            return back()->with('error', 'Deleting didnt worked.');
     }
 }

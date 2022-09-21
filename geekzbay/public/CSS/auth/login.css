@@ -1,6 +1,8 @@
-
-
 img.userIcon {
     width: 
     200px;
+}
+.discord-icon {
+    width: 3rem;
+    padding-top: .5rem;
 }
