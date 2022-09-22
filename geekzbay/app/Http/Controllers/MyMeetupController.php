@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class MyMeetupController extends Controller
 {
@@ -13,7 +16,6 @@ class MyMeetupController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -43,9 +45,10 @@ class MyMeetupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($mymeetups)
     {
-        //
+        DB::select(DB::raw('SELECT *  FROM users_in_meetups WHERE event_id= $id'));
+        return view('layouts.my-meetups', ['my-meetups' => $mymeetups]);
     }
 
     /**
