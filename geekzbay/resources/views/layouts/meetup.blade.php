@@ -98,8 +98,16 @@
                 fetch(`http:localhost:8000/api/v1/meetups${query}`)
                     .then(data => data.json())
                     .then(jsonObj => {
-
+                        createHTML(jsonObj);
                     });
+            }
+
+            const createHTML = (jsonObj) => {
+                returnHTML = '';
+
+                jsonObj.data.foreach(meetup => {
+                    returnHTML += ``;
+                });
             }
         }
     </script>
