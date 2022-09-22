@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_in_communities', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('community_id')->references('id')->on('communities');
-            // $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->text('discord_id')->nullable()->after('name')->change();
         });
+
     }
 
     /**
@@ -28,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_in_communities');
+        Schema::table('users', function (Blueprint $table) {
+            $table->text('discord_id')->nullable(false)->after('name')->change();
+        });
     }
 };

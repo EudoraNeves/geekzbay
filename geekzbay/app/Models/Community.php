@@ -17,4 +17,8 @@ class Community extends Model
         'discordLink',
         'category_id',
     ];
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'users_in_communities', 'community_id', 'user_id');
+    }
 }

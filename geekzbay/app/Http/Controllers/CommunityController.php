@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Community;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CommunityController extends Controller
@@ -12,9 +15,14 @@ class CommunityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index_community()
     {
-        //
+        return view('layouts.community');
+    }
+    public function index_myCommunities()
+    {
+        $user = User::with('communities')->where('id', Auth::user()->id)->first();
+        $user->communities()->attach([2]);
         return view('layouts.my-communities');
     }
 

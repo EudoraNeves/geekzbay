@@ -51,4 +51,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasManyThrough(self::class, UserBuddies::class, 'user_id', 'id', 'id', 'buddy_id');
     }
     
+    public function communities(){
+        return $this->belongsToMany(Community::class, 'users_in_communities', 'user_id', 'community_id');
+    }
+    public function locations(){
+        return $this->belongsToMany(Location::class, 'location_user');
+    }
 }
