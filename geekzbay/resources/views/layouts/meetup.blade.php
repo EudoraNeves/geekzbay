@@ -104,20 +104,22 @@
             // Search button listeners for AJAX API calling
             searchForm.addEventListener('submit', (event) => {
                 event.preventDefault();
+                fetchAPI();
             });
 
             const fetchAPI = () => {
                 // API Querybuilder
-                query = '?';
+                let query = '?';
                 if(searchNameInput.value != '') {
                     query += 'name=' + searchNameInput.value + '&';
                 }
-                if(searchStartDate.value) {
-                    query += 'startDate=' + searchStartDate.value + '&';
+                if(startDateInput.value) {
+                    query += 'startDate=' + startDateInput.value + '&';
                 }
-                if(searchEndDate.value) {
-                    query += 'endDate=' + searchEndDate.value + '&';
+                if(endDateInput.value) {
+                    query += 'endDate=' + endDateInput.value + '&';
                 }
+                console.log(query);
                 fetch(`http:localhost:8000/api/v1/meetups${query}`)
                     .then(data => data.json())
                     .then(jsonObj => {
