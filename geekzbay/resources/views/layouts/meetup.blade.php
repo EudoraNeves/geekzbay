@@ -30,10 +30,16 @@
         <form method="get" id="search-form" class="d-none">
             @csrf
             <div><label>Search an Event</label></div>
-            <div><input type="text" name="name" placeholder="Name" id="search-name-input"></div>
+            <div class="input-group"><input type="text" name="name" placeholder="Name" id="search-name-input"></div>
             <div><input type="date" name="date" id="search-start-date"></div>
             <div><input type="date" name="date" id="search-end-date"></div>
-            <div><input type="text" name="location" placeholder="Location"></div>
+            <div>
+                <select name="location" id="location">
+                    @foreach($locations as $location)
+                        <option value="{{$location->id}}">{{$location->name}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div><input type="submit" value="Search" id="searchInput"></div>
         </form>
 
@@ -42,7 +48,13 @@
             <div><label>Create an Event</label></div>
             <div><input type="text" name="name" placeholder="Name"></div>
             <div><input type="date" name="date"></div>
-            <div><input type="text" name="location" placeholder="Location"></div>
+            <div>
+                <select name="location" id="location">
+                    @foreach($locations as $location)
+                        <option value="{{$location->id}}">{{$location->name}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div><input type="submit" value="Submit your Event"></div>
         </form>
 
@@ -61,7 +73,6 @@
             const createForm = document.getElementById("create-form");
 
             // Display button listeners for toggling the search elements
-
             searchDisplayButton.addEventListener("click", (event) => {
                 if(searchForm.className == 'd-none') {
                     searchForm.className = 'd-block';

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Meetup;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
+use App\Models\Location;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
@@ -17,9 +18,9 @@ class MeetupController extends Controller
      */
     public function index()
     {
-        //
         $meetup = Meetup::all();
-        return view('layouts.my-meetups', ['meetup' => $meetup]); {
+        return view('layouts.my-meetups', ['meetup' => $meetup]);
+        {
 
             $event = Meetup::all();
             return view('meetup', ['meetup' => $event]);
@@ -73,7 +74,8 @@ class MeetupController extends Controller
     public function show(/*$id*/)
     {
         //
-        return view('layouts.meetup');
+        $locations = Location::all();
+        return view('layouts.meetup', ['locations' => $locations]);
     }
 
     /**
