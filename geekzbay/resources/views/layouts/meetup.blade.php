@@ -101,17 +101,6 @@
 
                     });
             }
-/*
-            // Search button listeners for AJAX API calling
-            createForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                createData();
-            });
-
-            const createData = () => {
-
-            }
-*/
         }
     </script>
 @endsection

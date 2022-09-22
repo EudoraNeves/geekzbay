@@ -24,7 +24,7 @@ Route::get('/buddy/add', [UserController::class, 'addBuddy'])->name('addBuddy');
 
 // Meetups --> create an event
 Route::get('/meetup', [MeetupController::class, 'show'])->name('meetup');
-Route::post('/meetup', [MeetupController::class, 'store'])->middleware('isLoggedIn');
+Route::post('/meetup', [MeetupController::class, 'store'])->middleware('auth');
 
 // Communities
 Route::get('/community', [CommunityController::class, 'show'])->name('community');
