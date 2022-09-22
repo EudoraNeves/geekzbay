@@ -65,7 +65,7 @@ class CommunityController extends Controller
                         <div class="d-flex proj-flex-adapt" id="proj-comcard">
 
                             <div class="proj-img" width="150px">
-                                <img src="asset('Assets/Images/${data.image}')" width="150px">
+                                <img src="asset('Assets/Images/$data->image')" width="150px">
                             </div>
 
                             <div class="d-flex flex-column" id="proj_card_desc">
@@ -73,14 +73,16 @@ class CommunityController extends Controller
                                     $data->name
                                 </div>
                                 <div class="proj-categ d-flex flex-row justify-content-between">
-                                    <div>Category: <span>${jsonResult.data[result].category.name}</span></div>
+                                    <div>Category: <span>$data->category->name</span></div>
 
                                 </div>
 
 
                                 <div class="proj-desc d-flex flex-column">
 
-                                <div><span>Description: </span>${(jsonResult.data[result].desc?.slice(0,200) ?? "")}</div>
+                                <div>
+                                    <span>Description: </span>
+                                    ${(jsonResult.data[result].desc?.slice(0,200) ?? "")}</div>
                                 </div>
                                 <div class="proj-discord d-flex flex-row justify-content-between">
 
