@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Community;
+use App\Models\Location;
 use App\Models\Meetup;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class MeetupController extends Controller
@@ -17,9 +20,9 @@ class MeetupController extends Controller
      */
     public function index()
     {
-        //
         $meetup = Meetup::all();
-        return view('layouts.my-meetups', ['meetup' => $meetup]); {
+        return view('layouts.my-meetups', ['meetup' => $meetup]);
+        {
 
             $event = Meetup::all();
             return view('meetup', ['meetup' => $event]);
@@ -50,13 +53,18 @@ class MeetupController extends Controller
         $request->validate([
             'name' => 'required|min:3|max:50',
             'date' => 'required|date',
-            'location' => 'required',
+            'desc' => 'required|min:3|max:2000',
+            'location_id' => 'required',
+            'community_id' => 'required'
         ]);
 
         $meetup = new Meetup;
-        $meetup->name = $meetup->name;
+        $meetup->name = $request->name;
         $meetup->date = $request->date;
-        $meetup->location = $request->location;
+        $meetup->desc = $request->desc;
+        $meetup->eventadmin_id = Auth::id();
+        $meetup->location_id = $request->location_id;
+        $meetup->community_id = $request->community_id;
 
         if ($meetup->save())
             return redirect('meetup')->with('success', 'Event registered successfully');
@@ -73,7 +81,9 @@ class MeetupController extends Controller
     public function show(/*$id*/)
     {
         //
-        return view('layouts.meetup');
+        $locations = Location::all();
+        $communities = Community::all();
+        return view('layouts.meetup', ['locations' => $locations, 'communities' => $communities]);
     }
 
     /**
