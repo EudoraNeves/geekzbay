@@ -19,4 +19,9 @@ class Location extends Model
         'address_road',
         'address_number',
     ];
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'location_user');
+    }
+
 }

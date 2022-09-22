@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
@@ -19,6 +21,22 @@ class LocationController extends Controller
         $addresses = DB::select(DB::raw('SELECT address_city, COUNT(*) as locationSum FROM locations GROUP BY address_city'));
         return view('layouts.locations', ['addresses' => $addresses]);
     }
+    public function index_my_locations()
+    {
+        $locations = Location::all();
+        return view('layouts.my-locations', ['locations' => $locations]);
+    }
+
+    public function add_to_my_locations()
+    {
+        $user = User::with('locations')->where('id', Auth::user()->id)->first();
+        $user->locations()->attach([2]);
+        return view('layouts.my-locations');
+    }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
