@@ -40,6 +40,8 @@
             let htmlSafe = {};
 
 
+
+
             // Appending form submit event listener: on void, restore html from html safe, else: fetch api
             form.addEventListener("submit", event => {
                 event.preventDefault();
@@ -133,23 +135,23 @@
                                 </div>
                                 <div class="proj-categ d-flex flex-row justify-content-between">
                                     <div>Category: <span>${jsonResult.data[result].category.name}</span></div>
-                                    
+
                                 </div>
-                                 
-                                
+
+
                                 <div class="proj-desc d-flex flex-column">
-                            
+
                                 <div><span>Description: </span>${(jsonResult.data[result].desc?.slice(0,200) ?? "")}</div>
                                 </div>
                                 <div class="proj-discord d-flex flex-row justify-content-between">
-                                   
+
                                     <div class="discord" >
                                         <a href="${jsonResult.data[result].discordLink}"" class="btn btn-dark ">
                                             <img src="{{ asset('Discord_icon.svg') }}" height="30px">
                                             Discord
                                         </a>
                                     </div>
-                                
+
                                 </div>
                             </div>
                         </div>`;
