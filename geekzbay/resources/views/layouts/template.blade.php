@@ -176,7 +176,7 @@
 
         <footer>
             <div class="footer">
-                <img class="h-100px" src="made_in_luxembourg.svg" height="100px"> &copy;
+                <img class="h-100px" src="/made_in_luxembourg.svg" height="100px"> &copy;
             </div>
 
         </footer>
