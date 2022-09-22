@@ -120,7 +120,7 @@
                     query += 'endDate=' + endDateInput.value + '&';
                 }
                 console.log(query);
-                fetch(`http:localhost:8000/api/v1/meetups${query}`)
+                fetch(`http://localhost:8000/api/v1/meetups${query}`)
                     .then(data => data.json())
                     .then(jsonObj => {
                         createHTML(jsonObj);
