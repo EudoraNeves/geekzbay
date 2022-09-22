@@ -61,6 +61,7 @@ class CommunityController extends Controller
 
                 $data = DB::table('communities')->where('category_id','=',$category->id)->limit(5)->get();
                 foreach($data as $location) {
+                    $trimmedDesc = substr($data->desc,0,200);
                     $startupPage .= <<< HEREDOC
                         <div class="d-flex proj-flex-adapt" id="proj-comcard">
 
@@ -82,12 +83,12 @@ class CommunityController extends Controller
 
                                 <div>
                                     <span>Description: </span>
-                                    ${(jsonResult.data[result].desc?.slice(0,200) ?? "")}</div>
+                                    <div>$trimmedDesc</div>
                                 </div>
                                 <div class="proj-discord d-flex flex-row justify-content-between">
 
                                     <div class="discord" >
-                                        <a href="${jsonResult.data[result].discordLink}"" class="btn btn-dark ">
+                                        <a href="$data->discordLink" class="btn btn-dark ">
                                             <img src="{{ asset('Discord_icon.svg') }}" height="30px">
                                             Discord
                                         </a>
