@@ -4,12 +4,12 @@
     <link rel="stylesheet" href="css/my-profile.css">
 @endsection
 @section('main')
-    <div class="my-profile">
+    <div class="my-profile d-flex flex-column justify-content-center flex-wrap align-items-center">
         <div class="profile">
             <div class="title">
-                <h2>Profile &nbsp;<span class="edit"><a href="{{route('my-profile.edit')}}">Edit</a></span></h2>
+                <h2>Profile &nbsp;<span class="edit"><a href="{{ route('my-profile.edit') }}">Edit</a></span></h2>
             </div>
-            <div><b>Profile Picture: </b><img class="image" src="data:image/png;base64,{{ $user->profilePicture }}" alt=""></div>
+            <div><img class="image" src="data:image/png;base64,{{ $user->profilePicture }}" alt=""></div>
             <div><b>Name: </b>{{ $user->name }}</div>
             <div><b>Email: </b>{{ $user->email }}</div>
             <div><b>Desc: </b>{{ $user->desc }}</div>
