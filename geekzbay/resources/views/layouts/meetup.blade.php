@@ -37,7 +37,7 @@
             <div><input type="submit" value="Search" id="searchInput"></div>
         </form>
 
-        <form method="get" id="create-form" class="d-none">
+        <form method="post" id="create-form" class="d-none">
             @csrf
             <div><label>Create an Event</label></div>
             <div><input type="text" name="name" placeholder="Name"></div>
@@ -81,12 +81,6 @@
             // Search button listeners for AJAX API calling
             searchForm.addEventListener('submit', (event) => {
                 event.preventDefault();
-                fetchAPI();
-            });
-
-            // Search button listeners for AJAX API calling
-            searchForm.addEventListener('submit', (event) => {
-                event.preventDefault();
             });
 
             const fetchAPI = () => {
@@ -107,6 +101,17 @@
 
                     });
             }
+/*
+            // Search button listeners for AJAX API calling
+            createForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                createData();
+            });
+
+            const createData = () => {
+
+            }
+*/
         }
     </script>
 @endsection
