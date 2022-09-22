@@ -6,6 +6,16 @@
             flex-direction: column;
         }
 
+        .heart_location svg {
+            width: 1.5rem;
+            cursor: pointer;
+        }
+
+        .red {
+            fill: red;
+            color: red;
+        }
+
         @query(min-width: 768px) {
             .flex-adapt {
                 flex-direction: row;
@@ -34,16 +44,17 @@
             <select class="form-select" id="proj-city-select" name="city">
                 @foreach ($addresses as $address)
                     <option class="lh-1" value="{{ $address->address_city }}">
-                        {{ $address->address_city }} ({{$address->locationSum}})
+                        {{ $address->address_city }} ({{ $address->locationSum }})
                     </option>
                 @endforeach
             </select>
 
-            <button type="submit" class="input-group-text btn btn-outline-light proj-button-gold" id="proj-submit">Submit</button>
+            <button type="submit" class="input-group-text btn btn-outline-light proj-button-gold"
+                id="proj-submit">Submit</button>
         </div>
     </form>
 
-    <div id="search-results"></div>
+    <div id="search-results" class='d-flex flex-column align-items-center gap-5'></div>
 
     <script>
         window.onload = async () => {
@@ -57,8 +68,8 @@
 
             // JS-PHP interface to get PHP array as JS array
             const cities = [
-                @foreach($addresses as $address)
-                    '{{$address->address_city}}',
+                @foreach ($addresses as $address)
+                    '{{ $address->address_city }}',
                 @endforeach
             ];
 
@@ -66,47 +77,53 @@
             // Fetch me the latitude and longitude of each city
             const citiesLatLon = {};
             cities.forEach(city => {
-                const data = fetch(`http://api.positionstack.com/v1/forward?access_key=a945723a7527b47523731b6b3a7fd503&query=${city}%20Luxembourg`)
-                .then(data => data.json())
-                .then(obj => {
-                    obj.data.forEach(fetchedCity => {
-                        if(fetchedCity.type != 'locality' || fetchedCity.name != city) {
-                            return;
-                        }
-                        citiesLatLon[city] = {
-                            'lat' : fetchedCity.latitude,
-                            'long' : fetchedCity.longitude
-                        };
+                const data = fetch(
+                        `http://api.positionstack.com/v1/forward?access_key=a945723a7527b47523731b6b3a7fd503&query=${city}%20Luxembourg`
+                    )
+                    .then(data => data.json())
+                    .then(obj => {
+                        obj.data.forEach(fetchedCity => {
+                            if (fetchedCity.type != 'locality' || fetchedCity.name != city) {
+                                return;
+                            }
+                            citiesLatLon[city] = {
+                                'lat': fetchedCity.latitude,
+                                'long': fetchedCity.longitude
+                            };
+                        });
                     });
-                });
             });
 
 
             searchForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 // Get all locations with the right name
-                fetch(`http://localhost:8000/api/v1/locations?name=${nameSearch.value}&type=${typeSearch.value}`)
+                fetch(
+                        `http://localhost:8000/api/v1/locations?name=${nameSearch.value}&type=${typeSearch.value}`
+                        )
                     .then(data => data.json())
                     .then(jsonObj => {
-                            const closeLocations = getCloseLocations(jsonObj);
-                            searchResults.innerHTML = createHTML(closeLocations);
+                        const closeLocations = getCloseLocations(jsonObj);
+                        searchResults.innerHTML = createHTML(closeLocations);
                     });
-                });
+            });
 
 
 
             const getCloseLocations = (jsonObj) => {
                 const closeLocationArray = [];
                 // Create an array of filtered locations set nearby
-                if(townSearch.value=='' || !distanceSearch.value || distanceSearch.value <= 0) {
+                if (townSearch.value == '' || !distanceSearch.value || distanceSearch.value <= 0) {
                     console.log('early return');
                     return;
                 }
                 jsonObj.data.forEach(location => {
-                    if(location.city in citiesLatLon) {
-                        const latKm = citiesLatLon[location.city].lat - citiesLatLon[townSearch.value].lat;
-                        const lonKm = citiesLatLon[location.city].long - citiesLatLon[townSearch.value].long;
-                        if(111*(latKm**2 + lonKm**2)**0.5 <= distanceSearch.value) {
+                    if (location.city in citiesLatLon) {
+                        const latKm = citiesLatLon[location.city].lat - citiesLatLon[townSearch.value]
+                            .lat;
+                        const lonKm = citiesLatLon[location.city].long - citiesLatLon[townSearch.value]
+                            .long;
+                        if (111 * (latKm ** 2 + lonKm ** 2) ** 0.5 <= distanceSearch.value) {
                             closeLocationArray.push(location);
                         }
                     }
@@ -117,11 +134,14 @@
             }
 
 
-
+            const addToMyLocations = (e)=>{
+                e.stopPropation();
+                console.log(e.target);
+            }
 
             const createHTML = (jsonResults) => {
                 console.log(jsonResults);
-                returnHTML = "<div class='d-flex flex-column align-items-center'>";
+                returnHTML = "";
 
                 jsonResults.forEach(location => {
                     // Divcard
@@ -133,27 +153,27 @@
                                     <img src="${location.profilePicture}">
                                     <meter min="0" max="100" low="35" high="75" optimum="80" value="85"></meter>
                                 </div>
-                                <div class="d-flex flex-column">
+                                <div class="d-flex flex-row justify-content-between">
                                     <div class="d-flex flex-column">
                                         <div>${location.city}</div>
                                         <div>${location.number}, ${location.road}</div>
                                         <div>${location.type}</div>
+                                    </div>
+                                    <div class='heart_location'onclick="addToMyLocations">
+                                        <x-heroicon-o-heart />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `;
                 });
-
-                returnHTML += "</div>";
                 return returnHTML;
             }
 
         }
     </script>
 
-{{--
-    <div class="d-flex flex-column align-items-center">
+    {{-- <div class="d-flex flex-column align-items-center">
         <!-- Location card wrapper with location title: row -->
         <div class="d-flex flex-column my-5">
             <h2 class="text-center mb-3">Respawn Bar Luxembourg</h2>
@@ -219,6 +239,5 @@
             Board gaming tables, 2 Hexagonal premium gaming tables, 1 LAN area up to 10Pc, 4 Consoles spaces
             PS5,PS4,XboxSeries,Switch, 2 Battle boxes Guitare Hero and Kinect and 2 Wargaming tables.
         </div>
-    </div>
---}}
+    </div> --}}
 @endsection
