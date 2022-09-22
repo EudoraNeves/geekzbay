@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('title', 'My Communities')
 @section('main')
-    My Communities Page
-
-
+    <div class="my-communities">
+        section.
+    </div>
 @endsection
