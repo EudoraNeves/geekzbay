@@ -20,4 +20,8 @@ class Meetup extends Model
         'alt_address_street',
         'alt_address_number',
     ];
+
+    protected $casts = [
+        'date' => 'datetime:l, d.n.Y'
+    ];
 }
