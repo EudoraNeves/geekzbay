@@ -7,6 +7,7 @@ class MeetupQuery extends Query {
         'name' => 'nameFilter',
         'category' => 'categoryFilter',
         'community' => 'communityFilter',
+        'location' => 'locationFilter',
         'startDate' => 'startDateFilter',
         'endDate' => 'endDateFilter',
     ];
@@ -21,6 +22,10 @@ class MeetupQuery extends Query {
 
     protected function communityFilter($query) {
         return ['community_id', '=', $query];
+    }
+
+    protected function locationFilter($query) {
+        return ['location_id', '=', $query];
     }
 
     protected function startDateFilter($query) {
