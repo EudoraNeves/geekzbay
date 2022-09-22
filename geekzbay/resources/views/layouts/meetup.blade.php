@@ -26,7 +26,7 @@
     </div>
 
     <div class="search">
-
+        {{-- Search form --}}
         <form method="get" id="search-form" class="d-none">
             @csrf
             <div><label>Search an Event</label></div>
@@ -34,7 +34,7 @@
             <div><input type="date" name="date" id="search-start-date"></div>
             <div><input type="date" name="date" id="search-end-date"></div>
             <div>
-                <select name="location" id="location">
+                <select name="location_id" id="location_id">
                     @foreach($locations as $location)
                         <option value="{{$location->id}}">{{$location->name}}</option>
                     @endforeach
@@ -43,17 +43,29 @@
             <div><input type="submit" value="Search" id="searchInput"></div>
         </form>
 
+        {{-- Create form --}}
         <form method="post" id="create-form" class="d-none">
             @csrf
             <div><label>Create an Event</label></div>
             <div><input type="text" name="name" placeholder="Name"></div>
             <div><input type="date" name="date"></div>
             <div>
-                <select name="location" id="location">
+                <textarea name="desc"></textarea>
+            </div>
+            <div>
+                <select name="location_id" id="location_id">
                     @foreach($locations as $location)
                         <option value="{{$location->id}}">{{$location->name}}</option>
                     @endforeach
                 </select>
+
+                <div>
+                    <select name="community_id" id="coomunity_id">
+                        @foreach($communities as $community)
+                            <option value="{{$community->id}}">{{$community->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <div><input type="submit" value="Submit your Event"></div>
         </form>
