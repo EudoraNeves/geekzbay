@@ -1,31 +1,13 @@
 @extends('layouts.template')
 @section('title', 'locations')
 @section('css')
-    <style>
-        .flex-adapt {
-            flex-direction: column;
-        }
+    <link rel="stylesheet" href="/css/location.css">
 
-        .heart_location svg {
-            width: 1.5rem;
-            cursor: pointer;
-        }
-
-        .red {
-            fill: red;
-            color: red;
-        }
-
-        @query(min-width: 768px) {
-            .flex-adapt {
-                flex-direction: row;
-            }
-        }
-    </style>
 @endsection
 @section('main')
 
-    <form class="proj-search-container d-flex flex-row justify-content-end my-3 mb-5" id="proj-search-data" method="GET">
+    <form class="proj-search-container d-flex flex-row justify-content-centre flex-wrap my-3 mb-5" id="proj-search-data"
+        method="GET">
         @csrf
         <div class="input-group">
             <input type="text" class="form-control" id="proj-name-input" placeholder="Search" aria-label="Name">
@@ -40,7 +22,7 @@
         </div>
 
         <div class="input-group">
-            <input type="number" class="form-control" id="proj-distance-input" placeholder="Search" aria-label="Distance">
+            <input type="number" class="form-control" id="proj-distance-input" placeholder="Km" aria-label="Distance">
             <select class="form-select" id="proj-city-select" name="city">
                 @foreach ($addresses as $address)
                     <option class="lh-1" value="{{ $address->address_city }}">
@@ -100,7 +82,7 @@
                 // Get all locations with the right name
                 fetch(
                         `http://localhost:8000/api/v1/locations?name=${nameSearch.value}&type=${typeSearch.value}`
-                        )
+                    )
                     .then(data => data.json())
                     .then(jsonObj => {
                         const closeLocations = getCloseLocations(jsonObj);
@@ -141,23 +123,26 @@
 
             const createHTML = (jsonResults) => {
                 console.log(jsonResults);
-                returnHTML = "";
+                returnHTML =
+                    "<div class=' proj-comcard d-flex flex-row flex-wrap justify-content-center'>";
 
                 jsonResults.forEach(location => {
                     // Divcard
                     returnHTML += `
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column ">
                             <h1>${location.name}</h1>
                             <div class="d-flex flex-adapt">
-                                <div class="d-flex flex-column">
-                                    <img src="${location.profilePicture}">
+                                <div class="proj-img d-flex flex-column align-items-center">
+                                    <img src="${location.profilePicture}" width="150px">
+                                    <div classe="meter">
                                     <meter min="0" max="100" low="35" high="75" optimum="80" value="85"></meter>
+                                    </div>
                                 </div>
-                                <div class="d-flex flex-row justify-content-between">
-                                    <div class="d-flex flex-column">
-                                        <div>${location.city}</div>
-                                        <div>${location.number}, ${location.road}</div>
-                                        <div>${location.type}</div>
+                                <div class="d-flex flex-column">
+                                    <div class="proj-results-container info d-flex flex-column">
+                                        <div><span>Town: </span>${location.city}</div>
+                                        <div><span>Adresse: </span>${location.number}, ${location.road}</div>
+                                        <div><span>Type: </span>${location.type}</div>
                                     </div>
                                     <div class='heart_location'onclick="addToMyLocations">
                                         <x-heroicon-o-heart />
@@ -165,6 +150,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                     `;
                 });
                 return returnHTML;
