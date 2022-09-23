@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('css')
-    <link rel="stylesheet" href="/CSS/homepage.css">
+    <link rel="stylesheet" href="/CSS/pages/home.css">
 @section('title', 'Home')
 @section('main')
 

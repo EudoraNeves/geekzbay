@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('title', 'buddy')
 @section('css')
-    <link rel="stylesheet" href="css/buddy.css">
+    <link rel="stylesheet" href="css/pages/buddy.css">
 @endsection
 @section('main')
     <div class="container d-flex flex-row justify-content-center flex-wrap">

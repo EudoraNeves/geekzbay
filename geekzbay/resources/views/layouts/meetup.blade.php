@@ -2,9 +2,7 @@
 @section('title', 'meetup')
 
 @section('css')
-    <link rel="stylesheet" href="/css//meetup.css">
-
-
+    <link rel="stylesheet" href="/css/pages/meetup.css">
 @endsection
 @section('main')
     <div class="all">
