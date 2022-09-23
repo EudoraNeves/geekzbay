@@ -21,7 +21,9 @@ abstract class Query {
 
             // These will be entered in ->where(column, operator, value)
             // This next line made me literally lose 1000 braincells, so do not touch please
-            $eloQuery[] = $this->{$this->allowedParams[$param]}($query);
+            $newQuery = $this->{$this->allowedParams[$param]}($query);
+            if($newQuery)
+                $eloQuery[] = $newQuery;
 
         }
         return $eloQuery;
