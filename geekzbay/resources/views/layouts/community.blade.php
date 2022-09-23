@@ -118,7 +118,7 @@
                 for (const result in jsonResult.data) {
 
                     returnHTML += `
-                        <div class="d-flex proj-flex-adapt" id="proj-comcard">
+                        <div class="d-flex flex-row flex-wrap justify-content-center" id="proj-comcard">
                           ${ /* Left hand side of the card */'' }
 
                             <div class="proj-img" width="150px">
@@ -126,24 +126,26 @@
                             </div>
 
                            ${ /* Right hand side of the card */'' }
-
+                       
                             <div class="d-flex flex-column" id="proj_card_desc">
-                                <div class="proj-name">
-                                    ${jsonResult.data[result].name}
-                                </div>
+                                <h1>
+                                    <div class="proj-name"> 
+                                        
+                                        ${jsonResult.data[result].name}
+                                       
+                                     </div>
+                                </h1>
                                 <div class="proj-categ d-flex flex-row justify-content-between">
                                     <div>Category: <span>${jsonResult.data[result].category.name}</span></div>
                                     
                                 </div>
-                                 
-                                
                                 <div class="proj-desc d-flex flex-column">
                             
                                 <div><span>Description: </span>${(jsonResult.data[result].desc?.slice(0,200) ?? "")}</div>
                                 </div>
                                 <div class="proj-discord d-flex flex-row justify-content-between">
                                    
-                                    <div class="discord" >
+                                    <div class"discord " >
                                         <a href="${jsonResult.data[result].discordLink}"" class="btn btn-dark ">
                                             <img src="{{ asset('Discord_icon.svg') }}" height="30px">
                                             Discord

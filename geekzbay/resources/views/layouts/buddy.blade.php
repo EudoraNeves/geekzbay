@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="css/buddy.css">
 @endsection
 @section('main')
-    <div class="container">
+    <div class="container d-flex flex-row justify-content-center flex-wrap">
         <section class="status">
             {{-- @if (session('success'))
                 <span style="color: green">{{ session('success') }}</span>
@@ -12,7 +12,7 @@
                 <span style="color: red">{{ session('error') }}</span>
             @endif --}}
         </section>
-        <section class='findBuddy'>
+        <section class='findBuddy d-flex flex-row justify-content-center flex-wrap'>
             @if (Auth::check())
                 <div class="myProfile">
                     <x-buddy-card self="true" username="{{ Auth::user()->name }}" quote="{{ Auth::user()->desc }}"
