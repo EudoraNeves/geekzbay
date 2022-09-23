@@ -21,6 +21,7 @@ class LocationResource extends JsonResource
             ->get();
 
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'profilePicture' => $this->profilePicture,
             'type' => $this->type,
