@@ -9,16 +9,13 @@
     <meta name="theme-color" content="#ffffff">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
-
-    <link href="{{ asset('css/template.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pages/template.css') }}" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="Assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/Favcon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/Favcon/favicon-16x16.png">
     <link rel="manifest" href="/Favcon/site.webmanifest">
     <link rel="mask-icon" href="/Favcon/safari-pinned-tab.svg" color="#5bbad5">
     @yield('css')
-
     <title>@yield('title')</title>
 </head>
 
@@ -38,7 +35,6 @@
                         {{-- LOGO USER --}}
                     </a>
                 </button>
-
                 <button class="btnm">
                     <a class="burger" id="burger">
 
@@ -46,7 +42,6 @@
 
                     </a>
                 </button>
-
                 @if (!Auth::check())
                     <button class="btnm">
                         <a class="lilo" href="{{ route('login') }}">
@@ -60,12 +55,10 @@
                         </a>
                     </button>
                 @endif
-
             </div>
         </header>
         <div class="extended_menu" id="extended_menu">
             <div class="left">
-
             </div>
             <div class="right">
                 <ul id="links">
@@ -75,7 +68,6 @@
                             Buddy
                         </a>
                     </li>
-
                     <li>
                         <a href="{{ route('meetup') }}" class="btn btn-dark">
                             <img src="{{ asset('Evant.svg') }}" height="30px" />
@@ -93,11 +85,9 @@
                             <img src="/Local_icon1.svg" height="30px" />
                             Locations
                         </a>
-
                     </li>
                 </ul>
             </div>
-
         </div>
         <div class="extended_menu" id="extended_menu_profil">
             <div class="right">
@@ -114,7 +104,6 @@
                             My Buddies
                         </a>
                     </li>
-
                     <li>
                         <a href="{{ route('my-meetups') }}"class="btn btn-dark">
                             <img src="/Evant.svg" height="30px" />
@@ -133,14 +122,6 @@
                             My Locations
                         </a>
                     </li>
-                    <!--<li>
-                        @if (!Auth::check())
-<a href="{{ route('register') }}"class="btn btn-dark">
-                                <img src="/save_register.svg" height="30px" />
-                                Register
-                            </a>
-@endif
-                    </li>-->
                     <li>
 
                         <a href="" class="btn btn-dark">

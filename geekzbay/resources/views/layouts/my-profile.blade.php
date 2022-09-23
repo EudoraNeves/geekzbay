@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('title', 'Profile')
 @section('css')
-    <link rel="stylesheet" href="css/my-profile.css">
+    <link rel="stylesheet" href="css/pages/my-profile.css">
 @endsection
 @section('main')
     <div class="my-account d-flex flex-column justify-content-center flex-wrap align-items-center">
