@@ -43,7 +43,7 @@ class UsersInMeetupsController extends Controller
         $request->validate([
             'user_id' => 'required',
             'meetup_id' => 'required',
-            'status' => 'required|in:Can&apos;t go,Maybe,Going'
+            'status' => 'required|in:Can\'t go,Maybe,Going'
         ]);
 
         $usersInMeetups = new UsersInMeetups;
