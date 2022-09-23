@@ -147,7 +147,17 @@ button {
     justify-content: center;
 }
 
- .footer {
+
+footer {
+    flex-grow: 0;
+    
+}
+
+.content {
+    flex-grow: 1;
+    min-height: 600px;
+}
+.footer {
     
     border-top: 1px solid #e5b045;
     text-align: center; 
@@ -160,15 +170,6 @@ button {
     width: 100%;
     
     
-}
-
-footer {
-    flex-grow: 0;
-}
-
-.content {
-    flex-grow: 1;
-    min-height: 600px;
 }
 
 /*
