@@ -1,8 +1,3 @@
-<style>
-    img {
-        width: 1.5rem;
-    }
-</style>
 <div class="card" style="width: 18rem;">
     <img src="data:image/png;base64,{{ $imgSrc }}" class="card-img-top" alt="{{ $imgAlt }}">
     <div class="card-body">
