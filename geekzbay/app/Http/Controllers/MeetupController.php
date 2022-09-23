@@ -20,13 +20,15 @@ class MeetupController extends Controller
      */
     public function index()
     {
+        //
+        $locations = Location::all();
+        $communities = Community::all();
+        return view('layouts.meetup', ['locations' => $locations, 'communities' => $communities]);
+    }
+
+    public function showMyMeetups() {
         $meetup = Meetup::all();
         return view('layouts.my-meetups', ['meetup' => $meetup]);
-        {
-
-            $event = Meetup::all();
-            return view('meetup', ['meetup' => $event]);
-        }
     }
 
     /**
@@ -38,6 +40,7 @@ class MeetupController extends Controller
     {
         return view('insert_meetup');
     }
+
     public function addMeetup()
     {
         //
@@ -78,12 +81,11 @@ class MeetupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(/*$id*/)
+    public function show($id)
     {
         //
-        $locations = Location::all();
-        $communities = Community::all();
-        return view('layouts.meetup', ['locations' => $locations, 'communities' => $communities]);
+        $meetup = Meetup::find($id);
+        return view('layouts.meetup', ['meetup' => $meetup]);
     }
 
     /**
