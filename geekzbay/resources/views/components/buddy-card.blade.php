@@ -19,7 +19,7 @@
     @endif
     <div class="card-body">
         @if ($self)
-            <a href="{{ route('profile') }}" class="card-link">Go to Profile</a>
+            <a href="{{ route('my-profile') }}" class="card-link">Go to Profile</a>
         @endif
         @if (!$self)
             <button type="button" class="btn btn-warning addbuddy"><a
