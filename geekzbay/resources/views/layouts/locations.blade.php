@@ -86,7 +86,7 @@
                     .then(data => data.json())
                     .then(jsonObj => {
                         const closeLocations = getCloseLocations(jsonObj);
-                        createHTML(closeLocations);
+                        const eventListenerIds = createHTML(closeLocations);
                     });
             });
 
@@ -111,17 +111,15 @@
                     }
                 })
 
-
                 return closeLocationArray;
             }
 
+
             const createHTML = (jsonResults) => {
-                console.log(jsonResults);
                 searchResults.innerHTML =
                     "<div class='proj-comcard d-flex flex-row flex-wrap justify-content-center'>";
 
                 jsonResults.forEach(location => {
-                    const heartId = 'heart_location_' + location.id;
                     // Divcard
                     searchResults.innerHTML += `
                         <div class="d-flex flex-column ">
@@ -139,120 +137,44 @@
                                         <div><span>Adresse: </span>${location.number}, ${location.road}</div>
                                         <div><span>Type: </span>${location.type}</div>
                                     </div>
-                                        <div class='heart_location' id="${heartId}">
-                                        <span class="heartMsg"></span>
+                                    <div class='heart_location' id="${location.id}">
                                         <x-heroicon-o-heart />
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                    `;
-                    document.getElementById(heartId).addEventListener('click',
+                        </div>`;
+                    searchResults.innerHTML += '</div>';
+                    setTimeout(() => {
+                        document.getElementById(location.id).addEventListener('click',
                         (e) => {
-                            console.log('clicked')
+                            console.log('clicked');
                             e.target.classList.toggle('red');
-                            if (e.target.classList.contains('red')) {
-                                console.log('red')
-                                let token = document.querySelector('meta[name="csrf-token"]')
-                                    .getAttribute('content');
-                                fetch(`http://localhost:8000/api/locations/my-locations`, {
-                                        headers: {
-                                            "Content-Type": "application/json",
-                                            "Accept": "application/json, text-plain, */*",
-                                            "X-Requested-With": "XMLHttpRequest",
-                                            "X-CSRF-TOKEN": token
-                                        },
-                                        method: 'post',
-                                        credentials: 'same-origin',
-                                        body: JSON.stringify({
-                                            user_id: @json($user->id),
-                                            location_id: location.id
-                                        })
-                                    })
-                                    .then(data => {
-                                        console.log('done!')
-                                    })
-                                    .then(res => console.log(res))
-                                    .catch(err => console.log(err))
-                            } else {
-                                console.log('white')
+                            if(!(e.target.classList.contains('red'))) {
+                                return;
                             }
 
-                        }
-                    )
-                });
-                searchResults.innerHTML += '</div>';
+                            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                            fetch(`http://localhost:8000/api/locations/my-locations`, {
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "Accept": "application/json, text-plain, */*",
+                                    "X-Requested-With": "XMLHttpRequest",
+                                    "X-CSRF-TOKEN": token
+                                },
+                                method: 'post',
+                                credentials: 'same-origin',
+                                body: JSON.stringify({
+                                    user_id: @json($user->id),
+                                    location_id: location.id
+                                })
+                            })
+                            .then(data => {console.log('done!')})
+                            .then(res => console.log(res))
+                            .catch(err => console.log(err))
+                        })
+                    }, 0);
+                })
             }
-
         }
     </script>
-
-    {{-- <div class="d-flex flex-column align-items-center">
-        <!-- Location card wrapper with location title: row -->
-        <div class="d-flex flex-column my-5">
-            <h2 class="text-center mb-3">Respawn Bar Luxembourg</h2>
-
-            <!-- Location card detail columns: row->column -->
-            <div class="d-flex flex-row">
-
-                <!-- Image and stars/likes: column -->
-                <div class="d-flex flex-column me-4 align-items-center">
-
-                    <img src="https://respawn.lu/wp-content/uploads/2019/11/cropped-logo-1.png" alt="Shop picture" />
-
-                    <!-- Stars and likes: rows -->
-                    <div class="d-flex flex-row justify-content-around align-items-center">
-                        <a class="btn btn-dark">👎</a>
-                        <meter min="0" max="100" low="35" high="75" optimum="80" value="85">
-                            to be exchanged with ratings variable
-                        </meter>
-                        <a class="btn btn-dark">👍</a>
-                    </div>
-                </div>
-
-                <!-- Second big column: make sure the links are at the bottom of the column while the data is at the top -->
-                <div class="text_box d-flex flex-column justify-content-between ms-4">
-                    <!-- Address details: column>row to separate field name with field data -->
-                    <div class="d-flex flex-column">
-                        <div class="d-flex flex-row justify-content-between">
-                            <span>Town:</span><span>Luxembourg</span>
-                        </div>
-                        <div class="d-flex flex-row justify-content-between">
-                            <span>Street:</span><span>Rue du Fort Neippeg</span>
-                        </div>
-                        <div class="d-flex flex-row justify-content-between">
-                            <span>Number:</span><span>65</span>
-                        </div>
-                        <div>Communities:</div>
-                        <div class="d-flex flex-row flex-md-wrap">
-                            <!-- This is where the communities fetched from innerjoin with communities_in_locations innerjoined with locations will be displayed -->
-                        </div>
-                    </div>
-                    <!-- End of Address details -->
-
-                    <!-- Links -->
-                    <div class="d-flex flex-row justify-content-between align-items-center flex-md-wrap">
-
-                        <a href="" class="btn btn-dark">
-                            <img src="/look_icon.svg" height="20">
-                            Go to website
-                        </a>
-                        <a href="" class="btn btn-dark p-0">
-                            <img src="/save_register.svg" alt="Watch" height="20" />
-                        </a>
-                    </div>
-                </div>
-                <!-- End of second big column -->
-            </div>
-        </div>
-
-        <div class="location-desc mb-5 mx-md-5 mx-sm-1 text-center">
-            <!-- This is where the bar is described -->
-            The Respawn bar in the center of Luxembourg the first e-sport and gaming bar in Luxembourg. 400 square meters
-            dedicated to gaming in multiple spaces. Enjoy a drink with friends or colleagues while playing. We offer: 13
-            Board gaming tables, 2 Hexagonal premium gaming tables, 1 LAN area up to 10Pc, 4 Consoles spaces
-            PS5,PS4,XboxSeries,Switch, 2 Battle boxes Guitare Hero and Kinect and 2 Wargaming tables.
-        </div>
-    </div> --}}
 @endsection

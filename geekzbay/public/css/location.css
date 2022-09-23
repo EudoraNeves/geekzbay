@@ -17,7 +17,7 @@ h1{
 
 .btn:first-child:hover , :not(.btn-check)+.btn:hover{
     color: #e5b045;
-   
+
 }
 
 .input-group-text {
@@ -46,7 +46,7 @@ h1{
     display: flex;
     align-items: center;
     text-align: start;
-    
+
 }
 
 .discord{
@@ -85,9 +85,9 @@ h1{
 }
 
 span{
-   
+
     color: #e5b045;
-    
+
 }
 
 .proj-results-container{
@@ -97,13 +97,13 @@ span{
     justify-content:flex-start;
     align-items: start;
     text-align: start;
-  
+
 }
 
 
 
-  
-  
+
+
 .proj-categ{
 
     display: flex;
@@ -112,11 +112,11 @@ span{
     align-items: center;
     text-align: center;
     margin: 5px;
-  
+
 }
 
 .proj-comcard>div{
-   
+
     border:1px solid #E5B045;
     border-radius: 3px;
     padding: 20px;
@@ -148,6 +148,11 @@ justify-content: space-evenly;
 
     flex-direction: column;
 
+}
+
+.red {
+    color: red;
+    background-color: red;
 }
 
 
