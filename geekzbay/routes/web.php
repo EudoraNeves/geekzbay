@@ -45,7 +45,7 @@ Route::get('location/{id}', [LocationController::class, 'show'])->name('location
     // Locations
     Route::get('/locations/my-locations', [LocationController::class, 'index_my_locations'])->name('my-locations');
     // Profile
-    Route::get('/profile', [UserController::class, 'showMyProfile'])->name('profile');
+    Route::get('/my-profile', [UserController::class, 'showMyProfile'])->name('my-profile');
     Route::get('/my-profile/edit', [UserController::class, 'editMyProfile'])->name('my-profile.edit');
     Route::post('/my-profile', [UserController::class, 'updateMyProfile'])->name('my-profile.update');
 });
@@ -57,9 +57,9 @@ Route::get('/', function () {
 
 
 //account access pages
-Route::get('/my-profile', function () {
-    return view('layouts.my-profile');
-})->name('my-profile');
+// Route::get('/my-profile', function () {
+//     return view('layouts.my-profile');
+// })->name('my-profile');
 
 
 Route::get('/dashboard', function () {
