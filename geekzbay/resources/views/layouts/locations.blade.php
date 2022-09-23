@@ -1,9 +1,8 @@
 @extends('layouts.template')
 @section('title', 'locations')
 @section('css')
- <meta name="csrf-token" content="{{ csrf_token() }}">
- <link rel="stylesheet" href="/css/location.css">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="/css/location.css">
 @endsection
 @section('main')
 
