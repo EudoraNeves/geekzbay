@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,5 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\api\v1'], f
     Route::apiResource('locations', LocationSearchController::class);
     Route::apiResource('meetups', MeetupSearchController::class);
 });
+
+Route::post('/locations/my-locations', [LocationController::class, 'add_to_my_locations'])->name('add_to_my_locations');
