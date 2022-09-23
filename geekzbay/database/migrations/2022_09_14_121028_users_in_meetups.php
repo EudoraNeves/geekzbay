@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('meetup_id')->references('id')->on('meetups');
-            $table->enum('status',['Going','Maybe',"Can&apos;t go"]);
+            $table->enum('status',['Going','Maybe',"Can't go"]);
         });
     }
 

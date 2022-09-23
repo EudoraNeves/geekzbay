@@ -9,10 +9,10 @@
         <div class="all">
             <form action="{{ route('my-profile.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="profilePicture">
-                    <label for="profilePicture">
+                <div class="profilePicture ">
+                    <span for="profilePicture">
                         <h1>Profile Picture: </h1>
-                    </label>
+                    </span>
 
                     <div>
                         <div class="preview">
@@ -20,18 +20,15 @@
                         </div>
                         <br>
                         <div>
-                            <input type="file" id="profilePicture" name="profilePicture"
+                            <input type="file" id="loadfile" name="profilePicture"
                                 accept="image"onchange="loadFile(event)">
 
                         </div>
                     </div>
                 </div>
 
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+
+
 
                 <div class="info">
                     <div class="name">

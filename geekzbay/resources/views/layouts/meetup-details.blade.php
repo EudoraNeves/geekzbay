@@ -29,16 +29,16 @@
                 <div class='d-flex flex-column'>
                     <div>{{$meetup->date}}</div>
                     <div>{{$community->name}}</div>
-                    <div>{{$location->name}} <a href='{{route('location', ['id' => $location->id])}}'>See</a></div>
+                    <div>{{$location->name}} <a href='{{route('location', ['id' => $location->id])}}' class='btn btn-dark'>See</a></div>
                     <div>{{$location->address_number}}, {{$location->address_road}} {{$location->address_city}}</div>
                 </div>
                 <form method="post">
                     @csrf
                     <div>
-                        <select name="status" id="">
-                            <option value="Can&apos;t go">Can't go</option>
-                            <option value="Maybe">Maybe</option>
+                        <select name="status">
                             <option value="Going">Going</option>
+                            <option value="Maybe">Maybe</option>
+                            <option value="Can't go">Can't go</option>
                         </select>
                         <button type="submit">Notify</button>
                     </div>
@@ -49,7 +49,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-    </script>
 @endsection
