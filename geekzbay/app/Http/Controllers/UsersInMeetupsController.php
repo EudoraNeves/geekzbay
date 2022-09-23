@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\UsersInMeetups;
 
 class UsersInMeetupsController extends Controller
 {
@@ -35,6 +37,30 @@ class UsersInMeetupsController extends Controller
     public function store(Request $request)
     {
         //
+        $request->user_id = Auth::id();
+        $request->meetup_id = (integer) $request->route('id');
+
+        $request->validate([
+            'user_id' => 'required',
+            'meetup_id' => 'required',
+            'status' => 'required|in:Can&apos;t go,Maybe,Going'
+        ]);
+
+        $usersInMeetups = new UsersInMeetups;
+        $usersInMeetups->user_id = $request->user_id;
+        $usersInMeetups->meetup_id = $request->meetup_id;
+        $usersInMeetups->status = $request->status;
+
+        if($usersInMeetups->save())
+            return redirect('meetups', ['id' => $request->meetup_id])->with('success', 'Event registered successfully');
+        else
+            return 'Problem registering';
+
+        dd($usersInMeetups);
+
+
+
+        redirect("/meetups/" . $request->route('id'));
     }
 
     /**

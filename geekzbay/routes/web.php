@@ -5,6 +5,7 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\MeetupController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersInMeetupsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::get('/buddy/add', [UserController::class, 'addBuddy'])->name('addBuddy');
 // Meetups --> create an event
 Route::get('/meetups', [MeetupController::class, 'index'])->name('meetup');
 Route::get('/meetups/{id}', [MeetupController::class, 'show'])->name('meetups');
+Route::post('/meetups/{id}', [UsersInMeetupsController::class, 'store'])->name('meetups');
 Route::post('/meetups', [MeetupController::class, 'store'])->middleware('auth');
 
 // Communities
