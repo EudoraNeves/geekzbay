@@ -108,6 +108,7 @@ header {
     display: flex;
     justify-content: center;
 }
+
 button:hover {
     color: #E5B045 ;
 	cursor: pointer;
@@ -116,6 +117,8 @@ button:hover {
     
 
 }
+
+
 .btnm{
 height: 100%;
 padding: 5px;
@@ -126,6 +129,9 @@ a:hover {
 	color: #E5B045 ;
     background-color:#ffffff22
 }
+
+
+
 button {
     background-color: rgb(33, 37, 41);
     color: #e5b045;
@@ -151,7 +157,6 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
     width: 100%;
     
     
@@ -236,7 +241,6 @@ margin: 50px;
     color: #e5b045 !important;
     background-color: rgb(33, 37, 41) !important;
     text-decoration: none !important ;
-  
     cursor: pointer;
 }
 .card-body{

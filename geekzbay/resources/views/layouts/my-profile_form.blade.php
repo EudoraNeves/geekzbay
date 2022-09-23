@@ -20,8 +20,9 @@
                         </div>
                         <br>
                         <div>
-                            <input type="file" id="profilePicture" name="profilePicture" accept="image/*"
-                                onchange="loadFile(event)">
+                            <input type="file" id="profilePicture" name="profilePicture"
+                                accept="image"onchange="loadFile(event)">
+
                         </div>
                     </div>
                 </div>
@@ -51,8 +52,9 @@
                     </div>
                     <textarea name="desc" id="" cols="30" rows="5">{{ $user->desc }}</textarea>
 
-                    <span><input type="submit" value="submit"></span>
+
                 </div>
+                <span><input type="submit" value="submit"></span>
 
             </form>
         </div>
