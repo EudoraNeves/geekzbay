@@ -69,7 +69,7 @@ class MeetupController extends Controller
         $meetup->location_id = $request->location_id;
         $meetup->community_id = $request->community_id;
 
-        if ($meetup->save())
+        if($meetup->save())
             return redirect('meetup')->with('success', 'Event registered successfully');
         else
             return 'Problem registering';

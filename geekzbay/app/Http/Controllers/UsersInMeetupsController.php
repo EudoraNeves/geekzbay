@@ -38,12 +38,13 @@ class UsersInMeetupsController extends Controller
     {
         //
         $request->user_id = Auth::id();
-        $request->meetup_id = (integer) $request->route('id');
+        $request->meetup_id = $request->route('id');
+        dd($request);
 
         $request->validate([
-            'user_id' => 'required',
-            'meetup_id' => 'required',
-            'status' => 'required|in:Can\'t go,Maybe,Going'
+            'user_id' => 'required|numeric',
+            'meetup_id' => 'required|numeric',
+            'status' => "required|in:Can't go,Maybe,Going"
         ]);
 
         $usersInMeetups = new UsersInMeetups;
