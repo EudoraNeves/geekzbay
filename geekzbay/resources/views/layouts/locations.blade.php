@@ -117,12 +117,13 @@
 
             const createHTML = (jsonResults) => {
                 console.log(jsonResults);
-                returnHTML =
-                    "<div class=' proj-comcard d-flex flex-row flex-wrap justify-content-center'>";
+                searchResults.innerHTML =
+                    "<div class='proj-comcard d-flex flex-row flex-wrap justify-content-center'>";
 
                 jsonResults.forEach(location => {
+                    const heartId = 'heart_location_' + location.id;
                     // Divcard
-                    returnHTML += `
+                    searchResults.innerHTML += `
                         <div class="d-flex flex-column ">
                             <h1>${location.name}</h1>
                             <div class="d-flex flex-adapt">
@@ -138,18 +139,17 @@
                                         <div><span>Adresse: </span>${location.number}, ${location.road}</div>
                                         <div><span>Type: </span>${location.type}</div>
                                     </div>
-                                        <div class='heart_location' id="heart_location_${location.id}">
+                                        <div class='heart_location' id="${heartId}">
                                         <span class="heartMsg"></span>
                                         <x-heroicon-o-heart />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     `;
-                    document.getElementById('heart_location_' + location.id).addEventListener('click',
+                    document.getElementById(heartId).addEventListener('click',
                         (e) => {
-                            // console.log('heart_location_' + location.name);
                             console.log('clicked')
                             e.target.classList.toggle('red');
                             if (e.target.classList.contains('red')) {
@@ -175,14 +175,6 @@
                                     })
                                     .then(res => console.log(res))
                                     .catch(err => console.log(err))
-                                // axios.post(`http://127.0.0.1:8000/locations/my-locations/${location.id}`, {loation_id: location.id}, {
-                                //     headers: {
-                                //         'Content-Type': 'application/json',
-                                //     }
-                                // }).then(res => console.log(response.data))
-                                // .catch(
-                                //     error=>console.log('Success!')
-                                // )
                             } else {
                                 console.log('white')
                             }
@@ -190,7 +182,7 @@
                         }
                     )
                 });
-                return returnHTML;
+                searchResults.innerHTML += '</div>';
             }
 
         }
