@@ -10,26 +10,17 @@
             <form action="{{ route('my-profile.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="profilePicture ">
-                    <span for="profilePicture">
-                        <h1>Profile Picture: </h1>
-                    </span>
-
+                    <h1>Profile Picture: </h1>
                     <div>
-                        <div class="preview">
-                            <img src="data:image/png;base64, {{ $user->profilePicture }}">
+                        <div id="preview">
+                            <img id="output" src="data:image/png;base64, {{ $user->profilePicture }}">
                         </div>
-                        <br>
                         <div>
-                            <input type="file" id="loadfile" name="profilePicture"
-                                accept="image"onchange="loadFile(event)">
-
+                            <input type="file" id="loadfile" name="profilePicture" accept="image"
+                                onchange="loadFile(event)">
                         </div>
                     </div>
                 </div>
-
-
-
-
                 <div class="info">
                     <div class="name">
                         <span><b>Name: </b></span><span>{{ $user->name }}</span>
@@ -37,22 +28,16 @@
                     <div class="email">
                         <span><b>Email: </b></span><span>{{ $user->email }}</span>
                     </div>
-
                     <div class="birthDate">
                         <label for="birthDate"><b>Birth Date: </b></label>
                         <input type="date" name="birthDate" id="" value="{{ $user->birthDate }}">
-
                     </div>
-
                     <div class="desc">
                         <b><label for="desc">Desc:</label></b>
                     </div>
                     <textarea name="desc" id="" cols="30" rows="5">{{ $user->desc }}</textarea>
-
-
                 </div>
-                <span><input type="submit" value="submit"></span>
-
+                <div><input type="submit" value="submit"></div>
             </form>
         </div>
     </div>
@@ -61,7 +46,7 @@
 @endsection
 <script>
     var loadFile = function(event) {
-        var output = document.getElementById('preview')
+        var output = document.getElementById('output')
         output.src = URL.createObjectURL(event.target.files[0])
         output.onload = function() {
             URL.revokeObjectURL(preview.src)

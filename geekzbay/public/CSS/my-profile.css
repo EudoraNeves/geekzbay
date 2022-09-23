@@ -1,28 +1,30 @@
-.my-profile {
+.my-account {
     color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    min-width: 350px;
+    width: 350px;
+    margin: 10% auto;
 }
 
-a{
+.my-account > * {
+    width: 100%;
+}
 
+h2 {
+    text-align: left;
+}
+
+a {
     font-weight: bold;
-}
-
-h2{
-
-    text-align: center;
 }
 
 .image {
     margin: 10px;
     width: 50px;
     border: 5px black solid;
-
 }
 
 .discord-icon {
@@ -35,33 +37,31 @@ h2{
     font-size: 1.2rem;
 }
 
-.profile{
+.profile {
     border: 1px black solid;
     border-radius: 20px;
     padding: 20px;
-    background-color:  #E5B045 ;
+    background-color: #e5b045;
 }
 
-.profile>div>img {
+.profile > div > img {
     width: 10rem;
 }
 
-.security{
-   
+.security {
     padding: 20px;
     color: black;
-    background-color:  #E5B045 ;
+    background-color: #e5b045;
     border: 1px black solid;
     max-height: 200px;
     align-content: center;
     border-radius: 20px;
 }
 
-.links{
-   
+.links {
     padding: 20px;
     color: black;
-    background-color:  #E5B045 ;
+    background-color: #e5b045;
     border: 1px black solid;
     border-radius: 20px;
 }
