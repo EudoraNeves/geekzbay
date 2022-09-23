@@ -36,9 +36,9 @@
                     @csrf
                     <div>
                         <select name="status">
-                            <option value="Can't go">Can't go</option>
-                            <option value="Maybe">Maybe</option>
                             <option value="Going">Going</option>
+                            <option value="Maybe">Maybe</option>
+                            <option value="Can't go">Can't go</option>
                         </select>
                         <button type="submit">Notify</button>
                     </div>

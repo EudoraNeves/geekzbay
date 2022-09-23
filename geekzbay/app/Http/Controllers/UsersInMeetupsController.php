@@ -37,23 +37,33 @@ class UsersInMeetupsController extends Controller
     public function store(Request $request)
     {
         //
-        $request->user_id = Auth::id();
-        $request->meetup_id = $request->route('id');
-        dd($request);
+        $user_id = Auth::id();
+        $meetup_id = $request->route('id');
 
-        $request->validate([
-            'user_id' => 'required|numeric',
-            'meetup_id' => 'required|numeric',
-            'status' => "required|in:Can't go,Maybe,Going"
-        ]);
 
-        $usersInMeetups = new UsersInMeetups;
-        $usersInMeetups->user_id = $request->user_id;
-        $usersInMeetups->meetup_id = $request->meetup_id;
-        $usersInMeetups->status = $request->status;
+        $errors = [];
+        if(empty($user_id) || !is_numeric($user_id)) {
+            $errors[] += "User not found";
+        } else {
+            $user_id = (integer) $user_id;
+        }
+        if(empty($meetup_id) || !is_numeric($meetup_id)) {
+            $errors[] += "Meetup not found";
+        } else {
+            $meetup_id = (integer) $meetup_id;
+        }
+        if(empty($request->status) || !(in_array($request->status,["Can't go","Maybe","Going"]))) {
+            $errors[] += "Status doesn't fit values";
+        }
 
-        if($usersInMeetups->save())
-            return redirect('meetups', ['id' => $request->meetup_id])->with('success', 'Event registered successfully');
+        if(count($errors)) {
+            dd($errors);
+            return 'Problem registering';
+        }
+
+        $usersInMeetups = UsersInMeetups::updateOrCreate(['user_id' => $user_id, 'meetup_id' => $meetup_id],['status' => $request->status]);
+        if($usersInMeetups)
+            return redirect('/meetups')->with('success', 'Event registered successfully');
         else
             return 'Problem registering';
 
