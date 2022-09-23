@@ -35,6 +35,7 @@
                 <form method="post">
                     @csrf
                     <div>
+                        {{ "" ? "" : "" }}
                         <select name="status">
                             <option value="Going">Going</option>
                             <option value="Maybe">Maybe</option>
