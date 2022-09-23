@@ -35,7 +35,7 @@
                 <form method="post">
                     @csrf
                     <div>
-                        {{ "" ? "" : "" }}
+                        <div>{{ $usersInMeetups?->status }}</div>
                         <select name="status">
                             <option value="Going">Going</option>
                             <option value="Maybe">Maybe</option>

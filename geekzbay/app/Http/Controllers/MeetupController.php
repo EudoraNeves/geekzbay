@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Community;
 use App\Models\Location;
 use App\Models\Meetup;
+use App\Models\UsersInMeetups;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -69,6 +70,7 @@ class MeetupController extends Controller
         $meetup->location_id = $request->location_id;
         $meetup->community_id = $request->community_id;
 
+
         if($meetup->save())
             return redirect('meetup')->with('success', 'Event registered successfully');
         else
@@ -87,7 +89,9 @@ class MeetupController extends Controller
         $location = Location::find($meetup->location_id);
         $community = Community::find($meetup->community_id);
 
-        return view('layouts.meetup-details', ['meetup' => $meetup, 'location' => $location, 'community' => $community]);
+        $usersInMeetups = UsersInMeetups::where('user_id', '=', Auth::id())->where('meetup_id','=',$meetup->id)->firstOrFail();
+
+        return view('layouts.meetup-details', ['meetup' => $meetup, 'location' => $location, 'community' => $community, 'usersInMeetups' => $usersInMeetups]);
     }
 
     /**
