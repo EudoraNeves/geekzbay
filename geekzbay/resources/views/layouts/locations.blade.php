@@ -1,8 +1,8 @@
 @extends('layouts.template')
 @section('title', 'locations')
 @section('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/location.css">
-
 @endsection
 @section('main')
 
@@ -86,7 +86,7 @@
                     .then(data => data.json())
                     .then(jsonObj => {
                         const closeLocations = getCloseLocations(jsonObj);
-                        searchResults.innerHTML = createHTML(closeLocations);
+                        createHTML(closeLocations);
                     });
             });
 
@@ -115,12 +115,6 @@
                 return closeLocationArray;
             }
 
-
-            const addToMyLocations = (e)=>{
-                e.stopPropation();
-                console.log(e.target);
-            }
-
             const createHTML = (jsonResults) => {
                 console.log(jsonResults);
                 returnHTML =
@@ -144,7 +138,8 @@
                                         <div><span>Adresse: </span>${location.number}, ${location.road}</div>
                                         <div><span>Type: </span>${location.type}</div>
                                     </div>
-                                    <div class='heart_location'onclick="addToMyLocations">
+                                        <div class='heart_location' id="heart_location_${location.id}">
+                                        <span class="heartMsg"></span>
                                         <x-heroicon-o-heart />
                                     </div>
                                 </div>
@@ -152,6 +147,48 @@
                         </div>
                         
                     `;
+                    document.getElementById('heart_location_' + location.id).addEventListener('click',
+                        (e) => {
+                            // console.log('heart_location_' + location.name);
+                            console.log('clicked')
+                            e.target.classList.toggle('red');
+                            if (e.target.classList.contains('red')) {
+                                console.log('red')
+                                let token = document.querySelector('meta[name="csrf-token"]')
+                                    .getAttribute('content');
+                                fetch(`http://localhost:8000/api/locations/my-locations`, {
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                            "Accept": "application/json, text-plain, */*",
+                                            "X-Requested-With": "XMLHttpRequest",
+                                            "X-CSRF-TOKEN": token
+                                        },
+                                        method: 'post',
+                                        credentials: 'same-origin',
+                                        body: JSON.stringify({
+                                            user_id: @json($user->id),
+                                            location_id: location.id
+                                        })
+                                    })
+                                    .then(data => {
+                                        console.log('done!')
+                                    })
+                                    .then(res => console.log(res))
+                                    .catch(err => console.log(err))
+                                // axios.post(`http://127.0.0.1:8000/locations/my-locations/${location.id}`, {loation_id: location.id}, {
+                                //     headers: {
+                                //         'Content-Type': 'application/json',
+                                //     }
+                                // }).then(res => console.log(response.data))
+                                // .catch(
+                                //     error=>console.log('Success!')
+                                // )
+                            } else {
+                                console.log('white')
+                            }
+
+                        }
+                    )
                 });
                 return returnHTML;
             }

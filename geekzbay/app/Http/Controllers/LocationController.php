@@ -19,19 +19,22 @@ class LocationController extends Controller
     {
         //
         $addresses = DB::select(DB::raw('SELECT address_city, COUNT(*) as locationSum FROM locations GROUP BY address_city'));
-        return view('layouts.locations', ['addresses' => $addresses]);
+        return view('layouts.locations', ['addresses' => $addresses, 'user' => auth()->user()]);
     }
     public function index_my_locations()
     {
-        $locations = Location::all();
-        return view('layouts.my-locations', ['locations' => $locations]);
+        $user = User::with('locations')->where('id', Auth::user()->id)->first();
+        $my_locations = $user->locations()->get();
+        return view('layouts.my-locations', ['my_locations' => $my_locations]);
     }
 
-    public function add_to_my_locations()
+    public function add_to_my_locations(Request $request)
     {
-        $user = User::with('locations')->where('id', Auth::user()->id)->first();
-        $user->locations()->attach([2]);
-        return view('layouts.my-locations');
+        $user = User::find($request->user_id);
+        $location_id = $request->get('location_id');
+        $user = User::with('locations')->where('id', $user->id)->first();
+        $user->locations()->attach([$location_id]);
+        return response()->json(['success' => true]);
     }
 
 
