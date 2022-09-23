@@ -28,17 +28,21 @@
                 </div>
                 <div class='d-flex flex-column'>
                     <div>{{$meetup->date}}</div>
-                    <div>{{$meetu->community->name}}</div>
-                    <div>{{$meetup->location->data->name}} <a href='{{route(location/$meetup->location->data->id)}}'>See</a></div>
-                    <div>{{$meetup->location->data->address_number}}}, {{$meetup->location->data->address_road}} {{$meetup->location->data->address_city}}</div>
+                    <div>{{$community->name}}</div>
+                    <div>{{$location->name}} <a href='{{route('location', ['id' => $location->id])}}'>See</a></div>
+                    <div>{{$location->address_number}}, {{$location->address_road}} {{$location->address_city}}</div>
                 </div>
-                <div>
-                    <select name="" id="">
-                        <option value="Can&apos;t go">Can't go</option>
-                        <option value="Maybe">Maybe</option>
-                        <option value="Going">Going</option>
-                    </select>
-                </div>
+                <form method="post">
+                    @csrf
+                    <div>
+                        <select name="status" id="">
+                            <option value="Can&apos;t go">Can't go</option>
+                            <option value="Maybe">Maybe</option>
+                            <option value="Going">Going</option>
+                        </select>
+                        <button type="submit">Notify</button>
+                    </div>
+                </form>
             </div>
             <div class='text-center'>
                 {{$meetup->desc}}

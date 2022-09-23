@@ -83,9 +83,11 @@ class MeetupController extends Controller
      */
     public function show($id)
     {
-        //
         $meetup = Meetup::find($id);
-        return view('layouts.meetup', ['meetup' => $meetup]);
+        $location = Location::find($meetup->location_id);
+        $community = Community::find($meetup->community_id);
+
+        return view('layouts.meetup-details', ['meetup' => $meetup, 'location' => $location, 'community' => $community]);
     }
 
     /**
