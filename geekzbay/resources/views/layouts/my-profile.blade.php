@@ -16,19 +16,23 @@
             <div><b>Birth Date: </b>{{ $user->birthDate }}</div>
             <a href="{{ route('my-profile.edit') }}">Edit</a></span>
         </div>
+        <div class="links">
+            <div class="title">
+                <h2>My Discord : <a href="{{ "https://discord.com/users/$user->discord_id" }}"><img
+                            class="discord-icon"src="discord-icon.svg" alt="discord"></a></h2>
+
+
+            </div>
+
+        </div>
+
         <div class="security">
             <div class="title">
                 <h2>Security</h2>
             </div>
             <b>Password: </b><a href="{{ route('password.email', ['token' => $user->remember_token]) }}">change password</a>
         </div>
-        <div class="links">
-            <div class="title">
-                <a href="{{ "https://discord.com/users/$user->discord_id" }}"></a>
-                <h2><img class="discord-icon"src="discord-icon.svg" alt="discord"> My Discord :</h2>
 
-            </div>
-        </div>
     </div>
 @endsection
 <script>

@@ -2,14 +2,20 @@
     color: black;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1rem;
-    width: 50%;
-    margin: 2rem auto 7rem auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
 
 a{
 
     font-weight: bold;
+}
+
+h2{
+
+    text-align: center;
 }
 
 .image {
@@ -46,7 +52,7 @@ a{
     color: black;
     background-color:  #E5B045 ;
     border: 1px black solid;
-    height: 130px;
+    max-height: 200px;
     align-content: center;
     border-radius: 20px;
 }
