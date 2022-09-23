@@ -7,7 +7,7 @@
     <div class="my-profile d-flex flex-column justify-content-center flex-wrap align-items-center">
         <div class="profile">
             <div class="title">
-                <h2>Profile: &nbsp;<span class="edit"></h2>
+                <h2>Profile: </h2>
             </div>
             <div><img class="image" src="data:image/png;base64,{{ $user->profilePicture }}" alt=""></div>
             <div><b>Name: </b>{{ $user->name }}</div>
@@ -20,7 +20,7 @@
             <div class="title">
                 <h2>Security</h2>
             </div>
-            <b>Password: </b><a href="{{ route('password.email', ['token' => $user->remember_token]) }}">change password</a>
+            <b>Password: </b><a href="{{ route('password.reset', ['token' => $user->remember_token]) }}">change password</a>
         </div>
         <div class="links">
             <div class="title">
