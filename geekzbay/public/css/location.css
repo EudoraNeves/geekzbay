@@ -17,8 +17,7 @@ h1{
 
 .btn:first-child:hover , :not(.btn-check)+.btn:hover{
     color: #e5b045;
-    border: 1px solid #e5b045;
-    background-color: black;
+   
 }
 
 .input-group-text {

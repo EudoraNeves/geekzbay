@@ -1,88 +1,80 @@
 @extends('layouts.template')
 @section('title', 'meetup')
+
 @section('css')
-    <style>
-        .hiddenElement {
-            display: none;
-        }
+    <link rel="stylesheet" href="/css//meetup.css">
 
-        .flex-adapt {
-            flex-direction: column;
-        }
 
-        @query(min-width: 768px) {
-            .flex-adapt {
-                flex-direction: row;
-            }
-        }
-    </style>
 @endsection
 @section('main')
-    <h1>Meetup</h1>
-    <p>Use our Search function to look for a specific Event or use the date function to filter by date.</p>
-    <div>
-        <button type="button" id="proj-search-display-btn" class="btn btn-secondary btn-lg">Search for Event</button>
-        <button type="button" id="proj-create-display-btn" class="btn btn-secondary btn-lg">Create Event</button>
-    </div>
-
-    <div class="search">
-        {{-- Search form --}}
-        <form method="get" id="search-form" class="d-none">
-            @csrf
-            <div><label>Search an Event</label></div>
-            <div class="input-group"><input type="text" name="name" placeholder="Name" id="search-name-input"></div>
-            <div><input type="date" name="date" id="search-start-date"></div>
-            <div><input type="date" name="date" id="search-end-date"></div>
-            <div>
-                <select name="location_id" id="location_search_id">
-                    <option value="">All</option>
-                    @foreach($locations as $location)
-                        <option value="{{$location->id}}">{{$location->name}}</option>
-                    @endforeach
-                </select>
+    <div class="all">
+        <div class="nave">
+            <h1>Meetup</h1>
+            <p>Use our Search function to look for a specific Event or use the date function to filter by date.</p>
+            <div class="select_button">
+                <button type="button" id="proj-search-display-btn" class="btn btn-secondary btn-lg">Search for Event</button>
+                <button type="button" id="proj-create-display-btn" class="btn btn-secondary btn-lg">Create Event</button>
             </div>
-            <div>
-                <select name="community_id" id="community_search_id">
-                    <option value="">All</option>
-                    @foreach($communities as $community)
-                        <option value="{{$community->id}}">{{$community->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div><input type="submit" value="Search" id="searchInput"></div>
-        </form>
-
-        {{-- Create form --}}
-        <form method="post" id="create-form" class="d-none">
-            @csrf
-            <div><label>Create an Event</label></div>
-            <div><input type="text" name="name" placeholder="Name"></div>
-            <div><input type="date" name="date"></div>
-            <div>
-                <textarea name="desc"></textarea>
-            </div>
-            <div>
-                <select name="locatio_create_id" id="location_create_id">
-                    @foreach($locations as $location)
-                        <option value="{{$location->id}}">{{$location->name}}</option>
-                    @endforeach
-                </select>
-
+        </div>
+        <div class="search">
+            {{-- Search form --}}
+            <form method="get" id="search-form" class="d-none">
+                @csrf
+                <div><label>Search an Event</label></div>
+                <div class="input-group"><input type="text" name="name" placeholder="Name" id="search-name-input">
+                </div>
+                <div><input type="date" name="date" id="search-start-date"></div>
+                <div><input type="date" name="date" id="search-end-date"></div>
                 <div>
-                    <select name="community_create_id" id="comunity_create_id">
-                        @foreach($communities as $community)
-                            <option value="{{$community->id}}">{{$community->name}}</option>
+                    <select name="location_id" id="location_search_id">
+                        <option value="">All</option>
+                        @foreach ($locations as $location)
+                            <option value="{{ $location->id }}">{{ $location->name }}</option>
                         @endforeach
                     </select>
                 </div>
-            </div>
-            <div><input type="submit" value="Submit your Event"></div>
-        </form>
+                <div>
+                    <select name="community_id" id="community_search_id">
+                        <option value="">All</option>
+                        @foreach ($communities as $community)
+                            <option value="{{ $community->id }}">{{ $community->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div><input type="submit" value="Search" id="searchInput"></div>
+            </form>
 
+            {{-- Create form --}}
+            <form method="post" id="create-form" class="d-none">
+                @csrf
+                <div><label>Create an Event</label></div>
+                <div><input type="text" name="name" placeholder="Name"></div>
+                <div><input type="date" name="date"></div>
+                <div>
+                    <textarea name="desc"></textarea>
+                </div>
+                <div>
+                    <select name="locatio_create_id" id="location_create_id">
+                        @foreach ($locations as $location)
+                            <option value="{{ $location->id }}">{{ $location->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <div>
+                        <select name="community_create_id" id="comunity_create_id">
+                            @foreach ($communities as $community)
+                                <option value="{{ $community->id }}">{{ $community->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div><input type="submit" class="SYE" value="Submit your Event"></div>
+            </form>
+
+        </div>
+
+        <div id="proj-search-content"></div>
     </div>
-
-    <div id="proj-search-content"></div>
-
     <script>
         window.onload = () => {
             const searchDisplayButton = document.getElementById("proj-search-display-btn");
@@ -100,20 +92,20 @@
 
             // Display button listeners for toggling the search elements
             searchDisplayButton.addEventListener("click", (event) => {
-                if(searchForm.className == 'd-none') {
+                if (searchForm.className == 'd-none') {
                     searchForm.className = 'd-block';
-                    createForm.className ='d-none';
+                    createForm.className = 'd-none';
                 } else {
-                    searchForm.className ='d-none';
+                    searchForm.className = 'd-none';
                 }
             });
 
             createDisplayButton.addEventListener("click", (event) => {
-                if(createForm.className == 'd-none') {
+                if (createForm.className == 'd-none') {
                     createForm.className = 'd-block';
-                    searchForm.className ='d-none';
+                    searchForm.className = 'd-none';
                 } else {
-                    createForm.className ='d-none';
+                    createForm.className = 'd-none';
                 }
             });
 
@@ -126,22 +118,22 @@
             const fetchAPI = () => {
                 // API Querybuilder
                 let query = '?';
-                if(searchNameInput.value != '') {
+                if (searchNameInput.value != '') {
                     query += 'name=' + searchNameInput.value + '&';
                 }
-                if(startDateInput.value) {
+                if (startDateInput.value) {
                     query += 'startDate=' + startDateInput.value + '&';
                 }
-                if(endDateInput.value) {
+                if (endDateInput.value) {
                     query += 'endDate=' + endDateInput.value + '&';
                 }
-                if(endDateInput.value) {
+                if (endDateInput.value) {
                     query += 'endDate=' + endDateInput.value + '&';
                 }
-                if(selectedLocation.value) {
+                if (selectedLocation.value) {
                     query += 'location=' + selectedLocation.value + '&';
                 }
-                if(selectedCommunity.value) {
+                if (selectedCommunity.value) {
                     query += 'community=' + selectedCommunity.value + '&';
                 }
                 console.log(query);
@@ -161,7 +153,7 @@
                     <div class='d-flex flex-column'>
                         <div class='proj-card-title d-flex flex-row justify-content-between'>
                             <span>${meetup.name}</span>
-                            <span><a href='{{route('meetup')}}/${meetup.id}'>See</a></span>
+                            <span><a href='{{ route('meetup') }}/${meetup.id}'>See</a></span>
                         </div>
                         <div class='d-flex flex-adapt'>
                             <div class='d-flex flex-row'>

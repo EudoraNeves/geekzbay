@@ -1,4 +1,12 @@
 /* Color definitions */
+
+
+
+
+
+
+
+
 body {
     background-color: rgb(33, 37, 41);
     color: white;
@@ -155,7 +163,7 @@ footer {
 
 .content {
     flex-grow: 1;
-    min-height: 600px;
+    min-height: 1000px;
 }
 .footer {
     
@@ -168,7 +176,6 @@ footer {
     align-items: center;
     justify-content: center;
     width: 100%;
-    
     
 }
 
