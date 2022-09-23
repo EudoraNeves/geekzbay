@@ -2,8 +2,7 @@
 
 {{-- CSS --}}
 @section('css')
-    <link rel="stylesheet" href="/css/community.css">
-    <link rel="stylesheet" href="/css/searchbarComm.css">
+    <link rel="stylesheet" href="/css/pages/community.css">
 @endsection
 
 @section('title', 'community')

@@ -2,7 +2,7 @@
 @section('title', 'locations')
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="/css/location.css">
+    <link rel="stylesheet" href="/css/pages/locations.css">
 @endsection
 @section('main')
 

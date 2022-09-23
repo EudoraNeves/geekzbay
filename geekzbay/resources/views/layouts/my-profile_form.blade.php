@@ -1,8 +1,7 @@
 @extends('layouts.template')
 @section('title', 'Edit Profile')
 @section('css')
-    <link rel="stylesheet" href="/css/my_profile_form.css">
-
+    <link rel="stylesheet" href="/css/pages/my_profile_form.css">
 @endsection
 @section('main')
     <div class="  my-profile d-flex flex-column justify-content-center flex-wrap align-items-center">

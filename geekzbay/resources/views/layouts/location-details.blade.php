@@ -1,21 +1,7 @@
 @extends('layouts.template')
 @section('title', 'locations')
 @section('css')
-    <style>
-        .d-flex>.d-flex>img {
-            width: 150px;
-        }
-
-        .flex-adapt {
-            flex-direction: column;
-        }
-
-        @media (min-width: 572px) {
-            .flex-adapt {
-                flex-direction: row
-            }
-        }
-    </style>
+<link rel="stylesheet" href="/CSS/pages/location-details.css">
 @endsection
 @section('main')
     <div class="d-flex flex-column align-items-center">

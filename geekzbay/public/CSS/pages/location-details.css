@@ -1,0 +1,13 @@
+.d-flex>.d-flex>img {
+    width: 150px;
+}
+
+.flex-adapt {
+    flex-direction: column;
+}
+
+@media (min-width: 572px) {
+    .flex-adapt {
+        flex-direction: row
+    }
+}
