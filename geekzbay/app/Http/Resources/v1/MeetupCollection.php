@@ -17,3 +17,4 @@ class MeetupCollection extends ResourceCollection
         return parent::toArray($request);
     }
 }
+?>

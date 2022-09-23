@@ -20,8 +20,16 @@ class MeetupSearchController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        return new MeetupCollection(Meetup::paginate());
+        // Create the query object that filters the requested data
+        $filter = new MeetupQuery();
+        $filterResults = $filter->transform($request);
+        // Show the paginated results if you have any results, else, just show the pagination of the typical site
+        return new MeetupCollection(
+            (count($filterResults) ?
+                Meetup::where($filterResults)->paginate()
+            :
+                Meetup::paginate())
+        );
     }
 
     /**
