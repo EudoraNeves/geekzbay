@@ -6,34 +6,26 @@
     padding: 20px;
     margin-top: 10%;
     margin-bottom: 10%;
-    color: black;
-    
+    color: black;    
 }
 
 .loadfile{
-
     size: 30px;
 }
 
 
-img{
+#preview img{
+    width: 200px;
     border: 5px black solid;
-    
 }
-
-
 
 h1{
     text-align: start;
     font-size: 25px;
     padding: 5px;
-   
-
-
 }
 
 span>input{
-
     background-color:white;
     border: black 1px solid;
     color: black;
@@ -43,12 +35,10 @@ span>input{
 }
 
 span>input:hover{
-
     background-color:black;
     border: black 1px solid;
     color: white;
     border-radius: 5px;
     font-weight: bold;
-
 }
 

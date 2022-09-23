@@ -115,7 +115,7 @@ class UserController extends Controller
         $user->birthDate = $request->birthDate;
         $user->desc = $request->desc;
         $user->save();
-        return redirect()->route('profile');
+        return redirect()->route('my-profile');
     }
 
 
@@ -126,7 +126,7 @@ class UserController extends Controller
             return view('layouts.my-profile_edit', ['user' => $user]);
             // return redirect()->route('my-profile.edit', ['user' => $user]);
         } else {
-            return redirect()->route('profile');
+            return redirect()->route('my-profile');
         }
     }
 
