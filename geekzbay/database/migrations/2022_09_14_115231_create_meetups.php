@@ -21,9 +21,9 @@ return new class extends Migration
             $table->foreignId('eventadmin_id')->references('id')->on('users');
             $table->foreignId('community_id')->references('id')->on('communities');
             $table->foreignId('location_id')->references('id')->on('locations');
-            $table->text('alt_address_city');
-            $table->text('alt_address_street');
-            $table->text('alt_address_number');
+            $table->text('alt_address_city')->nullable();
+            $table->text('alt_address_street')->nullable();
+            $table->text('alt_address_number')->nullable();
             $table->timestamps();
         });
     }

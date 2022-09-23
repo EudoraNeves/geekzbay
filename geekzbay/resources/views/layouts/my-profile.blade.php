@@ -4,16 +4,17 @@
     <link rel="stylesheet" href="css/my-profile.css">
 @endsection
 @section('main')
-    <div class="my-profile">
+    <div class="my-profile d-flex flex-column justify-content-center flex-wrap align-items-center">
         <div class="profile">
             <div class="title">
-                <h2>Profile &nbsp;<span class="edit"><a href="{{route('my-profile.edit')}}">Edit</a></span></h2>
+                <h2>Profile: &nbsp;<span class="edit"></h2>
             </div>
-            <div><b>Profile Picture: </b><img class="image" src="data:image/png;base64,{{ $user->profilePicture }}" alt=""></div>
+            <div><img class="image" src="data:image/png;base64,{{ $user->profilePicture }}" alt=""></div>
             <div><b>Name: </b>{{ $user->name }}</div>
             <div><b>Email: </b>{{ $user->email }}</div>
             <div><b>Desc: </b>{{ $user->desc }}</div>
             <div><b>Birth Date: </b>{{ $user->birthDate }}</div>
+            <a href="{{ route('my-profile.edit') }}">Edit</a></span>
         </div>
         <div class="security">
             <div class="title">
@@ -23,11 +24,11 @@
         </div>
         <div class="links">
             <div class="title">
-                <h2>Links</h2>
-                <a href="{{"https://discord.com/users/$user->discord_id"}}"><img class="discord-icon" src="discord-icon.svg" alt="discord"></a>
+                <a href="{{ "https://discord.com/users/$user->discord_id" }}"></a>
+                <h2><img class="discord-icon"src="discord-icon.svg" alt="discord"> My Discord :</h2>
+
             </div>
         </div>
-
     </div>
 @endsection
 <script>

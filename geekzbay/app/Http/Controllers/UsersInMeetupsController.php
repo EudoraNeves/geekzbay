@@ -1,35 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\api\v1;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Meetup;
-use App\Http\Resources\v1\MeetupCollection;
-use App\Http\Resources\v1\MeetupResource;
-use App\Services\v1\MeetupQuery;
-
-
-class MeetupSearchController extends Controller
+class UsersInMeetupsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        // Create the query object that filters the requested data
-        $filter = new MeetupQuery();
-        $filterResults = $filter->transform($request);
-        // Show the paginated results if you have any results, else, just show the pagination of the typical site
-        return new MeetupCollection(
-            (count($filterResults) ?
-                Meetup::where($filterResults)->paginate()
-            :
-                Meetup::paginate())
-        );
+        //
     }
 
     /**
@@ -59,10 +43,9 @@ class MeetupSearchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
         //
-        return new MeetupResource($request);
     }
 
     /**

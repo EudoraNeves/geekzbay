@@ -1,8 +1,3 @@
-<style>
-    img {
-        width: 1.5rem;
-    }
-</style>
 <div class="card" style="width: 18rem;">
     <img src="data:image/png;base64,{{ $imgSrc }}" class="card-img-top" alt="{{ $imgAlt }}">
     <div class="card-body">
@@ -27,8 +22,8 @@
             <a href="{{ route('profile') }}" class="card-link">Go to Profile</a>
         @endif
         @if (!$self)
-            <button type="button" class="btn btn-warning"><a
-                    href="{{ route('addBuddy', ['buddy_id' => $addBuddyId]) }}">Add Buddy</a></button>
+            <button type="button" class="btn btn-warning addbuddy"><a
+                    href="<a>{{ route('addBuddy', ['buddy_id' => $addBuddyId]) }}">Add Buddy</a></button>
         @endif
     </div>
 </div>

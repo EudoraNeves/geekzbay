@@ -42,6 +42,18 @@ li {
     width: 100%;
 }
 
+.proj-comcard>div{
+   
+    border:1px solid #E5B045;
+    border-radius: 3px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 20px;
+    text-align: center;
+    align-items: center;
+}
+
+
 .header-container header {
     display: flex;
     flex-direction: row;
@@ -77,6 +89,7 @@ li {
     transition: 1s all;
 }
 
+
 .extended_menu.active {
     top: 120px;
 }
@@ -95,17 +108,20 @@ header {
     display: flex;
     justify-content: center;
 }
+
 button:hover {
-	color: #E5B045 ;
+    color: #E5B045 ;
 	cursor: pointer;
 	border-radius: 5px;
 	background-color:#ffffff22 ;
     
 
 }
+
+
 .btnm{
 height: 100%;
-padding: 10px;
+padding: 5px;
 }
 
 
@@ -113,6 +129,9 @@ a:hover {
 	color: #E5B045 ;
     background-color:#ffffff22
 }
+
+
+
 button {
     background-color: rgb(33, 37, 41);
     color: #e5b045;
@@ -138,23 +157,103 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-   
     width: 100%;
- 
-
+    
+    
 }
 
 footer {
-    flex-
+    flex-grow: 0;
 }
 
 .content {
     flex-grow: 1;
+    min-height: 600px;
 }
- 
+
+/*
+//////////////////////////////////////////////////////////////////////////////////////////////////// 
+overflow laravel css
+////////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+.bg-gray-100{
+
+    background-color: rgb(33, 37, 41) !important;
+}
+
+
+.list-group-item {
+    background-color: #e5b045 !important;
+    color: rgb(33, 37, 41) !important;
+    text-decoration: none !important;
+    border: 1px solid rgb(33, 37, 41) !important;
+    
+    border-radius: 5px;
+}
+.list-group-item>a {
+    
+    color: rgb(33, 37, 41) !important;
+    text-decoration: none !important;
+    
+    
+    
+}
+
+.card-body>.btn-warning{
+
+    background-color: #E5B045 !important;
+    
+    margin: 5px;
+    
+    background-color: #E5B045 !important;
+    font-weight: bolder;
+    
+    
+    }
+    .btn-warning>a{
+        text-decoration: none;
+        color: black !important;
+    
+    }
+
+.findBuddy{
+margin: 50px;
+}
+
+
+.question-mark{
+    background-color: #e5b045 !important;
+    color: rgb(33, 37, 41) !important;
+}
+.card{
+    
+    border: solid rgb(33, 37, 41) ;
+    background-color: #E5B045;
+}
+
+.findBuddy_btn>.btn-warning{ 
+    background-color: #E5B045 !important;
+    font-weight: bolder;
+}
+
+.card-body>a{
+    color: #e5b045 !important;
+    background-color: rgb(33, 37, 41) !important;
+    text-decoration: none !important ;
+    cursor: pointer;
+}
+.card-body{
+    color: #e5b045 !important;
+    background-color: rgb(33, 37, 41) !important;
+    text-decoration: none !important ;
+    border: 1px solid #e5b045 !important ;
+    border-radius: 5px;
+    cursor: pointer;
+}
 /* 
 nav {
-	flex: 1;
+    flex: 1;
 }
 
 .burger {

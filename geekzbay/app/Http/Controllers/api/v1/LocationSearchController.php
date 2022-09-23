@@ -22,7 +22,16 @@ class LocationSearchController extends Controller
     public function index(Request $request)
     {
         //
-        return new LocationCollection(Location::paginate());
+        // Create the query object that filters the requested data
+        $filter = new LocationQuery();
+        $filterResults = $filter->transform($request);
+        // Show the paginated results if you have any results, else, just show the pagination of the typical site
+        return new LocationCollection(
+            (count($filterResults) ?
+                Location::where($filterResults)->paginate()
+            :
+                Location::paginate())
+        );
     }
 
     /**

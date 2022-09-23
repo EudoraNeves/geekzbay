@@ -1,10 +1,12 @@
-#proj-results-container {
-    flex-grow: 1;    /* Make every divcard the same dimension */
-    gap: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.text_box{
+
+display: flex;
+flex-direction: column ;
+flex-wrap: wrap;
+
+
 }
+
 h1{
 
     color: #e5b045;
@@ -12,11 +14,40 @@ h1{
     font-size: 30px;
 }
 
-#proj_card_desc {
+
+.btn:first-child:hover , :not(.btn-check)+.btn:hover{
+    color: #e5b045;
+    border: 1px solid #e5b045;
+    background-color: black;
+}
+
+.input-group-text {
+    background-color: #e5b045;
+    color: black;
+    border: 1px solid black;
+}
+
+.flex-adapt {
+    flex-direction: column;
+}
+
+
+
+.proj-results-container {
+    /* Make every divcard the same dimension */
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    align-items: start;
+    text-align: start;
+    margin: 10px;
+}
+
+.proj_card_desc {
     display: flex;
     align-items: center;
     text-align: start;
-    margin: 5px;
+    
 }
 
 .discord{
@@ -28,15 +59,10 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    border-radius: 10px;
+    margin: 10px;
     margin-bottom: 20px;
     color: rgb(255, 255, 255);
-    border:1px solid #E5B045;
-    border-radius: 3px;
-    padding: 20px;
-    max-width: 500px;
-    margin: 20px;
-    
 }
 
 .proj-search-container {
@@ -47,7 +73,8 @@ h1{
 }
 
 .proj-name {
-    color:  #e5b045;
+    color:  #00000a;
+    background-color: #e5b045;
     padding: 15px;
     display: flex;
     text-align: center;
@@ -59,7 +86,7 @@ h1{
 }
 
 span{
-    margin: 0%;
+   
     color: #e5b045;
     
 }
@@ -74,16 +101,10 @@ span{
   
 }
 
-.proj-desc{
 
-    display: flex;
-    flex: auto;
-    justify-content:flex-start;
-    align-items: start;
-    text-align: start;
-    margin: 10px;
+
   
-}
+  
 .proj-categ{
 
     display: flex;
@@ -94,6 +115,19 @@ span{
     margin: 5px;
   
 }
+
+.proj-comcard>div{
+   
+    border:1px solid #E5B045;
+    border-radius: 3px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 20px;
+    text-align: center;
+    align-items: center;
+}
+
+
 .proj-img{
 display: flex;
 margin: 15px;
@@ -117,11 +151,16 @@ justify-content: space-evenly;
 
 }
 
-@media (min-width: 768px) {
-    .proj-flex-adapt {
-        flex-direction: row;
-        align-self: start;
-    }
+
+.discord .btn.btn-dark{
+color: #5865F2;
+padding: 0;
+
+
 }
 
-  
+@media(min-width: 768px) {
+    .flex-adapt {
+        flex-direction: row;
+    }
+}
