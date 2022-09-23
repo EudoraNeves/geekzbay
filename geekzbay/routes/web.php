@@ -26,6 +26,9 @@ Route::get('/buddy/add', [UserController::class, 'addBuddy'])->name('addBuddy');
 Route::get('/meetup', [MeetupController::class, 'show'])->name('meetup');
 Route::post('/meetup', [MeetupController::class, 'store'])->middleware('auth');
 
+// My-Meetups
+Route::get('/my-meetups', [MyMeetupController::class, 'index'])->middleware('auth');
+
 // Communities
 Route::get('/community', [CommunityController::class, 'show'])->name('community');
 
@@ -34,7 +37,7 @@ Route::get('locations', [LocationController::class, 'index'])->name('locations')
 Route::get('location/{id}', [LocationController::class, 'show'])->name('location');
 Route::get('/locations/my-locations', [LocationController::class, 'index'])->name('my-locations');
 // Profile
- Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
     // Buddies
     Route::get('/buddy/my-buddies', [UserController::class, 'index'])->name('my-buddies');
     // Meetups --> create an event
