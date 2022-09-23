@@ -159,7 +159,10 @@
                     console.log(meetup);
                     returnHTML += `
                     <div class='d-flex flex-column'>
-                        <div class='proj-card-title'>${meetup.name}</div>
+                        <div class='proj-card-title d-flex flex-row justify-content-between'>
+                            <span>${meetup.name}</span>
+                            <span><a href='{{route('meetup')}}/${meetup.id}'>See</a></span>
+                        </div>
                         <div class='d-flex flex-adapt'>
                             <div class='d-flex flex-row'>
                                 <div class='d-flex flex-column'>
@@ -168,7 +171,7 @@
                                 <div class='d-flex flex-column'>
                                     <div>${meetup.date}</div>
                                     <div>${meetup.community.name}</div>
-                                    <div>${meetup.location.data.name} <a href='http://localhost:8000/location/${meetup.location.data.id}'>See</a></div>
+                                    <div>${meetup.location.data.name} <a href='location/${meetup.location.data.id}'>See</a></div>
                                     <div>${meetup.location.data.address_number}, ${meetup.location.data.address_road} ${meetup.location.data.address_city}</div>
                                 </div>
                             </div>
