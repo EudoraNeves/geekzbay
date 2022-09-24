@@ -1,13 +1,16 @@
 
 .container{
     margin: 0 auto;
-    border: 1px solid red;
     width: 100%;
 }
 
 .findBuddy {
     display: flex;
     justify-content: space-between;
+}
+.noMoreBuddyToFind {
+    font-size: 3rem;
+    margin: 8rem auto;
 }
 .findBuddy_btn {
     display: flex;
