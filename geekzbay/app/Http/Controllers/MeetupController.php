@@ -7,6 +7,7 @@ use App\Models\Location;
 use App\Models\Meetup;
 use App\Models\UsersInMeetups;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
+use App\Models\User;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,9 +89,16 @@ class MeetupController extends Controller
         $location = Location::find($meetup->location_id);
         $community = Community::find($meetup->community_id);
 
-        $usersInMeetups = UsersInMeetups::where('user_id', '=', Auth::id())->where('meetup_id','=',$meetup->id)->firstOrFail();
+        $user = null;
+        $authId = Auth::id();
+        if($authId) {
+            $user = UsersInMeetups::find($authId);
+        }
 
-        return view('layouts.meetup-details', ['meetup' => $meetup, 'location' => $location, 'community' => $community, 'usersInMeetups' => $usersInMeetups]);
+
+        $usersInMeetups = UsersInMeetups::join('meetups','meetups.id','=', 'users_in_meetups.meetup_id')->join('users','users_in_meetups.user_id','=','users.id')->where('users_in_meetups.meetup_id','=',$id)->get();
+
+        return view('layouts.meetup-details', ['meetup' => $meetup, 'location' => $location, 'community' => $community, 'user' => $user, 'usersInMeetups' => $usersInMeetups]);
     }
 
     /**

@@ -63,7 +63,7 @@ class UsersInMeetupsController extends Controller
 
         $usersInMeetups = UsersInMeetups::updateOrCreate(['user_id' => $user_id, 'meetup_id' => $meetup_id],['status' => $request->status]);
         if($usersInMeetups)
-            return redirect('/meetups')->with('success', 'Event registered successfully');
+            return redirect('/meetups/'.$meetup_id)->with('success', 'Event registered successfully');
         else
             return 'Problem registering';
 

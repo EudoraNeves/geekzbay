@@ -39,7 +39,9 @@
                         @endforeach
                     </select>
                 </div>
-                <div><input type="submit" value="Search" id="searchInput"></div>
+                <div class="mt-3">
+                    <input type="submit" value="Search" id="searchInput">
+                </div>
             </form>
 
             {{-- Create form --}}
@@ -66,7 +68,9 @@
                         </select>
                     </div>
                 </div>
-                <div><input type="submit" class="SYE" value="Submit your Event"></div>
+                <div class="mt-3">
+                    <input type="submit" class="SYE" value="Submit your Event">
+                </div>
             </form>
 
         </div>
@@ -176,7 +180,7 @@
                                     <div>${meetup.community.name}</div>
                                     <div class='d-flex flex-row justify-content-between align-items-center w-100'>
                                         <span>${meetup.location.data.name}</span>
-                                        <a href='location/${meetup.location.data.id}'>See</a>
+                                        <a href='location/${meetup.location.data.id}' class='btn btn-dark'>See</a>
                                     </div>
                                     <div>${meetup.location.data.address_number}, ${meetup.location.data.address_road} ${meetup.location.data.address_city}</div>
                                 </div>
