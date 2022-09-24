@@ -6,19 +6,16 @@ th {
     text-align: center
 }
 
-.table-avatar {
-    height: 3rem;
-}
-
 col {
     width: 15rem;
 }
 tr td {
     text-align: center;
+    padding: 1rem;
 }
-td.name {
+/* td.name {
     text-align: left;
-}
+} */
 
 col.id {
     width: 3rem;
@@ -29,9 +26,17 @@ col.avatar {
 }
 
 col.name {
-    width: 10rem;
+    width: 15rem;
 }
 
 col.discord {
     width: 5rem;
+}
+.discord_icon {
+    width: 2rem;
+}
+.table-avatar {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
 }

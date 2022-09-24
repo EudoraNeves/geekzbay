@@ -30,9 +30,13 @@
                         <span>{{ $myBuddy->name }}</span>
                     </td>
                     <td>
-                        <a href="{{ "https://discord.com/users/$myBuddy->discord_id" }}">
-                            <img class="discord_icon" src="discord-icon.svg" alt="discord">
+                        @if($myBuddy->discord_id)
+                        <a href="https://discord.com/users/{{ $myBuddy->discord_id }}">
+                            <img class="discord_icon" src="../discord-icon.svg" alt="discord">
                         </a>
+                        @else
+                        <a href="#"></a>
+                        @endif
                     </td>
                 </tr>
             @endforeach
