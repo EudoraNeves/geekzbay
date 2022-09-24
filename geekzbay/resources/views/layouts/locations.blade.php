@@ -78,8 +78,15 @@
             });
 
 
+            // Listen whether someone submits something
             searchForm.addEventListener('submit', (event) => {
                 event.preventDefault();
+                // Default distance is 0. If someone tries to be funny, negatives are not accepted and townSearch needs to be put in
+                if(!distanceSearch.value)
+                    distanceSearch.value = 0;
+                if (townSearch.value == '' || distanceSearch.value < 0) {
+                    return;
+                }
                 // Get all locations with the right name
                 fetch(
                         `http://localhost:8000/api/v1/locations?name=${nameSearch.value}&type=${typeSearch.value}`
@@ -87,19 +94,16 @@
                     .then(data => data.json())
                     .then(jsonObj => {
                         const closeLocations = getCloseLocations(jsonObj);
+                        console.log(closeLocations);
                         createHTML(closeLocations);
                     });
             });
 
 
-
+            // Show me all the locations in the nearby cities
             const getCloseLocations = (jsonObj) => {
                 const closeLocationArray = [];
                 // Create an array of filtered locations set nearby
-                if (townSearch.value == '' || !distanceSearch.value || distanceSearch.value <= 0) {
-                    console.log('early return');
-                    return;
-                }
                 jsonObj.data.forEach(location => {
                     if (location.city in citiesLatLon) {
                         const latKm = citiesLatLon[location.city].lat - citiesLatLon[townSearch.value]
@@ -112,10 +116,10 @@
                     }
                 })
 
-
                 return closeLocationArray;
             }
 
+            // Create the HTML objects and append the listener to favorite them
             const createHTML = (jsonResults) => {
                 console.log(jsonResults);
                 returnHTML =
@@ -123,14 +127,15 @@
 
                 jsonResults.forEach(location => {
                     // Divcard
-                    returnHTML += `
+                    location_id = `heart_location_${location.id}`;
+                    searchResults.innerHTML += `
                         <div class="d-flex flex-column ">
                             <h1>${location.name}</h1>
                             <div class="d-flex flex-adapt">
                                 <div class="proj-img d-flex flex-column align-items-center">
                                     <img src="${location.profilePicture}" width="150px">
                                     <div class="meter d-flex flex-row justify-content-around">
-                                        <a class="btn btn-dark">👍</a>
+                                        <a class="btn btn-dark">👎</a>
                                         <meter min="0" max="100" low="35" high="75" optimum="80" value="85"></meter>
                                         <a class="btn btn-dark">👍</a>
                                     </div>
@@ -141,7 +146,7 @@
                                         <div><span>Adresse: </span>${location.number}, ${location.road}</div>
                                         <div><span>Type: </span>${location.type}</div>
                                     </div>
-                                        <div class='heart_location' id="heart_location_${location.id}">
+                                        <div class='heart_location' id="${location_id}">
                                         <span class="heartMsg"></span>
                                         <x-heroicon-o-heart />
                                     </div>
@@ -150,36 +155,35 @@
                         </div>`;
 
                         setTimeout(() => {
-                        document.getElementById(location.id).addEventListener('click',
-                        (e) => {
-                            console.log('clicked');
-                            e.target.classList.toggle('red');
-                            if(!(e.target.classList.contains('red'))) {
-                                return;
-                            }
+                            document.getElementById('heart_location_' + location.id).addEventListener('click',
+                            (e) => {
+                                console.log('clicked');
+                                e.target.classList.toggle('red');
+                                if(!(e.target.classList.contains('red'))) {
+                                    return;
+                                }
 
-                            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                            fetch(`http://localhost:8000/api/locations/my-locations`, {
-                                headers: {
-                                    "Content-Type": "application/json",
-                                    "Accept": "application/json, text-plain, */*",
-                                    "X-Requested-With": "XMLHttpRequest",
-                                    "X-CSRF-TOKEN": token
-                                },
-                                method: 'post',
-                                credentials: 'same-origin',
-                                body: JSON.stringify({
-                                    user_id: @json($user->id),
-                                    location_id: location.id
+                                let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                                fetch(`http://localhost:8000/api/locations/my-locations`, {
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "Accept": "application/json, text-plain, */*",
+                                        "X-Requested-With": "XMLHttpRequest",
+                                        "X-CSRF-TOKEN": token
+                                    },
+                                    method: 'post',
+                                    credentials: 'same-origin',
+                                    body: JSON.stringify({
+                                        user_id: 1,
+                                        location_id: location.id
+                                    })
                                 })
-                            })
-                            .then(data => {console.log('done!')})
-                            .then(res => console.log(res))
-                            .catch(err => console.log(err))
-                        })
-                    }, 0);
+                                .then(data => {console.log('done!')})
+                                .then(res => console.log(res))
+                                .catch(err => console.log(err))
+                            });
+                        }, 1000);
                 });
-                return returnHTML;
             }
 
         }
