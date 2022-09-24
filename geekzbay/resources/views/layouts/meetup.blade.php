@@ -46,20 +46,20 @@
             <form method="post" id="create-form" class="d-none">
                 @csrf
                 <div><label>Create an Event</label></div>
-                <div><input type="text" name="name" placeholder="Name"></div>
-                <div><input type="date" name="date"></div>
+                <div><input type="text" name="name" placeholder="Name" required></div>
+                <div><input type="date" name="date" required></div>
                 <div>
-                    <textarea name="desc"></textarea>
+                    <textarea name="desc" required></textarea>
                 </div>
                 <div>
-                    <select name="locatio_create_id" id="location_create_id">
+                    <select name="location_id" id="location_create_id" required>
                         @foreach ($locations as $location)
                             <option value="{{ $location->id }}">{{ $location->name }}</option>
                         @endforeach
                     </select>
 
                     <div>
-                        <select name="community_create_id" id="comunity_create_id">
+                        <select name="community_id" id="comunity_create_id" required>
                             @foreach ($communities as $community)
                                 <option value="{{ $community->id }}">{{ $community->name }}</option>
                             @endforeach
@@ -71,7 +71,12 @@
 
         </div>
 
-        <div id="proj-search-content"></div>
+        @if(null !== session()->get('success'))
+            <div>{{session()->get('success')}}</div>
+        @endif
+
+        {{-- Search results --}}
+        <div id="proj-search-content" class="flex-adapt flex-wrap align-items-center justify-content-center gap-2"></div>
     </div>
     <script>
         window.onload = () => {
@@ -148,16 +153,25 @@
                 jsonObj.data.forEach(meetup => {
                     console.log(meetup);
                     returnHTML += `
-                    <div class='d-flex flex-column'>
+                    <div class='d-flex flex-column proj-card-border'>
+                        ${/*Upper div-content: title*/''}
                         <div class='proj-card-title d-flex flex-row justify-content-between'>
                             <span>${meetup.name}</span>
-                            <span><a href='{{ route('meetup') }}/${meetup.id}'>See</a></span>
+                            <span>
+                                <a href='{{ route('meetup') }}/${meetup.id}'>
+                                    <img src='{{ asset('look_icon.svg') }}' />
+                                    See
+                                </a>
+                            </span>
                         </div>
-                        <div class='d-flex flex-adapt'>
-                            <div class='d-flex flex-row'>
-                                <div class='d-flex flex-column'>
+                        ${/*Lower div-content: data*/''}
+                        <div class='d-flex flex-column'>
+                            <div class='d-flex flex-adapt'>
+                                ${/*Lefthand image column*/''}
+                                <div class='d-flex flex-column gap-2'>
                                     <img src='{{ asset('Assets/Images/${meetup.community.img}') }}' width='100px'>
                                 </div>
+                                ${/*Righthand coordinates column*/''}
                                 <div class='d-flex flex-column'>
                                     <div>${meetup.date}</div>
                                     <div>${meetup.community.name}</div>
@@ -165,13 +179,12 @@
                                     <div>${meetup.location.data.address_number}, ${meetup.location.data.address_road} ${meetup.location.data.address_city}</div>
                                 </div>
                             </div>
+                            ${/*Bottom description box*/''}
                             <div class='text-center'>
-                                ${meetup.desc}
+                                ${meetup.desc.slice(0,100) + '...'}
                             </div>
                         </div>
-                    </div>
-
-                    `;
+                    </div>`;
                 });
 
                 return returnHTML;
