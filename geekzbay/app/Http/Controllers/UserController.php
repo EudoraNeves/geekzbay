@@ -56,17 +56,11 @@ class UserController extends Controller
      */
     public function show(/*$id*/)
     {
-
-
-        // $user = auth()->user();
-        // dd($user->buddies);
-
-        // $randomUser = User::all()->random(1)[0];
-        $id = optional(auth()->user())->id;
-        $randomUser = User::where('id', '<>', $id)->inRandomOrder()->first();
-        // dd($randomUser);
+        $user = auth()->user();
+        //Exclude buddies that's NOT ME and NOT ALREADY MY BUDDIES
+        $buddyIds = array_values(array_merge($user->buddies->pluck('id')->toArray(), [$user->id]));
+        $randomUser = User::whereNotIn('id', $buddyIds)->inRandomOrder()->first();
         return view('layouts.buddy', ['randomBuddy' => $randomUser]);
-        // return view('layouts.buddy');
     }
 
     public function addBuddy()
