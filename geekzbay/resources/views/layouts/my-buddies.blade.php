@@ -1,45 +1,7 @@
 @extends('layouts.template')
 @section('title', 'My Buddies')
 @section('css')
-    <style>
-        table {
-            margin: 2rem;
-        }
-
-        th {
-            text-align: center
-        }
-
-        .table-avatar {
-            height: 3rem;
-        }
-
-        col {
-            width: 15rem;
-        }
-        tr td {
-            text-align: center;
-        }
-        td.name {
-            text-align: left;
-        }
-
-        col.id {
-            width: 3rem;
-        }
-
-        col.avatar {
-            width: 3rem;
-        }
-
-        col.name {
-            width: 10rem;
-        }
-
-        col.discord {
-            width: 5rem;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/pages/my-buddies.css">
 @endsection
 @section('main')
     <table>
