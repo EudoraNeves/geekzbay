@@ -12,7 +12,7 @@
                 <span style="color: red">{{ session('error') }}</span>
             @endif --}}
         </section>
-        <section class='findBuddy d-flex flex-row justify-content-center flex-wrap'>
+        <section class='findBuddy d-flex flex-row justify-content-center flex-wrap gap-3'>
             @if (Auth::check())
                 <div class="myProfile">
                     <x-buddy-card self="true" username="{{ Auth::user()->name }}" quote="{{ Auth::user()->desc }}"
