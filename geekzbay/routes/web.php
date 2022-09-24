@@ -20,8 +20,8 @@ use App\Http\Controllers\UsersInMeetupsController;
 
 //content pages
 // Buddies
-Route::get('/buddy', [UserController::class, 'show'])->name('buddy');
-Route::get('/buddy/add', [UserController::class, 'addBuddy'])->name('addBuddy');
+Route::get('/buddy', [UserController::class, 'show_random_buddy'])->name('buddy');
+Route::get('/buddy/{buddy_id}', [UserController::class, 'addBuddy'])->name('addBuddy');
 // Meetups --> create an event
 Route::get('/meetups', [MeetupController::class, 'index'])->name('meetup');
 Route::get('/meetups/{id}', [MeetupController::class, 'show'])->name('meetups');
@@ -37,7 +37,7 @@ Route::get('location/{id}', [LocationController::class, 'show'])->name('location
 
  Route::group(['middleware' => 'auth'], function () {  
     // Buddies
-    Route::get('/buddy/my-buddies', [UserController::class, 'index'])->name('my-buddies');
+    Route::get('/buddy/my-buddies', [UserController::class, 'index_my_buddies'])->name('my-buddies');
     // Meetups --> create an event
     Route::get('/meetup/my-meetups', [MeetupController::class, 'index'])->name('my-meetups');
     // Communities

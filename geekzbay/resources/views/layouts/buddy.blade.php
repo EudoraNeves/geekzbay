@@ -6,6 +6,12 @@
 @section('main')
     <div class="container d-flex flex-row justify-content-center flex-wrap">
         <section class="status">
+            @if (isset($buddyAdddedSuccessfully))
+                <div>{{ $buddyAdddedSuccessfully }}</div>
+            @endif
+            @if (isset($noMoreBuddyToFind))
+                <div class="noMoreBuddyToFind">{{ $noMoreBuddyToFind }}</div>
+            @endif
             {{-- @if (session('success'))
                 <span style="color: green">{{ session('success') }}</span>
             @elseif(session('error'))
@@ -13,25 +19,29 @@
             @endif --}}
         </section>
         <section class='findBuddy d-flex flex-row justify-content-center flex-wrap gap-3'>
-            @if (Auth::check())
-                <div class="myProfile">
-                    <x-buddy-card self="true" username="{{ Auth::user()->name }}" quote="{{ Auth::user()->desc }}"
-                        imgSrc="{{ Auth::user()->profilePicture }}" imgAlt="{{ Auth::user()->name }}'s profile photo"
-                        addBuddyId="{{ $randomBuddy->id }}" discordID="{{ Auth::user()->discord_id }}" />
+            @if (isset($randomBuddy))
+                @if (Auth::check())
+                    <div class="myProfile">
+                        <x-buddy-card self="true" username="{{ Auth::user()->name }}" quote="{{ Auth::user()->desc }}"
+                            imgSrc="{{ Auth::user()->profilePicture }}" imgAlt="{{ Auth::user()->name }}'s profile photo"
+                            addBuddyId="{{ $randomBuddy->id }}" discordID="{{ Auth::user()->discord_id }}" />
+                    </div>
+                @endif
+                <div class="findBuddy_btn">
+                    <button type="button" class="btn btn-warning">Find Buddy</button>
+                </div>
+                <div class="buddyProfile hidden">
+                    <x-buddy-card self="false" username="{{ $randomBuddy->name }}" quote="{{ $randomBuddy->desc }}"
+                        imgSrc="{{ $randomBuddy->profilePicture }}" imgAlt="{{ $randomBuddy->name }}'s profile photo"
+                        addBuddyId="{{ $randomBuddy->id }}" discordID="{{ $randomBuddy->discord_id }}" />
+                    {{-- addBuddy_href="{{route('addBuddy'), ['id' => $randomBuddy->id]}}" --}}
                 </div>
             @endif
-            <div class="findBuddy_btn">
-                <button type="button" class="btn btn-warning">Find Buddy</button>
-            </div>
-            <div class="buddyProfile hidden">
-                <x-buddy-card self="false" username="{{ $randomBuddy->name }}" quote="{{ $randomBuddy->desc }}"
-                    imgSrc="{{ $randomBuddy->profilePicture }}" imgAlt="{{ $randomBuddy->name }}'s profile photo"
-                    addBuddyId="{{ $randomBuddy->id }}" discordID="{{ $randomBuddy->discord_id }}" />
-                {{-- addBuddy_href="{{route('addBuddy'), ['id' => $randomBuddy->id]}}" --}}
-            </div>
-            <div class="card question-mark" style="width: 18rem;">
-                ?
-            </div>
+            @if (!isset($noMoreBuddyToFind))
+                <div class="card question-mark" style="width: 18rem;">
+                    ?
+                </div>
+            @endif
         </section>
     </div>
     <script>

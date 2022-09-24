@@ -17,7 +17,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index_my_buddies()
     {
         if (Auth::check()) {
             $myBuddies = Auth::user()->buddies;
@@ -54,23 +54,34 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(/*$id*/)
+    public function show_random_buddy(/*$id*/)
     {
         $user = auth()->user();
         //Exclude buddies that's NOT ME and NOT ALREADY MY BUDDIES
         $buddyIds = array_values(array_merge($user->buddies->pluck('id')->toArray(), [$user->id]));
         $randomUser = User::whereNotIn('id', $buddyIds)->inRandomOrder()->first();
-        return view('layouts.buddy', ['randomBuddy' => $randomUser]);
+        if ($randomUser) {
+            return view('layouts.buddy', ['randomBuddy' => $randomUser]);
+        } else {
+            //if the user already have all other users as buddies
+            return view('layouts.buddy', ['noMoreBuddyToFind' => 'Awesome:) You\'ve friended all geeks!']);
+        }
     }
 
-    public function addBuddy()
+    public function addBuddy($buddy_id)
     {
+        $buddy = User::where('id', $buddy_id)->first();
         if (Auth::check()) {
-            UserBuddies::create([
-                'user_id' => Auth::user()->id,
-                'buddy_id' => request()->buddy_id
-            ]);
-            return $this->index();
+            if (UserBuddies::where([['user_id', auth()->user()->id], ['buddy_id', $buddy_id]])->first()) {
+                // do nothing
+                return view('layouts.buddy', ['buddyAdddedSuccessfully' => "You've added $buddy->name successfully!"]);
+            } else {
+                UserBuddies::create([
+                    'user_id' => Auth::user()->id,
+                    'buddy_id' => $buddy_id
+                ]);
+                return view('layouts.buddy', ['buddyAdddedSuccessfully' => "You've added $buddy->name successfully!"]);
+            }
         } else {
             return view('auth.requireLogin');
         }

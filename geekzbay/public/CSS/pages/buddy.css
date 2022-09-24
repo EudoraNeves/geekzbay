@@ -8,6 +8,10 @@
     display: flex;
     justify-content: space-between;
 }
+.noMoreBuddyToFind{
+    font-size: 3rem;
+    margin: 8rem auto;
+}
 .findBuddy_btn {
     display: flex;
     justify-content: center;
