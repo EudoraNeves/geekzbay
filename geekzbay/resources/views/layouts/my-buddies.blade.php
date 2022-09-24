@@ -1,45 +1,7 @@
 @extends('layouts.template')
 @section('title', 'My Buddies')
 @section('css')
-    <style>
-        table {
-            margin: 2rem;
-        }
-
-        th {
-            text-align: center
-        }
-
-        .table-avatar {
-            height: 3rem;
-        }
-
-        col {
-            width: 15rem;
-        }
-        tr td {
-            text-align: center;
-        }
-        td.name {
-            text-align: left;
-        }
-
-        col.id {
-            width: 3rem;
-        }
-
-        col.avatar {
-            width: 3rem;
-        }
-
-        col.name {
-            width: 10rem;
-        }
-
-        col.discord {
-            width: 5rem;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/pages/my-buddies.css">
 @endsection
 @section('main')
     <table>
@@ -68,9 +30,15 @@
                         <span>{{ $myBuddy->name }}</span>
                     </td>
                     <td>
-                        <a href="{{ "https://discord.com/users/$myBuddy->discord_id" }}">
-                            <img class="discord_icon" src="discord-icon.svg" alt="discord">
-                        </a>
+                        {{-- If buddy has linked to discord, show discord icon with link --}}
+                        @if ($myBuddy->discord_id)
+                            <a href="https://discord.com/users/{{ $myBuddy->discord_id }}">
+                                <img class="discord_icon" src="../discord-icon.svg" alt="discord">
+                            </a>
+                        {{-- If buddy hasn't linked to discord, show nothing --}}
+                        @else
+                            <a href="#"></a>
+                        @endif
                     </td>
                 </tr>
             @endforeach
