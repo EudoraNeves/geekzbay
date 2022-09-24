@@ -122,7 +122,7 @@
             // Create the HTML objects and append the listener to favorite them
             const createHTML = (jsonResults) => {
                 console.log(jsonResults);
-                returnHTML =
+                searchResults.innerHTML =
                     "<div class=' proj-comcard d-flex flex-row flex-wrap justify-content-center'>";
 
                 jsonResults.forEach(location => {
@@ -146,23 +146,32 @@
                                         <div><span>Adresse: </span>${location.number}, ${location.road}</div>
                                         <div><span>Type: </span>${location.type}</div>
                                     </div>
-                                    @if($user?->id)
-                                        <div class='heart_location' id="${location_id}">
-                                            <span class="heartMsg"></span>
-                                            <x-heroicon-o-heart />
+                                    <div class ="d-flex flex-row align-items-center justify-content-end">
+                                        @if($user?->id)
+                                            <span class="btn btn-dark" id="heart_location_${location.id}">
+                                                <img src="{{asset('heart_off.png')}}" width="8%" />
+                                            </span>
+                                        @endif
+                                        <div>
+                                        <a href="location/${location.id}" class="btn btn-dark">
+                                            <img src="{{asset('look_icon.svg')}}" height="30px" />
+                                            View
+                                        </a>
                                         </div>
-                                    @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>`;
                     @if($user?->id)
+                        console.log('user found');
                         setTimeout(() => {
-                            document.getElementById(location_id).addEventListener('click',
+                            document.getElementById(`heart_location_${location.id}`).addEventListener('click',
                             (e) => {
                                 console.log('clicked');
-                                e.target.classList.toggle('red');
-                                if(!(e.target.classList.contains('red'))) {
-                                    return;
+                                if(e.target.src == '{{asset('heart_off.png')}}') {
+                                    e.target.src = '{{asset('heart_on.png')}}';
+                                } else {
+                                    e.target.src = '{{asset('heart_off.png')}}';
                                 }
 
                                 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

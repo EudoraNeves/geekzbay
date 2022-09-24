@@ -146,3 +146,28 @@ span{
         flex-direction: row;
     }
 }
+
+.heart {
+    position: relative;
+    width: 100px;
+    height: 90px;
+}
+
+.heart:before, .heart:after {
+    position: absolute;
+    content: "";
+    left: 25px;
+    top: 0;
+    width: 25px;
+    height: 40px;
+    background: red;
+    border-radius: 25px 25px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin :100% 100%;
+}
