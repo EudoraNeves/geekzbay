@@ -167,6 +167,7 @@
                 document.getElementById('extended_menu_profil').classList.remove('active');
             }
         </script>
+        @yield('script')
 </body>
 
 </html>
