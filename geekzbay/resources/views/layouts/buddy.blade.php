@@ -2,12 +2,18 @@
 @section('title', 'buddy')
 @section('css')
     <link rel="stylesheet" href="css/pages/buddy.css">
+    <style>
+        .buddyAddedSuccessfully {
+            font-size: 3rem;
+            margin: 8rem auto;
+        }
+    </style>
 @endsection
 @section('main')
     <div class="container d-flex flex-row justify-content-center flex-wrap">
         <section class="status">
             @if (isset($buddyAdddedSuccessfully))
-                <div>{{ $buddyAdddedSuccessfully }}</div>
+                <div class="buddyAddedSuccessfully">{{ $buddyAdddedSuccessfully }}</div>
             @endif
             @if (isset($noMoreBuddyToFind))
                 <div class="noMoreBuddyToFind">{{ $noMoreBuddyToFind }}</div>
@@ -37,7 +43,7 @@
                     {{-- addBuddy_href="{{route('addBuddy'), ['id' => $randomBuddy->id]}}" --}}
                 </div>
             @endif
-            @if (!isset($noMoreBuddyToFind))
+            @if (!isset($noMoreBuddyToFind) && !isset($buddyAdddedSuccessfully))
                 <div class="card question-mark" style="width: 18rem;">
                     ?
                 </div>
