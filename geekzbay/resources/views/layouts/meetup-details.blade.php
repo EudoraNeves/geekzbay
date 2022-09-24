@@ -2,10 +2,6 @@
 @section('title', 'meetup')
 @section('css')
     <style>
-        .hiddenElement {
-            display: none;
-        }
-
         .flex-adapt {
             flex-direction: column;
         }

@@ -76,8 +76,9 @@
         @endif
 
         {{-- Search results --}}
-        <div id="proj-search-content" class="flex-adapt flex-wrap align-items-center justify-content-center gap-2"></div>
+        <div id='proj-search-content' class='proj-comcard d-flex flex-adapt flex-wrap align-items-center justify-content-center gap-5'></div>
     </div>
+
     <script>
         window.onload = () => {
             const searchDisplayButton = document.getElementById("proj-search-display-btn");
@@ -155,27 +156,28 @@
                     returnHTML += `
                     <div class='d-flex flex-column proj-card-border'>
                         ${/*Upper div-content: title*/''}
-                        <div class='proj-card-title d-flex flex-row justify-content-between'>
-                            <span>${meetup.name}</span>
-                            <span>
-                                <a href='{{ route('meetup') }}/${meetup.id}'>
-                                    <img src='{{ asset('look_icon.svg') }}' />
-                                    See
+                        <div class='proj-card-title d-flex flex-row justify-content-between align-items-center w-100'>
+                            <h2>${meetup.name}</h2>
+                                <a href='{{ route('meetup') }}/${meetup.id}' class='btn btn-dark d-flex flex-row gap-2'>
+                                    <img src='{{ asset('look_icon.svg') }}' width='30px' />
+                                    <span>Details</span>
                                 </a>
-                            </span>
                         </div>
-                        ${/*Lower div-content: data*/''}
-                        <div class='d-flex flex-column'>
-                            <div class='d-flex flex-adapt'>
+                        ${/*Lower div-content: data and desc*/''}
+                        <div class='d-flex flex-column gap-4'>
+                            <div class='d-flex flex-adapt gap-4'>
                                 ${/*Lefthand image column*/''}
-                                <div class='d-flex flex-column gap-2'>
+                                <div class='d-flex flex-column gap-2 align-items-center justify-content-center'>
                                     <img src='{{ asset('Assets/Images/${meetup.community.img}') }}' width='100px'>
                                 </div>
                                 ${/*Righthand coordinates column*/''}
-                                <div class='d-flex flex-column'>
+                                <div class='d-flex flex-column align-items-start w-100'>
                                     <div>${meetup.date}</div>
                                     <div>${meetup.community.name}</div>
-                                    <div>${meetup.location.data.name} <a href='location/${meetup.location.data.id}'>See</a></div>
+                                    <div class='d-flex flex-row justify-content-between align-items-center w-100'>
+                                        <span>${meetup.location.data.name}</span>
+                                        <a href='location/${meetup.location.data.id}'>See</a>
+                                    </div>
                                     <div>${meetup.location.data.address_number}, ${meetup.location.data.address_road} ${meetup.location.data.address_city}</div>
                                 </div>
                             </div>

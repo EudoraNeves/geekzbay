@@ -37,7 +37,7 @@
         </div>
     </form>
 
-    <div id="search-results" class='d-flex flex-column align-items-center gap-5'></div>
+    <div id="search-results" class='proj-comcard d-flex flex-adapt flex-wrap align-items-center justify-content-center gap-5'></div>
 
     <script>
         window.onload = () => {
@@ -122,15 +122,13 @@
             // Create the HTML objects and append the listener to favorite them
             const createHTML = (jsonResults) => {
                 console.log(jsonResults);
-                searchResults.innerHTML =
-                    "<div class=' proj-comcard d-flex flex-row flex-wrap justify-content-center'>";
 
                 jsonResults.forEach(location => {
                     // Divcard
                     location_id = `heart_location_${location.id}`;
                     searchResults.innerHTML += `
-                        <div class="d-flex flex-column border border-warning rounded">
-                            <h1>${location.name}</h1>
+                        <div class="d-flex flex-column border border-warning rounded" id="proj-search-container">
+                            <h2>${location.name}</h2>
                             <div class="d-flex flex-adapt">
                                 <div class="proj-img d-flex flex-column align-items-center">
                                     <img src="${location.profilePicture}" width="150px">
