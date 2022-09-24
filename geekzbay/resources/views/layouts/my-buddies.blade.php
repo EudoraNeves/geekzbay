@@ -30,12 +30,14 @@
                         <span>{{ $myBuddy->name }}</span>
                     </td>
                     <td>
-                        @if($myBuddy->discord_id)
-                        <a href="https://discord.com/users/{{ $myBuddy->discord_id }}">
-                            <img class="discord_icon" src="../discord-icon.svg" alt="discord">
-                        </a>
+                        {{-- If buddy has linked to discord, show discord icon with link --}}
+                        @if ($myBuddy->discord_id)
+                            <a href="https://discord.com/users/{{ $myBuddy->discord_id }}">
+                                <img class="discord_icon" src="../discord-icon.svg" alt="discord">
+                            </a>
+                        {{-- If buddy hasn't linked to discord, show nothing --}}
                         @else
-                        <a href="#"></a>
+                            <a href="#"></a>
                         @endif
                     </td>
                 </tr>
