@@ -31,6 +31,7 @@ label {
     justify-content: center;
 }
 
+
 .flex-adapt {
     flex-direction: column;
 }
@@ -41,6 +42,12 @@ label {
 
 .nave {
     text-align: center;
+}
+
+.proj-card-border {
+    border: 1px solid #e5b045;
+    border-radius: 15px;
+    padding: 15px;
 }
 
 .search {

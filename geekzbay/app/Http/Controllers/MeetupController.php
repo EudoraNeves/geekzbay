@@ -55,11 +55,11 @@ class MeetupController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3|max:50',
+            'name' => 'required|string|min:3|max:50',
             'date' => 'required|date',
-            'desc' => 'required|min:3|max:2000',
-            'location_id' => 'required',
-            'community_id' => 'required'
+            'desc' => 'required|string|min:3|max:2000',
+            'location_id' => 'required|numeric',
+            'community_id' => 'required|numeric'
         ]);
 
         $meetup = new Meetup;
@@ -70,9 +70,8 @@ class MeetupController extends Controller
         $meetup->location_id = $request->location_id;
         $meetup->community_id = $request->community_id;
 
-
         if($meetup->save())
-            return redirect('meetup')->with('success', 'Event registered successfully');
+            return redirect('meetup')->with(['success' => 'Event registered successfully']);
         else
             return 'Problem registering';
     }
