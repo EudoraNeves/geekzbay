@@ -1,14 +1,10 @@
 .text_box{
-
-display: flex;
-flex-direction: column ;
-flex-wrap: wrap;
-
-
+    display: flex;
+    flex-direction: column ;
+    flex-wrap: wrap;
 }
 
 h1{
-
     color: #e5b045;
     text-align: center;
     font-size: 30px;
@@ -17,7 +13,7 @@ h1{
 
 .btn:first-child:hover , :not(.btn-check)+.btn:hover{
     color: #e5b045;
-   
+
 }
 
 .input-group-text {
@@ -46,11 +42,10 @@ h1{
     display: flex;
     align-items: center;
     text-align: start;
-    
+
 }
 
 .discord{
-
     padding: 0%;
 }
 
@@ -58,6 +53,8 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-basis: 0;
+    flex-grow: 1;
     border-radius: 10px;
     margin: 10px;
     margin-bottom: 20px;
@@ -65,7 +62,6 @@ h1{
 }
 
 .proj-search-container {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,38 +81,31 @@ h1{
 }
 
 span{
-   
     color: #e5b045;
-    
 }
 
 .proj-results-container{
-
     display: flex;
     flex: auto;
     justify-content:flex-start;
     align-items: start;
     text-align: start;
-  
 }
 
 
 
-  
-  
-.proj-categ{
 
+
+.proj-categ{
     display: flex;
     flex: auto;
     justify-content:center;
     align-items: center;
     text-align: center;
     margin: 5px;
-  
 }
 
 .proj-comcard>div{
-   
     border:1px solid #E5B045;
     border-radius: 3px;
     padding: 20px;
@@ -128,14 +117,12 @@ span{
 
 
 .proj-img{
-display: flex;
-margin: 15px;
-justify-content: space-evenly;
-
+    display: flex;
+    margin: 15px;
+    justify-content: space-evenly;
 }
 
 #proj-search-content{
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -145,17 +132,13 @@ justify-content: space-evenly;
 
 
 .proj-flex-adapt {
-
     flex-direction: column;
-
 }
 
 
 .discord .btn.btn-dark{
-color: #5865F2;
-padding: 0;
-
-
+    color: #5865F2;
+    padding: 0;
 }
 
 @media(min-width: 768px) {

@@ -129,12 +129,12 @@
                     // Divcard
                     location_id = `heart_location_${location.id}`;
                     searchResults.innerHTML += `
-                        <div class="d-flex flex-column ">
+                        <div class="d-flex flex-column border border-warning rounded">
                             <h1>${location.name}</h1>
                             <div class="d-flex flex-adapt">
                                 <div class="proj-img d-flex flex-column align-items-center">
                                     <img src="${location.profilePicture}" width="150px">
-                                    <div class="meter d-flex flex-row justify-content-around">
+                                    <div class="meter d-flex flex-row justify-content-around align-items-center border border-warning rounded mt-1">
                                         <a class="btn btn-dark">👎</a>
                                         <meter min="0" max="100" low="35" high="75" optimum="80" value="85"></meter>
                                         <a class="btn btn-dark">👍</a>
@@ -146,16 +146,18 @@
                                         <div><span>Adresse: </span>${location.number}, ${location.road}</div>
                                         <div><span>Type: </span>${location.type}</div>
                                     </div>
+                                    @if($user?->id)
                                         <div class='heart_location' id="${location_id}">
-                                        <span class="heartMsg"></span>
-                                        <x-heroicon-o-heart />
-                                    </div>
+                                            <span class="heartMsg"></span>
+                                            <x-heroicon-o-heart />
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>`;
-
+                    @if($user?->id)
                         setTimeout(() => {
-                            document.getElementById('heart_location_' + location.id).addEventListener('click',
+                            document.getElementById(location_id).addEventListener('click',
                             (e) => {
                                 console.log('clicked');
                                 e.target.classList.toggle('red');
@@ -174,7 +176,7 @@
                                     method: 'post',
                                     credentials: 'same-origin',
                                     body: JSON.stringify({
-                                        user_id: 1,
+                                        user_id: @json($user->id),
                                         location_id: location.id
                                     })
                                 })
@@ -182,7 +184,8 @@
                                 .then(res => console.log(res))
                                 .catch(err => console.log(err))
                             });
-                        }, 1000);
+                        }, 0);
+                    @endif
                 });
             }
 

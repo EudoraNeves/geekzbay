@@ -134,27 +134,6 @@
         </div>
 
 
-
-        <!--<div class="register">
-                <a href="{{ route('register') }}">
-                    <img src="/Local_icon1.svg" height="30px" />
-                    Register
-                </a>
- -->
-        <!-- End of Authentication checks -->
-
-
-        <!-- Account Sidebar
-    <div class="main">
-        <div class="accountAccess d-flex flex-column align-items-center align-content-center rounded-4 position-fixed">
-            <img src="profil.svg" alt="profilePhoto" height="100px" />
-            <a href="{{ route('my-profile') }}"class="btn btn-dark">
-                <img src="/profil.svg" height="30px" />
-                My Profile
-            </a>
-        </div>
-    </div>
-     -->
         <!-- Main data -->
         <div class="content">
             <main>
