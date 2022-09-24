@@ -148,7 +148,7 @@
                 jsonObj.data.forEach(meetup => {
                     console.log(meetup);
                     returnHTML += `
-                    <div class='d-flex flex-column'>
+                    <div class='d-flex flex-column w-50'>
                         <div class='proj-card-title d-flex flex-row justify-content-between'>
                             <span>${meetup.name}</span>
                             <span><a href='{{ route('meetup') }}/${meetup.id}'>See</a></span>
