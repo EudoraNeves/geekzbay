@@ -6,6 +6,7 @@
 @endsection
 @section('main')
 
+
     <form class="proj-search-container d-flex flex-row justify-content-centre flex-wrap my-3 mb-5" id="proj-search-data"
         method="GET">
         @csrf
@@ -147,36 +148,41 @@
                                 </div>
                             </div>
                         </div>`;
+                    setTimeout(() => {
+                        document.getElementById('heart_location_' + location.id).addEventListener('click',
+                            (e) => {
+                                @if($user?->id)
+                                    e.target.classList.toggle('red');
+                                    if (!e.target.classList.contains('red')) {
+                                        return;
+                                    }
 
-                    document.getElementById('heart_location_' + location.id).addEventListener('click',
-                        (e) => {
-                            e.target.classList.toggle('red');
-                            if (!e.target.classList.contains('red')) {
-                                return;
+                                    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                                    fetch(`http://localhost:8000/api/locations/my-locations`, {
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                            "Accept": "application/json, text-plain, */*",
+                                            "X-Requested-With": "XMLHttpRequest",
+                                            "X-CSRF-TOKEN": token
+                                        },
+                                        method: 'post',
+                                        credentials: 'same-origin',
+                                        body: JSON.stringify({
+                                            user_id: @json($user->id),
+                                            location_id: location.id
+                                        });
+                                    })
+                                    .then(data => {
+                                        console.log('done!')
+                                    })
+                                    .then(res => console.log(res))
+                                    .catch(err => console.log(err));
+                                @else
+                                    location.assign('{{ route('login'); }}');
+                                @endif
                             }
-
-                            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                            fetch(`http://localhost:8000/api/locations/my-locations`, {
-                                headers: {
-                                    "Content-Type": "application/json",
-                                    "Accept": "application/json, text-plain, */*",
-                                    "X-Requested-With": "XMLHttpRequest",
-                                    "X-CSRF-TOKEN": token
-                                },
-                                method: 'post',
-                                credentials: 'same-origin',
-                                body: JSON.stringify({
-                                    user_id: @json($user->id),
-                                    location_id: location.id
-                                })
-                            })
-                            .then(data => {
-                                console.log('done!')
-                            })
-                            .then(res => console.log(res))
-                            .catch(err => console.log(err))
-                        }
-                    )
+                        );
+                    }, 0);
                 });
                 return returnHTML;
             }
