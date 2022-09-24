@@ -45,6 +45,7 @@ Route::get('location/{id}', [LocationController::class, 'show'])->name('location
     Route::get('/my-profile', [UserController::class, 'showMyProfile'])->name('my-profile');
     Route::get('/my-profile/edit', [UserController::class, 'editMyProfile'])->name('my-profile.edit');
     Route::post('/my-profile', [UserController::class, 'updateMyProfile'])->name('my-profile.update');
+    Route::post('/my-profile/change-password', [UserController::class, 'changePassword'])->name('change-password');
 });
 
 // Buddies

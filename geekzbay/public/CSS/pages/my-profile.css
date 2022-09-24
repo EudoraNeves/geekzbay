@@ -65,3 +65,12 @@ a {
     border: 1px black solid;
     border-radius: 20px;
 }
+.showChangePassword {
+    cursor: pointer;
+}
+.showChangePassword:hover {
+    background-color: #f8d48c;
+}
+.hidden {
+    display: none;
+}
