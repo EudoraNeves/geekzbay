@@ -41,6 +41,8 @@
 
     <script>
         window.onload = () => {
+
+
             // Get the html
             const searchForm = document.querySelector('#proj-search-data');
             const nameSearch = document.querySelector('#proj-name-input');
@@ -94,9 +96,9 @@
                         const closeLocations = getCloseLocations(jsonObj);
                         console.log(closeLocations);
                         createHTML(closeLocations);
+                        appendListeners(closeLocations);
                     });
             });
-
 
             // Show me all the locations in the nearby cities
             const getCloseLocations = (jsonObj) => {
@@ -112,8 +114,7 @@
                             closeLocationArray.push(location);
                         }
                     }
-                })
-
+                });
                 return closeLocationArray;
             }
 
@@ -121,9 +122,10 @@
             const createHTML = (jsonResults) => {
                 console.log(jsonResults);
 
-                jsonResults.forEach(location => {
-                    // Divcard
-                    location_id = `heart_location_${location.id}`;
+                for(locationId in jsonResults) {
+                    const location = jsonResults[locationId];
+                    console.log(location);
+
                     searchResults.innerHTML += `
                         <div class="d-flex flex-column border border-warning rounded" id="proj-search-container">
                             <h2>${location.name}</h2>
@@ -142,60 +144,56 @@
                                         <div><span>Adresse: </span>${location.number}, ${location.road}</div>
                                         <div><span>Type: </span>${location.type}</div>
                                     </div>
-                                    <div class ="d-flex flex-row align-items-center justify-content-end">
-                                        @if($user?->id)
-                                            <span class="btn btn-dark" id="heart_location_${location.id}">
-                                                <img src="{{asset('heart_off.png')}}" width="8%" />
-                                            </span>
-                                        @endif
-                                        <div>
-                                        <a href="location/${location.id}" class="btn btn-dark">
-                                            <img src="{{asset('look_icon.svg')}}" height="30px" />
-                                            View
-                                        </a>
-                                        </div>
+                                    <div class ="d-flex flex-row align-items-center justify-content-between">
+                                            <img src="{{asset('heart_off.png')}}" class="btn btn-dark" id="heart_location_${locationId}" width="50px" />
+                                            <a href="location/${location.id}" class="btn btn-dark">
+                                                <img src="{{asset('look_icon.svg')}}" height="30px" />
+                                                View
+                                            </a>
                                     </div>
                                 </div>
                             </div>
                         </div>`;
-                        console.log('user found');
-                        setTimeout(() => {
-                            document.getElementById(`heart_location_${location.id}`).addEventListener('click',
-                            (e) => {
-                                @if($user?->id)
-                                    console.log('clicked');
-                                    if(e.target.src == '{{asset('heart_off.png')}}') {
-                                        e.target.src = '{{asset('heart_on.png')}}';
-                                    } else {
-                                        e.target.src = '{{asset('heart_off.png')}}';
-                                    }
-
-                                    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                                    fetch(`http://localhost:8000/api/locations/my-locations`, {
-                                        headers: {
-                                            "Content-Type": "application/json",
-                                            "Accept": "application/json, text-plain, */*",
-                                            "X-Requested-With": "XMLHttpRequest",
-                                            "X-CSRF-TOKEN": token
-                                        },
-                                        method: 'post',
-                                        credentials: 'same-origin',
-                                        body: JSON.stringify({
-                                            user_id: @json($user->id),
-                                            location_id: location.id
-                                        })
-                                    })
-                                    .then(data => {console.log('done!')})
-                                    .then(res => console.log(res))
-                                    .catch(err => console.log(err));
-                                @else
-                                    window.location='{{ route('login') }}';
-                                @endif
-                            });
-                        }, 0);
-                });
+                }
             }
 
+
+            const appendListeners = (jsonResults) => {
+                for(locationId in jsonResults) {
+                    const location = jsonResults[locationId];
+                    document.getElementById(`heart_location_${locationId}`).addEventListener('click',
+                    (e) => {
+                        @if($user?->id)
+                            if(e.target.src == '{{asset('heart_off.png')}}') {
+                                e.target.src = '{{asset('heart_on.png')}}';
+                            } else {
+                                e.target.src = '{{asset('heart_off.png')}}';
+                            }
+
+                            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                            fetch(`http://localhost:8000/api/locations/my-locations`, {
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "Accept": "application/json, text-plain, *//*",
+                                    "X-Requested-With": "XMLHttpRequest",
+                                    "X-CSRF-TOKEN": token
+                                },
+                                method: 'post',
+                                credentials: 'same-origin',
+                                body: JSON.stringify({
+                                    user_id: @json($user?->id),
+                                    location_id: location.id
+                                })
+                            })
+                            .then(data => {console.log('done!')})
+                            .then(res => console.log(res))
+                            .catch(err => console.log(err));
+                        @else
+                            window.location='{{ route('login') }}';
+                        @endif
+                    });
+                }
+            }
         }
     </script>
 @endsection
