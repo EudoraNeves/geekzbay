@@ -32,11 +32,11 @@ Route::get('/community', [CommunityController::class, 'show'])->name('community'
 Route::get('locations', [LocationController::class, 'index'])->name('locations');
 Route::get('location/{id}', [LocationController::class, 'show'])->name('location');
 
- Route::group(['middleware' => 'auth'], function () {  
+ Route::group(['middleware' => 'auth'], function () {
     // Buddies
     Route::get('/buddy/my-buddies', [UserController::class, 'index_my_buddies'])->name('my-buddies');
     // Meetups --> create an event
-    Route::get('/meetup/my-meetups', [MeetupController::class, 'index'])->name('my-meetups');
+    Route::get('/meetup/my-meetups', [UsersInMeetupsController::class, 'index'])->name('my-meetups');
     // Communities
     Route::get('/community/my-communities', [CommunityController::class, 'index'])->name('my-communities');
     // Locations

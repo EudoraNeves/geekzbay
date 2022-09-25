@@ -33,22 +33,12 @@
             font-style: italic;
             color: #FFFFFF44;
         }
-
-        .flex-adapt {
-            flex-direction: column;
-        }
-
-        @query(min-width: 768px) {
-            .flex-adapt {
-                flex-direction: row;
-            }
-        }
     </style>
 @endsection
 @section('main')
     <div class='d-flex flex-column'>
         <div class='proj-card-title'><h1 class="rounded-pill px-3">{{$meetup->name}}</h1></div>
-        <div class='d-flex flex-adapt align-items-center justify-content-center'>
+        <div class='d-flex flex-column align-items-center justify-content-center'>
             <div class='d-flex flex-row gap-5 my-3'>
                 {{-- Img --}}
                 <div class='d-flex flex-column'>
