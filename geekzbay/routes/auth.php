@@ -25,12 +25,12 @@ Route::middleware('guest')->group(function () {
     Route::get('discord', [DiscordController::class, 'redirectToProvider'])
         ->name('discord');
 
-        Route::get('/auth/discord/callback', [DiscordController::class, 'handleProviderCallback'])->name('discord-callback');
+    Route::get('/auth/discord/callback', [DiscordController::class, 'handleProviderCallback'])->name('discord-callback');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
 
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+    Route::get('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
 
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])

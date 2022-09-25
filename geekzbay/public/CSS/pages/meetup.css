@@ -1,0 +1,71 @@
+h1 {
+    color: #e5b045;
+}
+
+input {
+    width:100%;
+    box-sizing:border-box;
+}
+
+label {
+    color: #e5b045;
+    font-size: 30px;
+    padding: 5px;
+}
+
+
+#searchInput, #proj-create-display-btn, #proj-search-display-btn, .SYE {
+    color: black;
+    background-color: #e5b045;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+
+.all {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.flex-adapt {
+    flex-direction: column;
+}
+
+.hiddenElement {
+    display: none;
+}
+
+.nave {
+    text-align: center;
+}
+
+.proj-card-border {
+    border: 1px solid #e5b045;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 10px;
+}
+
+
+
+
+@media(min-width: 768px) {
+    .flex-adapt {
+        flex-direction: row;
+    }
+}
+
+

@@ -2,9 +2,7 @@
 @section('title', 'meetup')
 
 @section('css')
-    <link rel="stylesheet" href="/css//meetup.css">
-
-
+    <link rel="stylesheet" href="/css/pages/meetup.css">
 @endsection
 @section('main')
     <div class="all">
@@ -41,40 +39,50 @@
                         @endforeach
                     </select>
                 </div>
-                <div><input type="submit" value="Search" id="searchInput"></div>
+                <div class="mt-3">
+                    <input type="submit" value="Search" id="searchInput">
+                </div>
             </form>
 
             {{-- Create form --}}
             <form method="post" id="create-form" class="d-none">
                 @csrf
                 <div><label>Create an Event</label></div>
-                <div><input type="text" name="name" placeholder="Name"></div>
-                <div><input type="date" name="date"></div>
+                <div><input type="text" name="name" placeholder="Name" required></div>
+                <div><input type="date" name="date" required></div>
                 <div>
-                    <textarea name="desc"></textarea>
+                    <textarea name="desc" required></textarea>
                 </div>
                 <div>
-                    <select name="locatio_create_id" id="location_create_id">
+                    <select name="location_id" id="location_create_id" required>
                         @foreach ($locations as $location)
                             <option value="{{ $location->id }}">{{ $location->name }}</option>
                         @endforeach
                     </select>
 
                     <div>
-                        <select name="community_create_id" id="comunity_create_id">
+                        <select name="community_id" id="comunity_create_id" required>
                             @foreach ($communities as $community)
                                 <option value="{{ $community->id }}">{{ $community->name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-                <div><input type="submit" class="SYE" value="Submit your Event"></div>
+                <div class="mt-3">
+                    <input type="submit" class="SYE" value="Submit your Event">
+                </div>
             </form>
 
         </div>
 
-        <div id="proj-search-content"></div>
+        @if(null !== session()->get('success'))
+            <div>{{session()->get('success')}}</div>
+        @endif
+
+        {{-- Search results --}}
+        <div id='proj-search-content' class='proj-comcard d-flex flex-adapt flex-wrap align-items-center justify-content-center gap-5'></div>
     </div>
+
     <script>
         window.onload = () => {
             const searchDisplayButton = document.getElementById("proj-search-display-btn");
@@ -150,30 +158,39 @@
                 jsonObj.data.forEach(meetup => {
                     console.log(meetup);
                     returnHTML += `
-                    <div class='d-flex flex-column'>
-                        <div class='proj-card-title d-flex flex-row justify-content-between'>
-                            <span>${meetup.name}</span>
-                            <span><a href='{{ route('meetup') }}/${meetup.id}'>See</a></span>
+                    <div class='d-flex flex-column proj-card-border'>
+                        ${/*Upper div-content: title*/''}
+                        <div class='proj-card-title d-flex flex-row justify-content-between align-items-center w-100'>
+                            <h2>${meetup.name}</h2>
+                                <a href='{{ route('meetup') }}/${meetup.id}' class='btn btn-dark d-flex flex-row gap-2'>
+                                    <img src='{{ asset('look_icon.svg') }}' width='30px' />
+                                    <span>Details</span>
+                                </a>
                         </div>
-                        <div class='d-flex flex-adapt'>
-                            <div class='d-flex flex-row'>
-                                <div class='d-flex flex-column'>
+                        ${/*Lower div-content: data and desc*/''}
+                        <div class='d-flex flex-column gap-4'>
+                            <div class='d-flex flex-adapt gap-4'>
+                                ${/*Lefthand image column*/''}
+                                <div class='d-flex flex-column gap-2 align-items-center justify-content-center'>
                                     <img src='{{ asset('Assets/Images/${meetup.community.img}') }}' width='100px'>
                                 </div>
-                                <div class='d-flex flex-column'>
+                                ${/*Righthand coordinates column*/''}
+                                <div class='d-flex flex-column align-items-start w-100'>
                                     <div>${meetup.date}</div>
                                     <div>${meetup.community.name}</div>
-                                    <div>${meetup.location.data.name} <a href='location/${meetup.location.data.id}'>See</a></div>
+                                    <div class='d-flex flex-row justify-content-between align-items-center w-100'>
+                                        <span>${meetup.location.data.name}</span>
+                                        <a href='location/${meetup.location.data.id}' class='btn btn-dark'>See</a>
+                                    </div>
                                     <div>${meetup.location.data.address_number}, ${meetup.location.data.address_road} ${meetup.location.data.address_city}</div>
                                 </div>
                             </div>
+                            ${/*Bottom description box*/''}
                             <div class='text-center'>
-                                ${meetup.desc}
+                                ${meetup.desc.slice(0,100) + '...'}
                             </div>
                         </div>
-                    </div>
-
-                    `;
+                    </div>`;
                 });
 
                 return returnHTML;

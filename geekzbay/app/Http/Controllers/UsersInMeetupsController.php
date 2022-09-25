@@ -16,6 +16,31 @@ class UsersInMeetupsController extends Controller
     public function index()
     {
         //
+
+        $myMeetups = UsersInMeetups::select('users_in_meetups.status', 'meetups.id AS meetup_id', 'meetups.name AS meetup_name', 'meetups.date', 'locations.name AS location_name')
+        ->join('meetups','meetups.id','=', 'users_in_meetups.meetup_id')
+        ->join('locations','meetups.location_id','=','locations.id')
+        ->where('users_in_meetups.user_id','=',Auth::id())
+        ->get();
+
+        $myGoings = [];
+        $myMaybes = [];
+        $myNopes = [];
+        foreach($myMeetups as $meetup) {
+            switch($meetup->status) {
+                case 'Going':
+                    $myGoings[] = $meetup;
+                    break;
+                case 'Maybe':
+                    $myMaybes[] = $meetup;
+                    break;
+                default:
+                    $myNopes[] = $meetup;
+                    break;
+            }
+        }
+
+        return view('layouts.my-meetups', ['myGoings' => $myGoings, 'myMaybes' => $myMaybes, 'myNopes' => $myNopes]);
     }
 
     /**
@@ -63,7 +88,7 @@ class UsersInMeetupsController extends Controller
 
         $usersInMeetups = UsersInMeetups::updateOrCreate(['user_id' => $user_id, 'meetup_id' => $meetup_id],['status' => $request->status]);
         if($usersInMeetups)
-            return redirect('/meetups')->with('success', 'Event registered successfully');
+            return redirect('/meetups/'.$meetup_id)->with('success', 'Event registered successfully');
         else
             return 'Problem registering';
 

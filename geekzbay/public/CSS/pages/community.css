@@ -124,4 +124,16 @@ justify-content: space-evenly;
     }
 }
 
-  
+/* heart */
+.heart_community {
+    text-align: right;
+    width: 100%;
+}
+svg {
+    width: 8%;
+    color: white;
+}
+
+.red {
+    color: red;
+}

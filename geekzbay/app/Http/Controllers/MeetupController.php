@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Community;
 use App\Models\Location;
 use App\Models\Meetup;
+use App\Models\UsersInMeetups;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
+use App\Models\User;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,11 +56,11 @@ class MeetupController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3|max:50',
+            'name' => 'required|string|min:3|max:50',
             'date' => 'required|date',
-            'desc' => 'required|min:3|max:2000',
-            'location_id' => 'required',
-            'community_id' => 'required'
+            'desc' => 'required|string|min:3|max:2000',
+            'location_id' => 'required|numeric',
+            'community_id' => 'required|numeric'
         ]);
 
         $meetup = new Meetup;
@@ -70,7 +72,7 @@ class MeetupController extends Controller
         $meetup->community_id = $request->community_id;
 
         if($meetup->save())
-            return redirect('meetup')->with('success', 'Event registered successfully');
+            return redirect('meetup')->with(['success' => 'Event registered successfully']);
         else
             return 'Problem registering';
     }
@@ -87,7 +89,16 @@ class MeetupController extends Controller
         $location = Location::find($meetup->location_id);
         $community = Community::find($meetup->community_id);
 
-        return view('layouts.meetup-details', ['meetup' => $meetup, 'location' => $location, 'community' => $community]);
+        $user = null;
+        $authId = Auth::id();
+        if($authId) {
+            $user = UsersInMeetups::find($authId);
+        }
+
+
+        $usersInMeetups = UsersInMeetups::join('meetups','meetups.id','=', 'users_in_meetups.meetup_id')->join('users','users_in_meetups.user_id','=','users.id')->where('users_in_meetups.meetup_id','=',$id)->get();
+
+        return view('layouts.meetup-details', ['meetup' => $meetup, 'location' => $location, 'community' => $community, 'user' => $user, 'usersInMeetups' => $usersInMeetups]);
     }
 
     /**

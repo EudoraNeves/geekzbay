@@ -19,13 +19,20 @@ class CommunityController extends Controller
     {
         return view('layouts.community');
     }
-    public function index_myCommunities()
+    public function index_myCommunities($request)
     {
-        $user = User::with('communities')->where('id', Auth::user()->id)->first();
-        $user->communities()->attach([2]);
-        return view('layouts.my-communities');
+        $user = User::find($request->user_id);
+        $community_id = $request->get('community_id');
+        $user = User::with('communities')->where('id', $user->id)->first();
+        $myCommunities = $user->communities()->get();
     }
-
+    public function getExistedCommunities($user_id)
+    {
+        $user = User::find($user_id);
+        $user = User::with('communities')->where('id', $user->id)->first();
+        $myCommunities = $user->communities()->get();
+        return response()->json(['myCommunities'=> $myCommunities]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -34,6 +41,18 @@ class CommunityController extends Controller
     public function create()
     {
         //
+    }
+    public function checkIfExists_in_my_communities(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $community_id = $request->get('community_id');
+        $user = User::with('communities')->where('id', $user->id)->first();
+        $isExists = $user->communities()->where('community_id', $community_id)->exists();
+        if ($isExists) {
+            return response()->json(['exsits' => true]);
+        } else {
+            return response()->json(['exsits' => false]);
+        }
     }
 
     /**
@@ -46,6 +65,20 @@ class CommunityController extends Controller
     {
         //
     }
+
+    public function add_to_my_communities(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $community_id = $request->get('community_id');
+        $user = User::with('communities')->where('id', $user->id)->first();
+        $user->communities()->attach([$community_id]);
+        // DB::table('users_in_communities')->insert([
+        //     'user_id'=>$request->user_id,
+        //     'community_id'=>$request->community_id
+        // ]);
+        return response()->json(['success' => true]);
+    }
+
 
     /**
      * Display the specified resource.
@@ -92,5 +125,17 @@ class CommunityController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function remove_from_my_communities(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $community_id = $request->get('community_id');
+        $user = User::with('communities')->where('id', $user->id)->first();
+        $user->communities()->detach([$community_id]);
+        // DB::table('users_in_communities')->insert([
+        //     'user_id'=>$request->user_id,
+        //     'community_id'=>$request->community_id
+        // ]);
+        return response()->json(['success' => true]);
     }
 }

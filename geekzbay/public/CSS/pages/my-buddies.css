@@ -1,0 +1,39 @@
+table {
+    margin: 2rem;
+}
+
+th {
+    text-align: center
+}
+
+col {
+    width: 15rem;
+}
+tr td {
+    text-align: center;
+    padding: 1rem;
+}
+
+col.id {
+    width: 3rem;
+}
+
+col.avatar {
+    width: 3rem;
+}
+
+col.name {
+    width: 15rem;
+}
+
+col.discord {
+    width: 5rem;
+}
+.discord_icon {
+    width: 2rem;
+}
+.table-avatar {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}

@@ -1,20 +1,7 @@
 @extends('layouts.template')
 @section('title', 'My Locations')
 @section('css')
-    <style>
-        .container {
-            width: 100%;
-        }
-
-        .myLocation {
-            max-width: 100%;
-        }
-
-        .location_img {
-            width: 200px;
-            height: 150px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/pages/my-locations.css">
 @endsection
 @section('main')
     <div class='container d-flex flex-row justify-content-center align-items-center flex-wrap'>

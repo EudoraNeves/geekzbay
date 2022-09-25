@@ -2,8 +2,8 @@
 
 {{-- CSS --}}
 @section('css')
-    <link rel="stylesheet" href="/css/community.css">
-    <link rel="stylesheet" href="/css/searchbarComm.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="/css/pages/community.css">
 @endsection
 
 @section('title', 'community')
@@ -37,7 +37,13 @@
             const searchContent = document.querySelector("#proj-search-content");
             const selectionMenu = document.querySelector('#proj-category-select');
             const formInput = document.querySelector("#proj-text-input");
+            //heart event related variables
             let htmlSafe = {};
+            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const user = {!! json_encode(Auth::user()) !!}
+
+
+
 
 
             // Appending form submit event listener: on void, restore html from html safe, else: fetch api
@@ -88,8 +94,98 @@
                         searchContent.innerHTML = createSearchResults(jsonResult);
                         htmlSafe[selectionMenu.value + '>' + formInput.value] = searchContent.innerHTML;
                         console.log(jsonResult);
+
+                        //heart event: add to my-communities
+                        jsonResult.data.forEach(result => {
+                            let heartEl = document.querySelector(`#heart_community_${result.id}`);
+                            heartEl.addEventListener('click', (e) => {
+                                e.target.classList.toggle('red');
+                                if (e.target.classList.contains('red')) {
+                                    console.log('red')
+                                    console.log(result.id)
+                                    fetch(`http://localhost:8000/api/my-communities/add`, {
+                                            headers: {
+                                                "Content-Type": "application/json",
+                                                "Accept": "application/json, text-plain, */*",
+                                                "X-Requested-With": "XMLHttpRequest",
+                                                "X-CSRF-TOKEN": token
+                                            },
+                                            method: 'post',
+                                            credentials: 'same-origin',
+                                            body: JSON.stringify({
+                                                user_id: user.id,
+                                                community_id: result.id
+                                            })
+                                        })
+                                        .then(data => {
+                                            console.log('done!')
+                                        })
+                                        .then(res => console.log(res))
+                                        .catch(err => console.log(err))
+                                } else {
+                                    console.log('white')
+                                    fetch(`http://localhost:8000/api/my-communities/remove`, {
+                                            headers: {
+                                                "Content-Type": "application/json",
+                                                "Accept": "application/json, text-plain, */*",
+                                                "X-Requested-With": "XMLHttpRequest",
+                                                "X-CSRF-TOKEN": token
+                                            },
+                                            method: 'delete',
+                                            credentials: 'same-origin',
+                                            body: JSON.stringify({
+                                                user_id: user.id,
+                                                community_id: result.id
+                                            })
+                                        })
+                                        .then(data => {
+                                            console.log('done!')
+                                        })
+                                        .then(res => console.log(res))
+                                        .catch(err => console.log(err))
+                                }
+                            });
+                        })
                     });
             }
+
+            fetchAPI();
+
+            //when page loaded, show red heart if it's liked previously
+            // fetch(`http://localhost:8000/api/my-communities/getExistedCommunities/${user.id}`, {
+            //         headers: {
+            //             "Content-Type": "application/json",
+            //             "Accept": "application/json, text-plain, */*",
+            //             "X-Requested-With": "XMLHttpRequest",
+            //             "X-CSRF-TOKEN": token
+            //         },
+            //         method: 'get',
+            //         credentials: 'same-origin',
+            //         // body: JSON.stringify({
+            //         //     user_id: user.id,
+            //         // })
+            //     })
+            //     .then(data => data.json())
+            //     .then(res => {
+            //         let myCommunities = res['myCommunities'];
+            //         // console.log(myCommunities)
+            //         // let uniqueCommunities = myCommunities.filter((value, index, self) =>
+            //         //     self.findIndex(
+            //         //         value2 => (value2.id === value.id) === index
+            //         //     )
+            //         // )
+            //         // console.log(uniqueCommunities)
+            //         myCommunities.forEach(community => {
+            //             // console.log(community)
+            //             let likedCommunityHeart = document.getElementById(
+            //                 `heart_community_${community.id}`);
+            //             console.log(likedCommunityHeart)
+            //             if (likedCommunityHeart) {
+            //                 likedCommunityHeart.classList.add('red');
+            //             }
+            //         })
+            //     })
+            //     .catch(err => console.log(err))
 
 
             // loads up data from the safe to the page
@@ -145,7 +241,7 @@
                                 </div>
                                 <div class="proj-discord d-flex flex-row justify-content-between">
                                    
-                                    <div class"discord " >
+                                    <div class="discord " >
                                         <a href="${jsonResult.data[result].discordLink}"" class="btn btn-dark ">
                                             <img src="{{ asset('Discord_icon.svg') }}" height="30px">
                                             Discord
@@ -153,6 +249,9 @@
                                     </div>
                                 
                                 </div>
+                                <div class="heart_community white">
+                                    <span id="heart_community_${jsonResult.data[result].id}"><x-heroicon-s-heart /></span>
+                                </div>                            
                             </div>
                         </div>`;
                 }
