@@ -88,9 +88,7 @@
                     return;
                 }
                 // Get all locations with the right name
-                fetch(
-                        `http://localhost:8000/api/v1/locations?name=${nameSearch.value}&type=${typeSearch.value}`
-                    )
+                fetch(`http://localhost:8000/api/v1/locations?name=${nameSearch.value}&type=${typeSearch.value}`)
                     .then(data => data.json())
                     .then(jsonObj => {
                         const closeLocations = getCloseLocations(jsonObj);
@@ -160,39 +158,41 @@
                                 </div>
                             </div>
                         </div>`;
-                    @if($user?->id)
                         console.log('user found');
                         setTimeout(() => {
                             document.getElementById(`heart_location_${location.id}`).addEventListener('click',
                             (e) => {
-                                console.log('clicked');
-                                if(e.target.src == '{{asset('heart_off.png')}}') {
-                                    e.target.src = '{{asset('heart_on.png')}}';
-                                } else {
-                                    e.target.src = '{{asset('heart_off.png')}}';
-                                }
+                                @if($user?->id)
+                                    console.log('clicked');
+                                    if(e.target.src == '{{asset('heart_off.png')}}') {
+                                        e.target.src = '{{asset('heart_on.png')}}';
+                                    } else {
+                                        e.target.src = '{{asset('heart_off.png')}}';
+                                    }
 
-                                let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                                fetch(`http://localhost:8000/api/locations/my-locations`, {
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                        "Accept": "application/json, text-plain, */*",
-                                        "X-Requested-With": "XMLHttpRequest",
-                                        "X-CSRF-TOKEN": token
-                                    },
-                                    method: 'post',
-                                    credentials: 'same-origin',
-                                    body: JSON.stringify({
-                                        user_id: @json($user->id),
-                                        location_id: location.id
+                                    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                                    fetch(`http://localhost:8000/api/locations/my-locations`, {
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                            "Accept": "application/json, text-plain, */*",
+                                            "X-Requested-With": "XMLHttpRequest",
+                                            "X-CSRF-TOKEN": token
+                                        },
+                                        method: 'post',
+                                        credentials: 'same-origin',
+                                        body: JSON.stringify({
+                                            user_id: @json($user->id),
+                                            location_id: location.id
+                                        })
                                     })
-                                })
-                                .then(data => {console.log('done!')})
-                                .then(res => console.log(res))
-                                .catch(err => console.log(err))
+                                    .then(data => {console.log('done!')})
+                                    .then(res => console.log(res))
+                                    .catch(err => console.log(err));
+                                @else
+                                    window.location='{{ route('login') }}';
+                                @endif
                             });
                         }, 0);
-                    @endif
                 });
             }
 

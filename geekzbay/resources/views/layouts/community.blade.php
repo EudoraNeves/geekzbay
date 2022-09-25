@@ -37,13 +37,11 @@
             const searchContent = document.querySelector("#proj-search-content");
             const selectionMenu = document.querySelector('#proj-category-select');
             const formInput = document.querySelector("#proj-text-input");
-            //heart event related variables
             let htmlSafe = {};
+
+            //heart event related variables
             let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             const user = {!! json_encode(Auth::user()) !!}
-
-
-
 
 
             // Appending form submit event listener: on void, restore html from html safe, else: fetch api
@@ -72,6 +70,7 @@
                 }, 3000);
             });
 
+
             // Search as soon as categories switch
             selectionMenu.addEventListener("input", event => {
                 if (loadHTMLSafe(selectionMenu.value + '>' + formInput.value)) {
@@ -80,112 +79,79 @@
                 fetchAPI();
             })
 
+
             // API fetching function
             const fetchAPI = () => {
-                fetch(
-                        `http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${formInput.value}`, {
-                            mode: "cors"
-                        })
-                    .then(data => data.json())
-                    .then(jsonResult => {
-                        if (!('landingPage' in htmlSafe)) {
-                            htmlSafe.landingPage = searchContent.innerHTML;
-                        }
-                        searchContent.innerHTML = createSearchResults(jsonResult);
-                        htmlSafe[selectionMenu.value + '>' + formInput.value] = searchContent.innerHTML;
-                        console.log(jsonResult);
-
-                        //heart event: add to my-communities
-                        jsonResult.data.forEach(result => {
-                            let heartEl = document.querySelector(`#heart_community_${result.id}`);
-                            heartEl.addEventListener('click', (e) => {
-                                e.target.classList.toggle('red');
-                                if (e.target.classList.contains('red')) {
-                                    console.log('red')
-                                    console.log(result.id)
-                                    fetch(`http://localhost:8000/api/my-communities/add`, {
-                                            headers: {
-                                                "Content-Type": "application/json",
-                                                "Accept": "application/json, text-plain, */*",
-                                                "X-Requested-With": "XMLHttpRequest",
-                                                "X-CSRF-TOKEN": token
-                                            },
-                                            method: 'post',
-                                            credentials: 'same-origin',
-                                            body: JSON.stringify({
-                                                user_id: user.id,
-                                                community_id: result.id
-                                            })
-                                        })
-                                        .then(data => {
-                                            console.log('done!')
-                                        })
-                                        .then(res => console.log(res))
-                                        .catch(err => console.log(err))
-                                } else {
-                                    console.log('white')
-                                    fetch(`http://localhost:8000/api/my-communities/remove`, {
-                                            headers: {
-                                                "Content-Type": "application/json",
-                                                "Accept": "application/json, text-plain, */*",
-                                                "X-Requested-With": "XMLHttpRequest",
-                                                "X-CSRF-TOKEN": token
-                                            },
-                                            method: 'delete',
-                                            credentials: 'same-origin',
-                                            body: JSON.stringify({
-                                                user_id: user.id,
-                                                community_id: result.id
-                                            })
-                                        })
-                                        .then(data => {
-                                            console.log('done!')
-                                        })
-                                        .then(res => console.log(res))
-                                        .catch(err => console.log(err))
-                                }
-                            });
-                        })
-                    });
+                fetch(`http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${formInput.value}`,
+                {mode: "cors"})
+                .then(data => data.json())
+                .then(jsonResult => {
+                    if (!('landingPage' in htmlSafe)) {
+                        htmlSafe.landingPage = searchContent.innerHTML;
+                    }
+                    createSearchResults(jsonResult);
+                    htmlSafe[selectionMenu.value + '>' + formInput.value] = searchContent.innerHTML;
+                });
             }
 
             fetchAPI();
 
-            //when page loaded, show red heart if it's liked previously
-            // fetch(`http://localhost:8000/api/my-communities/getExistedCommunities/${user.id}`, {
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //             "Accept": "application/json, text-plain, */*",
-            //             "X-Requested-With": "XMLHttpRequest",
-            //             "X-CSRF-TOKEN": token
-            //         },
-            //         method: 'get',
-            //         credentials: 'same-origin',
-            //         // body: JSON.stringify({
-            //         //     user_id: user.id,
-            //         // })
-            //     })
-            //     .then(data => data.json())
-            //     .then(res => {
-            //         let myCommunities = res['myCommunities'];
-            //         // console.log(myCommunities)
-            //         // let uniqueCommunities = myCommunities.filter((value, index, self) =>
-            //         //     self.findIndex(
-            //         //         value2 => (value2.id === value.id) === index
-            //         //     )
-            //         // )
-            //         // console.log(uniqueCommunities)
-            //         myCommunities.forEach(community => {
-            //             // console.log(community)
-            //             let likedCommunityHeart = document.getElementById(
-            //                 `heart_community_${community.id}`);
-            //             console.log(likedCommunityHeart)
-            //             if (likedCommunityHeart) {
-            //                 likedCommunityHeart.classList.add('red');
-            //             }
-            //         })
-            //     })
-            //     .catch(err => console.log(err))
+
+            const createSearchResults = function(jsonResult) {
+                if (!jsonResult.data.length) {
+                    searchContent.innerHTML = '<div class="d-flex flex-row justify-content-center"> Sorry we could not find anything related to your research. Please try again!</div>';
+                    return
+                }
+
+                searchContent.innerHTML =  '<div class="d-flex flex-row flex-wrap" id="proj-results-container">';
+
+
+                for(const result in jsonResult.data) {
+                    console.log(`heart_community_${result}`);
+                    searchContent.innerHTML += `
+                        <div class="d-flex flex-row flex-wrap justify-content-center" id="proj-comcard">
+                          ${ /* Left hand side of the card */'' }
+
+                            <div class="proj-img" width="150px">
+                                <img src="{{ asset('Assets/Images/${jsonResult.data[result].image}') }}" width="150px">
+                            </div>
+
+                           ${ /* Right hand side of the card */'' }
+
+                            <div class="d-flex flex-column" id="proj_card_desc">
+                                <h1>
+                                    <div class="proj-name">
+
+                                        ${jsonResult.data[result].name}
+
+                                     </div>
+                                </h1>
+                                <div class="proj-categ d-flex flex-row justify-content-between">
+                                    <div>Category: <span>${jsonResult.data[result].category.name}</span></div>
+
+                                </div>
+                                <div class="proj-desc d-flex flex-column">
+
+                                <div><span>Description: </span>${(jsonResult.data[result].desc?.slice(0,200) ?? "")}</div>
+                                </div>
+
+                                <div class="proj-discord d-flex flex-row justify-content-between">
+                                    <div class="discord" >
+                                        <a href="${jsonResult.data[result].discordLink}"" class="btn btn-dark ">
+                                            <img src="{{ asset('Discord_icon.svg') }}" height="30px">
+                                            Discord
+                                        </a>
+                                    </div>
+                                    <img src='{{ asset('heart_off.png') }}' id='heart_community_${result}' width='8%' height='8%'>
+                                </div>
+                            </div>
+                        </div>`;
+                }
+
+                searchContent.innerHTML += '</div>';
+
+                appendLikingListeners(jsonResult.data);
+            }
 
 
             // loads up data from the safe to the page
@@ -205,59 +171,46 @@
             }
 
 
-            const createSearchResults = function(jsonResult) {
-                if (!jsonResult.data.length) {
-                    return '<div class="d-flex flex-row justify-content-center"> Sorry we could not find anything related to your research. Please try again!</div>';
+            const appendLikingListeners = (results) => {
+                console.log(results);
+                //heart event: add to my-communities
+                for(result_id in results) {
+                    const result = results[result_id];
+                    const heartEl = document.getElementById(`heart_community_${result_id}`);
+                    let isOn = false;
+
+                    heartEl.addEventListener('click', (e) => {
+                        @if($userId)
+                            if(e.target.src == '{{asset('heart_off.png')}}') {
+                                e.target.src = '{{asset('heart_on.png')}}';
+                                isOn = true;
+                            } else {
+                                e.target.src = '{{asset('heart_off.png')}}';
+                            }
+                            console.log('red');
+                            console.log(result.id);
+                            fetch(`http://localhost:8000/api/my-communities/` + isOn ? 'add' : 'remove', {
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "Accept": "application/json, text-plain, */*",
+                                    "X-Requested-With": "XMLHttpRequest",
+                                    "X-CSRF-TOKEN": token
+                                },
+                                method:  isOn ? 'post' : 'delete',
+                                credentials: 'same-origin',
+                                body: JSON.stringify({
+                                    user_id: user.id,
+                                    community_id: result.id
+                                })
+                            })
+                            .then(data => {console.log('done!')})
+                            .then(res => console.log(res))
+                            .catch(err => console.log(err));
+                        @else
+                            window.location='{{ route('login') }}';
+                        @endif
+                    });
                 }
-                let returnHTML = '<div class="d-flex flex-row flex-wrap" id="proj-results-container">';
-
-                for (const result in jsonResult.data) {
-
-                    returnHTML += `
-                        <div class="d-flex flex-row flex-wrap justify-content-center" id="proj-comcard">
-                          ${ /* Left hand side of the card */'' }
-
-                            <div class="proj-img" width="150px">
-                                <img src="{{ asset('Assets/Images/${jsonResult.data[result].image}') }}" width="150px">
-                            </div>
-
-                           ${ /* Right hand side of the card */'' }
-                       
-                            <div class="d-flex flex-column" id="proj_card_desc">
-                                <h1>
-                                    <div class="proj-name"> 
-                                        
-                                        ${jsonResult.data[result].name}
-                                       
-                                     </div>
-                                </h1>
-                                <div class="proj-categ d-flex flex-row justify-content-between">
-                                    <div>Category: <span>${jsonResult.data[result].category.name}</span></div>
-                                    
-                                </div>
-                                <div class="proj-desc d-flex flex-column">
-                            
-                                <div><span>Description: </span>${(jsonResult.data[result].desc?.slice(0,200) ?? "")}</div>
-                                </div>
-                                <div class="proj-discord d-flex flex-row justify-content-between">
-                                   
-                                    <div class="discord " >
-                                        <a href="${jsonResult.data[result].discordLink}"" class="btn btn-dark ">
-                                            <img src="{{ asset('Discord_icon.svg') }}" height="30px">
-                                            Discord
-                                        </a>
-                                    </div>
-                                
-                                </div>
-                                <div class="heart_community white">
-                                    <span id="heart_community_${jsonResult.data[result].id}"><x-heroicon-s-heart /></span>
-                                </div>                            
-                            </div>
-                        </div>`;
-                }
-
-                returnHTML += '</div>';
-                return returnHTML;
             }
         }
     </script>

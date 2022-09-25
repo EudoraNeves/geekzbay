@@ -98,10 +98,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        window.onload = () => {
-
-        }
-    </script>
 @endsection

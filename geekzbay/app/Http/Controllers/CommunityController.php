@@ -90,7 +90,8 @@ class CommunityController extends Controller
     {
         //
         $categories = DB::table('categories')->select('name', 'id')->get();
-        return view('layouts.community', ['categories' => $categories]);
+        $id = Auth::id();
+        return view('layouts.community', ['categories' => $categories, 'userId' => $id]);
     }
 
     /**
