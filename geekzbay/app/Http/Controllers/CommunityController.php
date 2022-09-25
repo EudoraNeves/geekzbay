@@ -19,19 +19,19 @@ class CommunityController extends Controller
     {
         return view('layouts.community');
     }
-    public function index_myCommunities($request)
+    public function index_my_communities()
     {
-        $user = User::find($request->user_id);
-        $community_id = $request->get('community_id');
-        $user = User::with('communities')->where('id', $user->id)->first();
+        $user = User::with('communities')->where('id', Auth::user()->id)->first();
         $myCommunities = $user->communities()->get();
+        // dd($myCommunities);
+        return view('layouts.my-communities', ['myCommunities' => $myCommunities]);
     }
     public function getExistedCommunities($user_id)
     {
         $user = User::find($user_id);
         $user = User::with('communities')->where('id', $user->id)->first();
         $myCommunities = $user->communities()->get();
-        return response()->json(['myCommunities'=> $myCommunities]);
+        return response()->json(['myCommunities' => $myCommunities]);
     }
     /**
      * Show the form for creating a new resource.
@@ -71,12 +71,15 @@ class CommunityController extends Controller
         $user = User::find($request->user_id);
         $community_id = $request->get('community_id');
         $user = User::with('communities')->where('id', $user->id)->first();
-        $user->communities()->attach([$community_id]);
-        // DB::table('users_in_communities')->insert([
-        //     'user_id'=>$request->user_id,
-        //     'community_id'=>$request->community_id
-        // ]);
-        return response()->json(['success' => true]);
+        $community_ids = $user->communities->pluck('id')->toArray();
+
+        //Only add if not existing in DB
+        if (!in_array($community_id, $community_ids)) {
+            $user->communities()->attach([$community_id]);
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['msg' => 'You\'ve already liked this community before!']);
+        }
     }
 
 
@@ -133,10 +136,6 @@ class CommunityController extends Controller
         $community_id = $request->get('community_id');
         $user = User::with('communities')->where('id', $user->id)->first();
         $user->communities()->detach([$community_id]);
-        // DB::table('users_in_communities')->insert([
-        //     'user_id'=>$request->user_id,
-        //     'community_id'=>$request->community_id
-        // ]);
         return response()->json(['success' => true]);
     }
 }
