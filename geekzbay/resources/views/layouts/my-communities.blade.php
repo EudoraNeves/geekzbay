@@ -1,19 +1,25 @@
 @extends('layouts.template')
 @section('title', 'My Communities')
+@section('css')
+    <link rel="stylesheet" href="/css/pages/my-communities.css">
+@endsection
 @section('main')
-    <div class="my-communities">
-        <div>
-            <div class="anime">Anime Focal</div>
-        </div>
-        <div><img src="../Assets/Images/anime_focal.png" alt="../Assets/Images/anime_focal.png"></div>
-        <div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim eaque eligendi, nisi deserunt magnam
-                tenetur
-                quis dolorum! Enim molestiae sequi repudiandae, consectetur nulla similique deserunt, repellendus eius
-                voluptatem laudantium nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, cumque fugiat.
-                Voluptate expedita nesciunt illum obcaecati! Vero eius quia quisquam autem illum, nesciunt consectetur,
-                nisi, voluptatum cumque tempore labore maiores.</p>
-        </div>
-    </div>
+    <div class="my-communities d-flex gap-3 flex-wrap justify-content-center align-items-center p-5">
+        @foreach ($myCommunities as $community)
+            <div class="community w-25 mw-20 p-3 d-flex flex-column align-items-center justify-content-center gap-2">
+                <h3 class="name">{{ $community->name }}</h3>
+                <div class="w-100 d-flex justify-content-center">
+                    <img class="communityImg w-50" src="../assets/images/{{ $community->img }}" alt="{{ $community->name }}">
+                </div>
+                <div>
+                    <p>{{ $community->desc }}</p>
+                </div>
+                <div class="discord">
+                    <a href="{{ $community->discordLink }}">
+                        <img class="discordIcon" src="../discord-icon.svg" alt="discord">
+                    </a>
+                </div>
+            </div>
+        @endforeach
     </div>
 @endsection

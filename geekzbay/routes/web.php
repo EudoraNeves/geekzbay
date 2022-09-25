@@ -38,7 +38,7 @@ Route::get('location/{id}', [LocationController::class, 'show'])->name('location
     // Meetups --> create an event
     Route::get('/meetup/my-meetups', [UsersInMeetupsController::class, 'index'])->name('my-meetups');
     // Communities
-    Route::get('/community/my-communities', [CommunityController::class, 'index'])->name('my-communities');
+    Route::get('/community/my-communities', [CommunityController::class, 'index_my_communities'])->name('my-communities');
     // Locations
     Route::get('/locations/my-locations', [LocationController::class, 'index_my_locations'])->name('my-locations');
     // Profile
