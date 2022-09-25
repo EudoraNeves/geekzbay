@@ -107,7 +107,6 @@
 
 
                 for(const result in jsonResult.data) {
-                    console.log(`heart_community_${result}`);
                     searchContent.innerHTML += `
                         <div class="d-flex flex-row flex-wrap justify-content-center" id="proj-comcard">
                           ${ /* Left hand side of the card */'' }
@@ -172,7 +171,6 @@
 
 
             const appendLikingListeners = (results) => {
-                console.log(results);
                 //heart event: add to my-communities
                 for(result_id in results) {
                     const result = results[result_id];
@@ -187,8 +185,6 @@
                             } else {
                                 e.target.src = '{{asset('heart_off.png')}}';
                             }
-                            console.log('red');
-                            console.log(result.id);
                             fetch(`http://localhost:8000/api/my-communities/` + isOn ? 'add' : 'remove', {
                                 headers: {
                                     "Content-Type": "application/json",
