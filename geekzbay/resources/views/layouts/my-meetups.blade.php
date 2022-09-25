@@ -3,9 +3,7 @@
 @section('css')
     <style>
         h1 {
-            background-color: #e5b045;
-            color: rgb(33, 37, 41);
-            margin: 1.5em;
+            color: #e5b045;
         }
 
         .proj-going {
@@ -24,7 +22,7 @@
             flex-direction: column;
         }
 
-        .event-list>div:nth-child(even) {
+        .event-list>:nth-child(even) {
             background-color: #FFFFFF22;
         }
 
@@ -44,27 +42,29 @@
     </style>
 @endsection
 @section('main')
-    <h1>My Meetups</h1>
+    <h1 class='m-1'>My Meetups</h1>
     {{-- Adaptive flex container --}}
     <div class='d-flex flex-adapt p-4 rounded gap-5'>
         {{-- Going box --}}
         <div class='h-100 w-100 d-flex flex-column align-items-center justify-content-center rounded-4 p-1 proj-going'>
             <h2>Going</h2>
             @if(count($myGoings))
-            <div class='d-flex flex-column event-list'>
-                @foreach($myGoings as $meetup)
-                    <div class='d-flex flex-row justify-content-between align-items-center w-100 meetup-listing'>
-                        <span>{{$meetup->meetup_name}}</span>
-                        <span>{{$meetup->location_name}}</span>
-                        <span>{{$meetup->date}}</span>
-                        <div>
-                            <a class='btn btn-dark view-link'>
-                                <img src='{{asset('look_icon.svg')}}' height='20px'>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+                <table class='w-100'>
+                    <tbody class='event-list'>
+                        @foreach($myMaybes as $meetup)
+                            <tr class='meetup-listing'>
+                                <td>{{$meetup->meetup_name}}</td>
+                                <td>{{$meetup->location_name}}</td>
+                                <td>{{$meetup->date}}</td>
+                                <td width='50px' height='35px'>
+                                    <a class='btn btn-dark view-link' href='{{route('meetups', ['id' => $meetup->meetup_id])}}'>
+                                        <img src='{{asset('look_icon.svg')}}' height='20px'>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             @else
                 <div class='d-flex flex-row align-items-center justify-content-center'>
                     <span>Nothing in here yet.</span>
@@ -77,20 +77,22 @@
         <div class='h-100 w-100 d-flex flex-column align-items-center justify-content-center rounded-4 p-1 proj-maybe'>
             <h2>Maybe</h2>
             @if(count($myMaybes))
-            <div class='d-flex flex-column event-list'>
-                @foreach($myMaybes as $meetup)
-                    <div class='d-flex flex-row justify-content-between align-items-center w-100 meetup-listing'>
-                        <span>{{$meetup->meetup_name}}</span>
-                        <span>{{$meetup->location_name}}</span>
-                        <span>{{$meetup->date}}</span>
-                        <div>
-                            <a class='btn btn-dark view-link' href='{{route('meetups', ['id' => $meetup->meetup_id])}}'>
-                                <img src='{{asset('look_icon.svg')}}' height='20px'>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+                <table class='w-100'>
+                    <tbody class='event-list'>
+                        @foreach($myMaybes as $meetup)
+                            <tr class='meetup-listing'>
+                                <td>{{$meetup->meetup_name}}</td>
+                                <td>{{$meetup->location_name}}</td>
+                                <td>{{$meetup->date}}</td>
+                                <td width='50px' height='35px'>
+                                    <a class='btn btn-dark view-link' href='{{route('meetups', ['id' => $meetup->meetup_id])}}'>
+                                        <img src='{{asset('look_icon.svg')}}' height='20px'>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             @else
                 <div class='d-flex flex-row align-items-center justify-content-center'>
                     <span>Nothing in here yet.</span>
@@ -102,20 +104,22 @@
         <div class='h-100 w-100 d-flex flex-column align-items-center justify-content-center rounded-4 p-1 proj-nope'>
             <h2>Not going</h2>
             @if(count($myNopes))
-                <div class='d-flex flex-column event-list'>
-                    @foreach($myNopes as $meetup)
-                        <div class='d-flex flex-row justify-content-between align-items-center w-100 meetup-listing'>
-                            <span>{{$meetup->meetup_name}}</span>
-                            <span>{{$meetup->location_name}}</span>
-                            <span>{{$meetup->date}}</span>
-                            <div>
-                                <a class='btn btn-dark view-link'>
-                                    <img src='{{asset('look_icon.svg')}}' height='20px'>
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                <table class='w-100'>
+                    <tbody class='event-list'>
+                        @foreach($myMaybes as $meetup)
+                            <tr class='meetup-listing'>
+                                <td>{{$meetup->meetup_name}}</td>
+                                <td>{{$meetup->location_name}}</td>
+                                <td>{{$meetup->date}}</td>
+                                <td width='50px' height='35px'>
+                                    <a class='btn btn-dark view-link' href='{{route('meetups', ['id' => $meetup->meetup_id])}}'>
+                                        <img src='{{asset('look_icon.svg')}}' height='20px'>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             @else
                 <div class='d-flex flex-row align-items-center justify-content-center'>
                     <span>Nothing in here yet.</span>
