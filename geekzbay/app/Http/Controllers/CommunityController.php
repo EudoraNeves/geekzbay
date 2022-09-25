@@ -19,12 +19,12 @@ class CommunityController extends Controller
     {
         return view('layouts.community');
     }
-    public function index_myCommunities($request)
+    public function index_my_communities()
     {
-        $user = User::find($request->user_id);
-        $community_id = $request->get('community_id');
-        $user = User::with('communities')->where('id', $user->id)->first();
+        $user = User::with('communities')->where('id', Auth::user()->id)->first();
         $myCommunities = $user->communities()->get();
+        // dd($myCommunities);
+        return view('layouts.my-communities', ['myCommunities'=>$myCommunities]);
     }
     public function getExistedCommunities($user_id)
     {
