@@ -6,7 +6,7 @@
     padding: 20px;
     margin-top: 10%;
     margin-bottom: 10%;
-    color: black;    
+    color: black;
 }
 
 .loadfile{
@@ -31,7 +31,6 @@ span>input{
     color: black;
     border-radius: 5px;
     font-weight: bold;
-
 }
 
 span>input:hover{
