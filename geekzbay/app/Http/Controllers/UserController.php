@@ -37,6 +37,14 @@ class UserController extends Controller
         //
     }
 
+    public function changePassword(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('my-profile');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
