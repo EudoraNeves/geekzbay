@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create places table data
+        
         Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('profilePicture');
-            $table->enum('type',['Shop','Bar','Club','Library','Movie',null]);
+            $table->enum('type', ['Shop', 'Bar', 'Club', 'Library', 'Movie', null]);
             $table->text('desc');
             $table->text('homePage');
             $table->string('address_city');

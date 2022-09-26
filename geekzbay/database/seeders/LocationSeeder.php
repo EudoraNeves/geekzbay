@@ -16,6 +16,8 @@ class LocationSeeder extends Seeder
     public function run()
     {
 
+        // Fake data to feed the Database
+
         DB::table('locations')->insert(
             [
                 'name' => 'Respawn Bar',

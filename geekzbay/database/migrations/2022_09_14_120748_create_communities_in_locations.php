@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create communities in location table data
+
         Schema::create('communities_in_locations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('community_id')->references('id')->on('communities');

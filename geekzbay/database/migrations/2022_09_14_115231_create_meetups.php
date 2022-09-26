@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create Meetups table data
+        
         Schema::create('meetups', function (Blueprint $table) {
             $table->id();
             $table->string('name');

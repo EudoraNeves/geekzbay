@@ -16,6 +16,7 @@ class Meetupsseeder extends Seeder
      */
     public function run()
     {
+        // creating Fake data for the database
 
         DB::table('meetups')->insert(
             [
