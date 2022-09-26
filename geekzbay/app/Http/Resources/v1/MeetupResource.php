@@ -18,7 +18,7 @@ class MeetupResource extends JsonResource
     {
         $community = DB::table('communities')->find($this->community_id);
         $location = DB::table('locations')->find($this->location_id);
-        $formattedDate = DateTime::createFromFormat('Y-m-d', '2009-08-12')->format('l, d.n.Y');
+        $formattedDate = DateTime::createFromFormat('Y-m-d H:i:s', $this->date)->format('l, d.n.Y');
         return [
             'id' => $this->id,
             'name' => $this->name,

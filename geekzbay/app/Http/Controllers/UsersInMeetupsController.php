@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Nette\Utils\DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\UsersInMeetups;
@@ -23,6 +24,10 @@ class UsersInMeetupsController extends Controller
         ->where('users_in_meetups.user_id','=',Auth::id())
         ->get();
 
+        foreach($myMeetups as $meetup) {
+            $meetup->date = DateTime::createFromFormat('Y-m-d H:i:s', $meetup->date)->format('l, d.n.Y');
+        }
+
         $myGoings = [];
         $myMaybes = [];
         $myNopes = [];
@@ -39,6 +44,8 @@ class UsersInMeetupsController extends Controller
                     break;
             }
         }
+
+        /*dd([$myGoings, $myMaybes, $myNopes]);*/
 
         return view('layouts.my-meetups', ['myGoings' => $myGoings, 'myMaybes' => $myMaybes, 'myNopes' => $myNopes]);
     }
