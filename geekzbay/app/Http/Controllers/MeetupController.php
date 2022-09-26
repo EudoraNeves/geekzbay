@@ -93,7 +93,7 @@ class MeetupController extends Controller
         $user = null;
         $authId = Auth::id();
         if($authId) {
-            $user = UsersInMeetups::find($authId);
+            $user = UsersInMeetups::where('user_id', '=',$authId)->get();
         }
 
 

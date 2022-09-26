@@ -57,16 +57,16 @@
 
                 {{-- Notify form --}}
                 <div class='d-flex flex-column'>
-                    @if($user)
+                    @if(count($user))
                         <div class='rounded-pill text-center my-3'
-                        @if($user->status == "Going")
+                        @if($user[0]->status == "Going")
                             id='going'
-                        @elseif($user->status == "Maybe")
+                        @elseif($user[0]->status == "Maybe")
                             id='maybe'
                         @else
                             id='not'
                         @endif
-                        >{{ $user->status }}</div>
+                        >{{ $user[0]->status }}</div>
                     @endif
 
                     <form method="post">
