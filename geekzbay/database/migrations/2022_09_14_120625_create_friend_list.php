@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create Friend List table data
+        
         Schema::create('friend_list', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('buddy_id')->unsigned();

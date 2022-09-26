@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // create the personal token for the user
+        
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
             $table->morphs('tokenable');

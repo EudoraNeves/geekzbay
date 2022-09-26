@@ -15,7 +15,8 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // Create Categories Seeder
+
         DB::table('categories')->insert(
             [   //1
                 'name' => 'Animes/Mangas',

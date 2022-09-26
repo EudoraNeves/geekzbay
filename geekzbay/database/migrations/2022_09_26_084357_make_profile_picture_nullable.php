@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        // Create Update the user table data
-
         Schema::table('users', function (Blueprint $table) {
             $table->longText('profilePicture')->default(base64_encode(file_get_contents(public_path('user-icon.png'))))->change();
+            $table->text('desc')->nullable()->change();
+            $table->date('birthDate')->nullable()->change();
         });
     }
 
@@ -29,6 +29,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->longText('profilePicture')->default(null)->change();
+            $table->text('desc')->nullable(false)->change();
+            $table->date('birthDate')->nullable(false)->change();
         });
     }
 };

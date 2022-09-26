@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create locations table data
+        
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('name');

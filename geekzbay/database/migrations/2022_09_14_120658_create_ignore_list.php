@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create ignore list table data
+        
         Schema::create('ignore_list', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('buddy_id')->unsigned();

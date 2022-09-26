@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create Buddies in Communities table data
+        
         Schema::create('buddies_in_communities', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('buddy_id')->unsigned();
