@@ -69,17 +69,16 @@
                         >{{ $user[0]->status }}</div>
                     @endif
 
-                    <form method="post">
+                    <form method="post" class="input-group mb-3">
                         @csrf
-                        <select name="status">
+                        <select class="form-select" id="inputGroupSelect02" name="status">
                             <option value="Going">Going</option>
                             <option value="Maybe">Maybe</option>
                             <option value="Can't go">Can't go</option>
                         </select>
-                        <button type="submit">Notify</button>
+                        <button type="submit" class="btn btn-secondary" id="inputGroupSelect02">Notify</button>
                     </form>
                 </div>
-
             </div>
             <h2 class="rounded-pill px-3">Attendees</h2>
             <div id="proj-attendees-div" class="m-3">
