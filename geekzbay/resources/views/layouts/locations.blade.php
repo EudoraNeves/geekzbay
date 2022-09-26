@@ -84,9 +84,9 @@
             searchForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 // Default distance is 0. If someone tries to be funny, negatives are not accepted and townSearch needs to be put in
-                if(!distanceSearch.value)
+                if(!distanceSearch.value || distanceSearch.value < 0)
                     distanceSearch.value = 0;
-                if (townSearch.value == '' || distanceSearch.value < 0) {
+                if (townSearch.value == '') {
                     return;
                 }
                 // Get all locations with the right name
@@ -120,7 +120,7 @@
 
             // Create the HTML objects and append the listener to favorite them
             const createHTML = (jsonResults) => {
-                console.log(jsonResults);
+                searchResults.innerHTML = ''
 
                 for(locationId in jsonResults) {
                     const location = jsonResults[locationId];
