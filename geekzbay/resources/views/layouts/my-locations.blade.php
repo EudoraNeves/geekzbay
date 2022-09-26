@@ -5,13 +5,13 @@
 @endsection
 
 @section('main')
-    <div class='container d-flex flex-row justify-content-center align-items-center flex-wrap'>
+    <div class='container d-flex flex-row justify-content-center align-items-center flex-wrap flex-solid'>
         @foreach ($my_locations as $my_location)
-            <div class="myLocation d-flex flex-column m-5 border border-warning rounded p-3  flex-solid">
+            <div class="myLocation d-flex flex-column m-5 border border-warning rounded p-3 w-50">
                 <h1>{{ $my_location->name }}</h1>
                 <div class="d-flex flex-adapt gap-3 justify-content-between">
                     {{-- Leftside column --}}
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
                         <img class="location_img" src="{{ $my_location->profilePicture }}">
                         <div class="meter d-flex flex-row justify-content-around align-items-center border border-warning rounded mt-1">
                             <a class="btn btn-dark">👎</a>
