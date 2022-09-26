@@ -14,6 +14,7 @@
         @csrf
         <div class="input-group">
             <select class="form-select" id="proj-category-select" name="category" aria-label="Floating label select example">
+                <option class="lh-1" value="">All</option>
                 @foreach ($categories as $category)
                     <option class="lh-1" value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
@@ -82,7 +83,11 @@
 
             // API fetching function
             const fetchAPI = () => {
-                fetch(`http://localhost:8000/api/v1/communities?category=${selectionMenu.value}&name=${formInput.value}`,
+                let query = `?name=${formInput.value}`
+                if(selectionMenu.value != '') {
+                    query += `&category=${selectionMenu.value}`;
+                }
+                fetch(`http://localhost:8000/api/v1/communities${query}`,
                 {mode: "cors"})
                 .then(data => data.json())
                 .then(jsonResult => {
