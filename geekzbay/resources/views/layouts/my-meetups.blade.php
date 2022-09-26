@@ -55,7 +55,7 @@
                             <tr class='meetup-listing'>
                                 <td>{{$meetup->meetup_name}}</td>
                                 <td>{{$meetup->location_name}}</td>
-                                <td>{{$meetup->date}}</td>
+                                <td>{{$meetup->formattedDate}}</td>
                                 <td width='50px' height='35px'>
                                     <a class='btn btn-dark view-link' href='{{route('meetups', ['id' => $meetup->meetup_id])}}'>
                                         <img src='{{asset('look_icon.svg')}}' height='20px'>

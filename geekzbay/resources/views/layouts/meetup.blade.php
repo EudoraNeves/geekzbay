@@ -144,7 +144,6 @@
                 if (selectedCommunity.value) {
                     query += 'community=' + selectedCommunity.value + '&';
                 }
-                console.log(query);
                 fetch(`http://localhost:8000/api/v1/meetups${query}`)
                     .then(data => data.json())
                     .then(jsonObj => {
@@ -176,7 +175,7 @@
                                 </div>
                                 ${/*Righthand coordinates column*/''}
                                 <div class='d-flex flex-column align-items-start w-100'>
-                                    <div>${meetup.date}</div>
+                                    <div>${meetup.formattedDate}</div>
                                     <div>${meetup.community.name}</div>
                                     <div class='d-flex flex-row justify-content-between align-items-center w-100'>
                                         <span>${meetup.location.data.name}</span>

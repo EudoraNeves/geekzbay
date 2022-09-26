@@ -46,7 +46,7 @@
                 </div>
                 {{-- Info column --}}
                 <div class='d-flex flex-column mb-5'>
-                    <div>{{$meetup->date}}</div>
+                    <div>{{$meetup->formattedDate}}</div>
                     <div>{{$community->name}}</div>
                     <div>
                         {{$location->name}}
