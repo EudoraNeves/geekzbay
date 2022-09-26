@@ -51,11 +51,11 @@
             @if(count($myGoings))
                 <table class='w-100'>
                     <tbody class='event-list'>
-                        @foreach($myMaybes as $meetup)
+                        @foreach($myGoings as $meetup)
                             <tr class='meetup-listing'>
                                 <td>{{$meetup->meetup_name}}</td>
                                 <td>{{$meetup->location_name}}</td>
-                                <td>{{$meetup->formattedDate}}</td>
+                                <td>{{$meetup->date}}</td>
                                 <td width='50px' height='35px'>
                                     <a class='btn btn-dark view-link' href='{{route('meetups', ['id' => $meetup->meetup_id])}}'>
                                         <img src='{{asset('look_icon.svg')}}' height='20px'>
@@ -106,7 +106,7 @@
             @if(count($myNopes))
                 <table class='w-100'>
                     <tbody class='event-list'>
-                        @foreach($myMaybes as $meetup)
+                        @foreach($myNopes as $meetup)
                             <tr class='meetup-listing'>
                                 <td>{{$meetup->meetup_name}}</td>
                                 <td>{{$meetup->location_name}}</td>

@@ -42,7 +42,7 @@
             <div class='d-flex flex-row gap-5 my-3'>
                 {{-- Img --}}
                 <div class='d-flex flex-column'>
-                    <img src='{{ asset($meetup->community?->img) }}' width='100px'>
+                    <img src='{{ asset('Assets/Images/' . $community?->img) }}' width='100px'>
                 </div>
                 {{-- Info column --}}
                 <div class='d-flex flex-column mb-5'>
@@ -57,35 +57,36 @@
 
                 {{-- Notify form --}}
                 <div class='d-flex flex-column'>
-                    @if($user)
+                    @if(count($user))
                         <div class='rounded-pill text-center my-3'
-                        @if($user->status == "Going")
+                        @if($user[0]->status == "Going")
                             id='going'
-                        @elseif($user->status == "Maybe")
+                        @elseif($user[0]->status == "Maybe")
                             id='maybe'
                         @else
                             id='not'
                         @endif
-                        >{{ $user->status }}</div>
+                        >{{ $user[0]->status }}</div>
                     @endif
 
-                    <form method="post">
+                    <form method="post" class="input-group mb-3">
                         @csrf
-                        <select name="status">
+                        <select class="form-select" id="inputGroupSelect02" name="status">
                             <option value="Going">Going</option>
                             <option value="Maybe">Maybe</option>
                             <option value="Can't go">Can't go</option>
                         </select>
-                        <button type="submit">Notify</button>
+                        <button type="submit" class="btn btn-secondary" id="inputGroupSelect02">Notify</button>
                     </form>
                 </div>
-
             </div>
             <h2 class="rounded-pill px-3">Attendees</h2>
             <div id="proj-attendees-div" class="m-3">
                 @if(count($usersInMeetups))
                     @foreach($usersInMeetups as $user)
-                        {{$user->name}},
+                        @if($user->status == 'Going')
+                            {{$user->name}},
+                        @endif
                     @endforeach
                 @else
                     <span class="cursive-text">None sofar</span>

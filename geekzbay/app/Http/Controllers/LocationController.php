@@ -13,6 +13,8 @@ class LocationController extends Controller
     //list: name of locations and qty of addresses
     public function index()
     {
+        //
+
         $addresses = DB::select(DB::raw('SELECT address_city, COUNT(*) as locationSum FROM locations GROUP BY address_city'));
         return view('layouts.locations', ['addresses' => $addresses, 'user' => auth()->user()]);
     }

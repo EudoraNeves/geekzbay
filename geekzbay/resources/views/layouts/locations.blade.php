@@ -141,7 +141,7 @@
                                 <div class="d-flex flex-column">
                                     <div class="proj-results-container info d-flex flex-column">
                                         <div><span>Town: </span>${location.city}</div>
-                                        <div><span>Adresse: </span>${location.number}, ${location.road}</div>
+                                        <div><span>Adress: </span>${location.number}, ${location.road}</div>
                                         <div><span>Type: </span>${location.type}</div>
                                     </div>
                                     <div class ="d-flex flex-row align-items-center justify-content-between">

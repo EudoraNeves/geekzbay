@@ -15,7 +15,9 @@ class CommunitySeeder extends Seeder
      */
     public function run()
     {
-        //
+
+        // Fake data to feed the Database
+
         DB::table('communities')->insert(
             [
                 'img' => 'magic.png',

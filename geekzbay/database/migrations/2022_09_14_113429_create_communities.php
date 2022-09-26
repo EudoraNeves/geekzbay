@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create communities table data
+        
         Schema::create('communities', function (Blueprint $table) {
             $table->id();
             $table->string('name');

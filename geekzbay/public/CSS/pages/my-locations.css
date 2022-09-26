@@ -1,3 +1,8 @@
+
+span{
+    color: #e5b045;
+}
+
 .container {
     width: 100%;
 }
@@ -9,4 +14,24 @@
 .location_img {
     width: 200px;
     height: 150px;
+}
+
+.flex-adapt {
+    flex-direction: column;
+}
+
+@media(min-width: 768px) {
+    .flex-adapt {
+        flex-direction: row;
+    }
+}
+
+.flex-solid {
+    flex-basis:0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.w-50 {
+    width: 468px;
 }

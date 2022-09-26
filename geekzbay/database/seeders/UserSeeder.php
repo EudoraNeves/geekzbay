@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        // create automated fake data for the database
         User::factory()->times(5)->create();
         DB::table('users')->insert([
             'name' => 'Hai Na Zheng',

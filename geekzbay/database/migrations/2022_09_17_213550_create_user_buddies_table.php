@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create User Buddies table data
+        
         Schema::create('user_buddies', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
