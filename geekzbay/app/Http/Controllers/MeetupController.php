@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Community;
 use App\Models\Location;
 use App\Models\Meetup;
@@ -96,6 +97,7 @@ class MeetupController extends Controller
             $user = UsersInMeetups::where('user_id', '=',$authId)->get();
         }
 
+        $meetup->formattedDate = DateTime::createFromFormat('Y-m-d H:i:s', $meetup->date)->format('l, d.n.Y');
 
         $usersInMeetups = UsersInMeetups::join('meetups','meetups.id','=', 'users_in_meetups.meetup_id')->join('users','users_in_meetups.user_id','=','users.id')->where('users_in_meetups.meetup_id','=',$id)->get();
 

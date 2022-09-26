@@ -42,7 +42,7 @@
             <div class='d-flex flex-row gap-5 my-3'>
                 {{-- Img --}}
                 <div class='d-flex flex-column'>
-                    <img src='{{ asset($meetup->community?->img) }}' width='100px'>
+                    <img src='{{ asset('Assets/Images/' . $community?->img) }}' width='100px'>
                 </div>
                 {{-- Info column --}}
                 <div class='d-flex flex-column mb-5'>
@@ -84,7 +84,9 @@
             <div id="proj-attendees-div" class="m-3">
                 @if(count($usersInMeetups))
                     @foreach($usersInMeetups as $user)
-                        {{$user->name}},
+                        @if($user->status == 'Going')
+                            {{$user->name}},
+                        @endif
                     @endforeach
                 @else
                     <span class="cursive-text">None sofar</span>
