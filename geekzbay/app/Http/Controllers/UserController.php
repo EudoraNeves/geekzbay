@@ -12,11 +12,8 @@ use Spatie\LaravelIgnition\Http\Requests\UpdateConfigRequest;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //BUDDIES
+    //get: show user's my-buddies list
     public function index_my_buddies()
     {
         if (Auth::check()) {
@@ -27,41 +24,7 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    public function changePassword(Request $request)
-    {
-        $user = User::find(auth()->user()->id);
-        $user->password = Hash::make($request->password);
-        $user->save();
-        return redirect()->route('my-profile');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //get: find random buddy
     public function show_random_buddy(/*$id*/)
     {
         $user = auth()->user();
@@ -76,14 +39,17 @@ class UserController extends Controller
         }
     }
 
+    //get: add buddy to user's buddy list
     public function addBuddy($buddy_id)
     {
         $buddy = User::where('id', $buddy_id)->first();
+        //if user is logged in
         if (Auth::check()) {
+            //if the random buddy is already inside the user's buddy list
             if (UserBuddies::where([['user_id', auth()->user()->id], ['buddy_id', $buddy_id]])->first()) {
-                // do nothing
                 return view('layouts.buddy', ['buddyAdddedSuccessfully' => "You've added $buddy->name successfully!"]);
             } else {
+                //if the random buddy is not in the user's buddy list
                 UserBuddies::create([
                     'user_id' => Auth::user()->id,
                     'buddy_id' => $buddy_id
@@ -91,37 +57,36 @@ class UserController extends Controller
                 return view('layouts.buddy', ['buddyAdddedSuccessfully' => "You've added $buddy->name successfully!"]);
             }
         } else {
+            //if user is not logged in
             return view('auth.requireLogin');
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+    //MY PROFILE
+    //get: show my profile
     public function showMyProfile()
     {
         if (Auth::check()) {
             $user = Auth::user();
-            //dd($user);
             return view('layouts.my-profile', ['user' => $user]);
         } else {
             return view('auth.requireLogin');
         }
     }
+    //get: show the form to edit my profile
     public function editMyProfile()
     {
         $user = Auth::user();
         return view('layouts.my-profile_form', ['user' => $user]);
     }
+
+    //post: update my profile
     public function updateMyProfile(UpdateProfileRequest $request)
     {
-        //   dd('here');
-        // $user = Auth::user();
         $user = User::where('id', auth()->user()->id)->first();
-
+        //check if new profile picture is added
         if ($request->file('profilePicture') != null) {
             $user->profilePicture = base64_encode(file_get_contents($request->file('profilePicture')->getRealPath()));
         }
@@ -132,37 +97,17 @@ class UserController extends Controller
     }
 
 
-    public function edit()
-    {
-        if (Auth::check()) {
-            $user = Auth::user();
-            return view('layouts.my-profile_edit', ['user' => $user]);
-            // return redirect()->route('my-profile.edit', ['user' => $user]);
-        } else {
-            return redirect()->route('my-profile');
-        }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+    }
+
+    //post: change password
+    public function changePassword(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('my-profile');
     }
 }

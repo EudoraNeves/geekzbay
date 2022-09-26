@@ -10,22 +10,21 @@ use Illuminate\Support\Facades\DB;
 
 class CommunityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //get: community page
     public function index_community()
     {
         return view('layouts.community');
     }
+
+    //get: my-communities list
     public function index_my_communities()
     {
         $user = User::with('communities')->where('id', Auth::user()->id)->first();
         $myCommunities = $user->communities()->get();
-        // dd($myCommunities);
         return view('layouts.my-communities', ['myCommunities' => $myCommunities]);
     }
+
+    //<api.php>: 'getExistedCommunities' (api route)
     public function getExistedCommunities($user_id)
     {
         $user = User::find($user_id);
@@ -33,15 +32,8 @@ class CommunityController extends Controller
         $myCommunities = $user->communities()->get();
         return response()->json(['myCommunities' => $myCommunities]);
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
+    //<api.php>: 'checkIfExists_in_my_communities'(api route)
     public function checkIfExists_in_my_communities(Request $request)
     {
         $user = User::find($request->user_id);
@@ -55,17 +47,7 @@ class CommunityController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
+    //<api.php>: 'add_to_my_communities' (api route)
     public function add_to_my_communities(Request $request)
     {
         $user = User::find($request->user_id);
@@ -83,53 +65,19 @@ class CommunityController extends Controller
     }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(/*$id*/)
     {
-        //
         $categories = DB::table('categories')->select('name', 'id')->get();
         $id = Auth::id();
         return view('layouts.community', ['categories' => $categories, 'userId' => $id]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    //<api.php>: 'remove_from_my_communities' (api route)
     public function remove_from_my_communities(Request $request)
     {
         $user = User::find($request->user_id);

@@ -10,17 +10,14 @@ use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //list: name of locations and qty of addresses
     public function index()
     {
-        //
         $addresses = DB::select(DB::raw('SELECT address_city, COUNT(*) as locationSum FROM locations GROUP BY address_city'));
         return view('layouts.locations', ['addresses' => $addresses, 'user' => auth()->user()]);
     }
+
+    //my-locations list
     public function index_my_locations()
     {
         $user = User::with('locations')->where('id', Auth::user()->id)->first();
@@ -28,6 +25,7 @@ class LocationController extends Controller
         return view('layouts.my-locations', ['my_locations' => $my_locations]);
     }
 
+    //<api.php>: route('add_to_my_locations') POST
     public function add_to_my_locations(Request $request)
     {
         $user = User::find($request->user_id);
@@ -37,37 +35,16 @@ class LocationController extends Controller
         return response()->json(['success' => true]);
     }
 
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
@@ -75,35 +52,16 @@ class LocationController extends Controller
         return view('layouts.location-details', ['locationDetails' => $locationDetails]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
