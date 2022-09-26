@@ -7,18 +7,8 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersInMeetupsController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 //content pages
+
 // Meetups --> create an event
 Route::get('/meetups', [MeetupController::class, 'index'])->name('meetup');
 Route::get('/meetups/{id}', [MeetupController::class, 'show'])->name('meetups');
@@ -32,6 +22,7 @@ Route::get('/community', [CommunityController::class, 'show'])->name('community'
 Route::get('locations', [LocationController::class, 'index'])->name('locations');
 Route::get('location/{id}', [LocationController::class, 'show'])->name('location');
 
+//Only accessable if logged
  Route::group(['middleware' => 'auth'], function () {
     // Buddies
     Route::get('/buddy/my-buddies', [UserController::class, 'index_my_buddies'])->name('my-buddies');
@@ -52,20 +43,10 @@ Route::get('location/{id}', [LocationController::class, 'show'])->name('location
 Route::get('/buddy', [UserController::class, 'show_random_buddy'])->name('buddy');
 Route::get('/buddy/{buddy_id}', [UserController::class, 'addBuddy'])->name('addBuddy');
 
-
+//home page
 Route::get('/', function () {
     return view('layouts.home');
 })->name('home');
 
-
-//account access pages
-// Route::get('/my-profile', function () {
-//     return view('layouts.my-profile');
-// })->name('my-profile');
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+//auth routes
 require __DIR__ . '/auth.php';
