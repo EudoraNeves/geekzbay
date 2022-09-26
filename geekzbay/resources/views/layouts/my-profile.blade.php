@@ -5,6 +5,7 @@
 @endsection
 @section('main')
     <div class="my-account d-flex flex-column justify-content-center flex-wrap align-items-center">
+        {{-- profile --}}
         <div class="profile">
             <div class="title">
                 <h2>Profile: </h2>
@@ -16,6 +17,7 @@
             <div><b>Birth Date: </b>{{ $user->birthDate }}</div>
             <a href="{{ route('my-profile.edit') }}">Edit</a></span>
         </div>
+        {{-- discord --}}
         <div class="links">
             <div class="title">
                 <h2>My Discord :
@@ -26,6 +28,7 @@
             </div>
         </div>
 
+        {{-- security --}}
         <div class="security">
             <div class="title">
                 <h2>Security</h2>
@@ -43,6 +46,7 @@
 @endsection
 @section('script')
     <script>
+        //click event for changing password
         showChangePasswordChannel = (e) => {
             console.log('clicked');
             ChangePasswordChannel.classList.remove('hidden');

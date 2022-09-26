@@ -10,6 +10,7 @@
                 @csrf
                 <div class="profilePicture ">
                     <h1>Profile Picture: </h1>
+                    {{-- upload profile photo --}}
                     <div>
                         <div id="preview">
                             <img id="output" src="data:image/png;base64, {{ $user->profilePicture }}">
@@ -20,6 +21,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- name, email, birth date, desc --}}
                 <div class="info">
                     <div class="name">
                         <span><b>Name: </b></span><span>{{ $user->name }}</span>
@@ -44,6 +46,7 @@
 
 @endsection
 <script>
+    //photo preview before submiting
     var loadFile = function(event) {
         var output = document.getElementById('output')
         output.src = URL.createObjectURL(event.target.files[0])

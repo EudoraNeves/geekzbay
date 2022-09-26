@@ -5,6 +5,7 @@
 @endsection
 @section('main')
     <div class="my-communities d-flex gap-3 flex-wrap justify-content-center align-items-center p-5">
+        {{-- show a list of user's liked communities --}}
         @if ($myCommunities->count() > 0)
             @foreach ($myCommunities as $community)
                 <div class="community w-25 mw-20 p-3 d-flex flex-column align-items-center justify-content-center gap-2">
@@ -24,6 +25,7 @@
                 </div>
             @endforeach
         @else
+            {{-- If user hasn't liked any communities --}}
             <div class="msg d-flex align-items-center">
                 <p>You don't have any liked communities :(</p>
             </div>

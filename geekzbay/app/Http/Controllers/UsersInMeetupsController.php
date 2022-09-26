@@ -9,15 +9,9 @@ use App\Models\UsersInMeetups;
 
 class UsersInMeetupsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //my-meetup list
     public function index()
     {
-        //
-
         $myMeetups = UsersInMeetups::select('users_in_meetups.status', 'meetups.id AS meetup_id', 'meetups.name AS meetup_name', 'meetups.date', 'locations.name AS location_name')
         ->join('meetups','meetups.id','=', 'users_in_meetups.meetup_id')
         ->join('locations','meetups.location_id','=','locations.id')
@@ -50,25 +44,14 @@ class UsersInMeetupsController extends Controller
         return view('layouts.my-meetups', ['myGoings' => $myGoings, 'myMaybes' => $myMaybes, 'myNopes' => $myNopes]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //add user to a meetup
     public function store(Request $request)
     {
-        //
         $user_id = Auth::id();
         $meetup_id = $request->route('id');
 
@@ -106,46 +89,21 @@ class UsersInMeetupsController extends Controller
         redirect("/meetups/" . $request->route('id'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

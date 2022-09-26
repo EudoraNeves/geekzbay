@@ -79,18 +79,12 @@ class MeetupController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //show the search result
     public function show($id)
     {
         $meetup = Meetup::find($id);
         $location = Location::find($meetup->location_id);
         $community = Community::find($meetup->community_id);
-
         $user = null;
         $authId = Auth::id();
         if($authId) {
@@ -100,52 +94,16 @@ class MeetupController extends Controller
         $meetup->formattedDate = DateTime::createFromFormat('Y-m-d H:i:s', $meetup->date)->format('l, d.n.Y');
 
         $usersInMeetups = UsersInMeetups::join('meetups','meetups.id','=', 'users_in_meetups.meetup_id')->join('users','users_in_meetups.user_id','=','users.id')->where('users_in_meetups.meetup_id','=',$id)->get();
-
         return view('layouts.meetup-details', ['meetup' => $meetup, 'location' => $location, 'community' => $community, 'user' => $user, 'usersInMeetups' => $usersInMeetups]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $meetup = Meetup::find($id);
-
-        return view('update-event', ['event' => $meetup]);
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $meetup = Meetup::destroy($id);
-
-
-        if ($meetup) {
-            return back()->with('success', 'Event was deleted');
-        } else
-
-            return back()->with('error', 'Deleting didnt worked.');
+        //
     }
 }
