@@ -88,7 +88,7 @@ class MeetupController extends Controller
         $user = null;
         $authId = Auth::id();
         if($authId) {
-            $user = UsersInMeetups::where('user_id', '=',$authId)->get();
+            $user = UsersInMeetups::where('user_id', '=',$authId)->where('meetup_id','=',$id)->get();
         }
 
         $meetup->formattedDate = DateTime::createFromFormat('Y-m-d H:i:s', $meetup->date)->format('l, d.n.Y');
