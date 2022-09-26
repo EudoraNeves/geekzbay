@@ -10,3 +10,13 @@
     width: 200px;
     height: 150px;
 }
+
+.flex-adapt {
+    flex-direction: column;
+}
+
+@media(min-width: 768px) {
+    .flex-adapt {
+        flex-direction: row;
+    }
+}
