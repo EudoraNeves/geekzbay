@@ -4,11 +4,16 @@
 @section('title', 'Home')
 @section('main')
 
+    {{-- Homepage presentation --}}
+
     <div class="homepage">
 
+        {{-- styled with Bootstrap --}}
         <h1 class="display-1" id="h1">Welcome to Geekzbay</h1>
         <h2 id="h2">The perfect place to meet other Geeks and friends</h2>
         <h3 id="h3">Don't forget to register to get full access &#x1F604;</h3>
+
+        {{-- Register Button if not already registered --}}
         @if (!Auth::check())
             <button class="wellcome_btn">
                 <a href="{{ route('register') }}"class="btn btn-dark">
