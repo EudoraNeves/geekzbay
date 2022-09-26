@@ -48,3 +48,8 @@
         opacity: 100%;
     }
 }
+
+.buddyAddedSuccessfully {
+    font-size: 3rem;
+    margin: 8rem auto;
+}
