@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             CommunitySeeder::class,
             LocationSeeder::class,
+            MeetupsSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
