@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create User table data        
+        
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');

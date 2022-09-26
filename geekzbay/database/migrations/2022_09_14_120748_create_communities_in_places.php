@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create communities in places table data
+
         Schema::create('communities_in_places', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('community_id')->unsigned();

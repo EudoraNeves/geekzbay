@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // Create Users in Communities table data
+        
         Schema::create('users_in_communities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
